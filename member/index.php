@@ -40,7 +40,7 @@
     <script src="../includes/js/plugins/gritter/jquery.gritter.min.js"></script>
     <script src="../includes/js/plugins/sparkline/jquery.sparkline.min.js"></script>
     <script src="../includes/js/demo/sparkline-demo.js"></script>
-    <script src="../includes/js/plugins/chartJs/Chart.min.js"></script>
     <script src="../includes/js/plugins/toastr/toastr.min.js"></script>
+  
 </body>
 </html>

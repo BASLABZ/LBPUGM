@@ -13,25 +13,18 @@
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
                                 <li><a href="profile.html"><span class="fa fa-user"></span> Profil</a></li>
                                 <li><a href="contacts.html"><span class="fa fa-gear"></span> Pengaturan</a></li>
-                                <li><a href="login.html">Keluar</a></li>
+                                <li><a href="login.html"><span class="fa fa-sign-out"></span> Keluar</a></li>
                             </ul>
                         </div>
                         <div class="logo-element">
                             LBP
                         </div>
                     </li>
-                    <li class="active">
-                        <a href="index-2.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li class="active"><a href="index-2.html">Dashboard v.1</a></li>
-                            <li><a href="dashboard_2.html">Dashboard v.2</a></li>
-                            <li><a href="dashboard_3.html">Dashboard v.3</a></li>
-                            <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
-                            <li><a href="dashboard_5.html">Dashboard v.5 <span class="label label-primary pull-right">NEW</span></a></li>
-                        </ul>
+                    <li>
+                        <a href="layouts.html"><i class="fa fa-file-o"></i> <span class="nav-label">PENGAJUAN</span></a>
                     </li>
                     <li>
-                        <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
+                        <a href="layouts.html"><i class="fa fa-file-o"></i> <span class="nav-label">PEMBAYARAN</span></a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Graphs</span><span class="fa arrow"></span></a>

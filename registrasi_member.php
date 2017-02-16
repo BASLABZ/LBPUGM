@@ -1,4 +1,3 @@
-
 <div id="registrasi" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -7,7 +6,7 @@
         <h4 class="modal-title" style="color:white;"><span class="fa fa-user-plus"></span> REGISTRASI SISTEM LBP - UGM</h4>
       </div>
       <div class="modal-body">
-        <form class="role" method="POST" id="frmAjaxregis">
+        <form class="role" method="POST" id="frmAjaxregis" action="member/proses_login_member.php">
           <div class="well">
             <div class="form-group row">
             <div class="col-md-6">
@@ -58,13 +57,13 @@
                <div class="col-md-6">
               <label class="col-md-5">NAMA INSTITUSI</label>
               <div class="col-md-7">
-                <input type="text" class="form-control" name="member_institution" placeholder="NAMA INSTITUSI" name="intitusi" reqiured>
+                <input type="text" class="form-control" name="member_institution_mahasiswa" placeholder="NAMA INSTITUSI" name="intitusi" reqiured>
               </div>
             </div>
             <div class="col-md-6">
               <label class="col-md-4">FAKULTAS</label>
               <div class="col-md-8">
-                <input type="text" class="form-control" name="member_faculty" placeholder="FAKULTAS" name="fakultas" reqiured>
+                <input type="text" class="form-control" name="member_faculty_mahasiswa" placeholder="FAKULTAS" name="fakultas" reqiured>
               </div>
             </div>
             </div>
