@@ -6,19 +6,19 @@
         <h4 class="modal-title" style="color:white;"><span class="fa fa-user-plus"></span> REGISTRASI SISTEM LBP - UGM</h4>
       </div>
       <div class="modal-body">
-        <form class="role" method="POST" id="frmAjaxregis" action="member/proses_login_member.php">
+        <form class="role" method="POST" id="frmAjaxregis" action="member/proses_login_member.php" enctype="multipart/form-data">
           <div class="well">
             <div class="form-group row">
             <div class="col-md-6">
               <label class="col-md-4">Nama Lengkap</label>
               <div class="col-md-8">
-                <input type="text" class="form-control" placeholder="Nama Lengkap"  name="member_name" id="nama">
+                <input type="text" class="form-control" placeholder="Nama Lengkap"  name="member_name" id="nama"   required>
               </div>
             </div>
             <div class="col-md-6">
               <label class="col-md-2">Email</label>
                 <div class="col-md-8">
-                  <input type="email" class="form-control" placeholder="Email"  name="member_email">
+                  <input type="email" class="form-control" required placeholder="Email"  name="member_email" >
                 </div>  
               </div>
           </div>
@@ -27,14 +27,14 @@
             <div class="col-md-6">
               <label class="col-md-4">Username</label>
               <div class="col-md-8">
-                <input type="text" class="form-control" placeholder="Username"  name="member_username">
+                <input type="text" class="form-control" required placeholder="Username"  name="member_username">
               </div>
             </div>
             <div class="col-md-6">
                <div class="form-group row">
               <label class="col-md-2">Password</label>
               <div class="col-md-8">
-                <input type="password" class="form-control" placeholder="Password"  name="member_password">
+                <input type="password" class="form-control" required placeholder="Password" maxlength="8" minlength="6" name="member_password">
               </div>
             </div>   
             </div>
@@ -43,7 +43,8 @@
               <div class="form-group row">
               <label class="col-md-2">KATEGORI</label>
              <div class="col-md-5">
-                <select class="form-control" name="category_id_fk" id="cat_id" reqiured>
+                <select class="form-control" required name="category_id_fk" id="cat_id" reqiured>
+                  <option value="">Pilih Kategori</option>
                   <?php 
                       $queryKategori  = mysql_query("SELECT * FROM ref_category order by category_id");
                       while ($rowCategory = mysql_fetch_array($queryKategori)) {
@@ -57,13 +58,13 @@
                <div class="col-md-6">
               <label class="col-md-5">NAMA INSTITUSI</label>
               <div class="col-md-7">
-                <input type="text" class="form-control" name="member_institution_mahasiswa" placeholder="NAMA INSTITUSI" name="intitusi" reqiured>
+                <input type="text" class="form-control"  name="member_institution_mahasiswa" placeholder="NAMA INSTITUSI" name="intitusi" reqiured>
               </div>
             </div>
             <div class="col-md-6">
               <label class="col-md-4">FAKULTAS</label>
               <div class="col-md-8">
-                <input type="text" class="form-control" name="member_faculty_mahasiswa" placeholder="FAKULTAS" name="fakultas" reqiured>
+                <input type="text" class="form-control"  name="member_faculty_mahasiswa" placeholder="FAKULTAS" name="fakultas" reqiured>
               </div>
             </div>
             </div>
@@ -71,13 +72,13 @@
               <div class="col-md-6">
               <label class="col-md-5">NAMA INSTITUSI</label>
               <div class="col-md-7">
-                <input type="text" class="form-control" name="member_institution" placeholder="NAMA INSTITUSI" name="intitusi" reqiured>
+                <input type="text" class="form-control"  name="member_institution_peneliti" placeholder="NAMA INSTITUSI" name="intitusi" reqiured>
               </div>
             </div>
             <div class="col-md-6">
               <label class="col-md-4">BIDANG</label>
               <div class="col-md-8">
-                <input type="text" class="form-control" name="member_faculty" placeholder="BIDANG" name="fakultas" reqiured>
+                <input type="text" class="form-control"  name="member_faculty_peneliti" placeholder="BIDANG" name="fakultas" reqiured>
               </div>
             </div>
             </div>
@@ -85,8 +86,8 @@
             <div class="form-group row">
                 <label class="col-md-2">Hint Questions</label>
                 <div class="col-md-6">
-                  <select class="form-control" name="member_hint_question" reqiured>
-                    <option value="NULL">Pilih Pertanyaan</option>
+                  <select class="form-control" required name="member_hint_question" reqiured>
+                    <option value="">Pilih Pertanyaan</option>
                     <option value="Dimana Kota Anda Dilahirkan ?">Dimana Kota Anda Dilahirkan ?</option>
                     <option value="Siapakah Nama Ayah Kandung Anda ?"> Siapakah Nama Ayah Kandung Anda ?</option>
                     <option value="Siapa Penyanyi Favorit Anda ?">Siapa Penyanyi Favorit Anda?</option>
@@ -97,7 +98,7 @@
             <div class="form-group row">
                   <label class="col-md-2">Answers</label>
                   <div class="col-md-6">
-                    <input type="text" class="form-control" name="member_answer_question" placeholder="Hint Answers" reqiured>
+                    <input type="text" class="form-control" required name="member_answer_question" placeholder="Hint Answers" reqiured>
                   </div>    
             </div>
           <hr>
@@ -105,7 +106,7 @@
               <div class="col-md-6">
                 <label class="col-md-4">FOTO</label>
                 <div class="col-md-8">
-                  <input type="file" name="member_idcard_photo" reqiured>
+                  <input type="file" name="member_photo" required="true">
                 </div>
               </div>
             </div>
@@ -141,6 +142,6 @@
           $('#kat1').hide();
         }  
     })
-
+    // validate js required
     
 </script>

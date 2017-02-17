@@ -29,7 +29,7 @@
                 $_SESSION['member_idcard_photos'] = $idcard;
                 $_SESSION['member_photo']  = $foto;
                 
-                echo "<script> alert('Login sukses'); location.href='index.php?hal=members/list';</script>  ";exit;
+                echo "<script> alert('Login sukses'); location.href='member/index.php';</script>  ";exit;
             }else{
                 echo "<script> alert('Login Gagal Ulangi'); location.href='index.php';  </script>";exit;
             }

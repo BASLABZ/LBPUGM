@@ -1,3 +1,9 @@
+<?php 
+        $idMemberLogin  = $_SESSION['member_id'];
+        $query = "SELECT member_id,member_name,member_institution,member_faculty,category_name,category_id FROM tbl_member JOIN ref_category ON tbl_member.category_id_fk = ref_category.category_id where tbl_member.member_id='".$idMemberLogin."'";
+                    
+        $identitasMember = mysql_fetch_array(mysql_query($query));
+ ?>
 <div class="row  border-bottom navy-bg dashboard-header">
            <div class="col-md-6">
                 <div class="profile-image">
@@ -7,11 +13,11 @@
                     <div class="">
                         <div>
                             <h2 class="no-margins">
-                                Ahmad Bastiar
+                                <?php echo $identitasMember['member_name']; ?>
                             </h2>
                             <h4>Member LBP</h4>
                             <small>
-                               <b> Category member : | Instansi : | Fakultas :</b>
+                               <b> Category member : <?php echo $identitasMember['category_name']; ?> | Instansi : <?php echo $identitasMember['member_institution']; ?> | Fakultas / Bidang : <?php echo $identitasMember['member_faculty']; ?></b>
                             </small>
                         </div>
                     </div>

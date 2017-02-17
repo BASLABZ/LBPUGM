@@ -1,3 +1,11 @@
+<?php 
+    session_start();
+    include '../menejemen/inc/inc-db.php';
+    if (isset($_GET['logout'])) {
+        session_destroy();
+        echo "<script> alert('Anda Berhasil Keluar Aplikasi'); location.href='../index.php' </script>";exit;}
+    if ($_SESSION['member_id']&&$_SESSION['member_name']) {
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,11 +25,22 @@
 </head>
 <body class="md-skin">
     <div id="wrapper">
-        <?php include 'sidebar-memberarea.php'; ?>
+      <?php include 'sidebar-memberarea.php'; ?>
+
+        
         <div id="page-wrapper" class="gray-bg dashbard-1">
         <?php include 'topmenu-memberarea.php'; ?>
         <!-- main members -->
-        <?php include 'content-memberarea.php'; ?>
+        <?php 
+            if(empty( $_GET['hal']) ||  $_GET['hal'] ==""){
+                $_GET['hal'] = "content-memberarea.php";
+              }
+              if(file_exists( $_GET['hal'].".php")){
+                include  $_GET['hal'].".php";
+              }else {
+                include"content-memberarea.php";
+              }
+         ?>
     </div>
     <script src="../includes/js/jquery-2.1.1.js"></script>
     <script src="../includes/js/bootstrap.min.js"></script>
@@ -44,3 +63,6 @@
   
 </body>
 </html>
+<?php }else{
+    include 'error404.php';
+    } ?>
