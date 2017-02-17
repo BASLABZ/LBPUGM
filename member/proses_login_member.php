@@ -14,7 +14,7 @@
 		$member_answer_question = $_POST['member_answer_question'];
 		$member_idcard_photo = $_POST['member_idcard_photo'];
 		$category_id_fk = $_POST['category_id_fk'];
-		var_dump($category_id_fk);
+		
 		if ($category_id_fk==1) {
 			// S1 - UGM
 			// query insert to tbl member
@@ -31,12 +31,15 @@
 												) 
 										VALUES ('".$member_name."', '', '', '', '', 
 												'".$username."', MD5('".$password."'),
-												'".$member_hint_question."', '".$member_answer_question."', 'UGM', 'S1 - KEDOKTERAN UGM', '".$member_email."', '', '".$member_photo."', 'AKTIVED', 'Y', NOW(), '', '".$category_id_fk."')";
+												'".$member_hint_question."', '".$member_answer_question."', 'UGM', 'S1 - KEDOKTERAN UGM', '".$member_email."', '', '".$member_photo."', 'AKTIVED', 'Y',NOW(),'', '".$category_id_fk."')";
 												var_dump($queryTES);
 			
 		}elseif ($category_id_fk==2) {
 			// mahasiswa 
 			// nama institusi & nama fakultas
+			var_dump($category_id_fk);
+			var_dump($member_institution_mahasiswa);
+			var_dump($member_faculty_mahasiswa);
 			$queryTES = "INSERT INTO tbl_member 
 												(
 														member_name, member_birth_date, member_gender,
@@ -50,7 +53,7 @@
 												) 
 										VALUES ('".$member_name."', '', '', '', '', 
 												'".$username."', MD5('".$password."'),
-												'".$member_hint_question."', '".$member_answer_question."', '".$member_institution_member."', '".$member_faculty_member."', '".$member_email."', '', '".$member_photo."', 'AKTIVED', 'Y', NOW(), '', '".$category_id_fk."')";
+												'".$member_hint_question."', '".$member_answer_question."', '".$member_institution_mahasiswa."', '".$member_faculty_mahasiswa."', '".$member_email."', '', '".$member_photo."', 'AKTIVED','Y',NOW(),'','".$category_id_fk."')";
 												var_dump($queryTES);
 		}elseif ($category_id_fk == 3) {
 			// peneliti
