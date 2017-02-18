@@ -268,7 +268,8 @@
                                     </div>
                                     <div class="col-md-10">
                                         <h2 style="padding-top: 10px">Pengembalian Alat</h2>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+                                        <li>Pengembalian dilakukan sesuai dengan jadwal tanggal kembali pada saat pengajuan</li>
+                                        <li>Pengembalian alat yang melebihi tanggal jatuh tempo akan dikenakan denda.</li>
                                         <a href="#modal_pengembalian" class="btn btn-xs btn-primary" data-toggle="modal"> Info Selengkapnya</a>
                                     </div>
                                      <span class="vertical-date"> Tomorrow <br/> <small>Dec 26</small> </span>

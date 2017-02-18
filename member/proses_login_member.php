@@ -40,7 +40,7 @@
 			
 
 			if ($register) {
-				  echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='index.php' </script>";exit;
+				  echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='../index.php' </script>";exit;
 			}
 			
 		}elseif ($category_id_fk==2) {
@@ -62,7 +62,7 @@
 												'".$member_hint_question."', '".$member_answer_question."', '".$member_institution_mahasiswa."', '".$member_faculty_mahasiswa."', '".$member_email."', '', '".$member_photo."', 'PENDING','Y',NOW(),'','".$category_id_fk."')";
                   $register = mysql_query($queryTES);
                   if ($queryTES) {
-                  	 echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='index.php' </script>";exit;
+                  	 echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='../index.php' </script>";exit;
                   }
 		}elseif ($category_id_fk == 3) {
 			// peneliti
@@ -84,7 +84,7 @@
 												'".$member_hint_question."', '".$member_answer_question."', '".$member_institution_peneliti."', '".$member_faculty_peneliti."', '".$member_email."', '', '".$member_photo."', 'PENDING','Y',NOW(),'','".$category_id_fk."')";
                   $register = mysql_query($queryTES);
                   if ($queryTES) {
-                  	 echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='index.php' </script>";exit;
+                  	 echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='../index.php' </script>";exit;
                   }
 		}elseif ($category_id_fk==4) {
 			// umum
@@ -105,7 +105,7 @@
 												'".$member_hint_question."', '".$member_answer_question."', '".$member_institution_peneliti."', '".$member_faculty_peneliti."', '".$member_email."', '', '".$member_photo."', 'PENDING','Y',NOW(),'','".$category_id_fk."')";
                   $register = mysql_query($queryTES);
                   if ($queryTES) {
-                  	 echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='index.php' </script>";exit;
+                  	 echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='../index.php' </script>";exit;
                   }
 			}
 		}
