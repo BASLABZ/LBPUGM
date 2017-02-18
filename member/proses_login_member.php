@@ -35,7 +35,7 @@
 												) 
 										VALUES ('".$member_name."', '', '', '', '', 
 												'".$username."', MD5('".$password."'),
-												'".$member_hint_question."', '".$member_answer_question."', 'UGM', 'Mahasiswa Kedokteran  S1 UGM', '".$member_email."', '', '".$member_photo."', 'PENDING', 'Y',NOW(),'', '".$category_id_fk."')";
+												'".$member_hint_question."', '".$member_answer_question."', 'UGM', 'Mahasiswa Kedokteran  S1 UGM', '".$member_email."', '', '".$member_photo."', 'PENDING', 'N',NOW(),'', '".$category_id_fk."')";
 			$register = mysql_query($queryTES);
 			
 
@@ -59,7 +59,7 @@
 												) 
 										VALUES ('".$member_name."', '', '', '', '', 
 												'".$username."', MD5('".$password."'),
-												'".$member_hint_question."', '".$member_answer_question."', '".$member_institution_mahasiswa."', '".$member_faculty_mahasiswa."', '".$member_email."', '', '".$member_photo."', 'PENDING','Y',NOW(),'','".$category_id_fk."')";
+												'".$member_hint_question."', '".$member_answer_question."', '".$member_institution_mahasiswa."', '".$member_faculty_mahasiswa."', '".$member_email."', '', '".$member_photo."', 'PENDING','N',NOW(),'','".$category_id_fk."')";
                   $register = mysql_query($queryTES);
                   if ($queryTES) {
                   	 echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='../index.php' </script>";exit;
@@ -81,7 +81,7 @@
 												) 
 										VALUES ('".$member_name."', '', '', '', '', 
 												'".$username."', MD5('".$password."'),
-												'".$member_hint_question."', '".$member_answer_question."', '".$member_institution_peneliti."', '".$member_faculty_peneliti."', '".$member_email."', '', '".$member_photo."', 'PENDING','Y',NOW(),'','".$category_id_fk."')";
+												'".$member_hint_question."', '".$member_answer_question."', '".$member_institution_peneliti."', '".$member_faculty_peneliti."', '".$member_email."', '', '".$member_photo."', 'PENDING','N',NOW(),'','".$category_id_fk."')";
                   $register = mysql_query($queryTES);
                   if ($queryTES) {
                   	 echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='../index.php' </script>";exit;
@@ -102,7 +102,7 @@
 												) 
 										VALUES ('".$member_name."', '', '', '', '', 
 												'".$username."', MD5('".$password."'),
-												'".$member_hint_question."', '".$member_answer_question."', '".$member_institution_peneliti."', '".$member_faculty_peneliti."', '".$member_email."', '', '".$member_photo."', 'PENDING','Y',NOW(),'','".$category_id_fk."')";
+												'".$member_hint_question."', '".$member_answer_question."', '".$member_institution_peneliti."', '".$member_faculty_peneliti."', '".$member_email."', '', '".$member_photo."', 'PENDING','N',NOW(),'','".$category_id_fk."')";
                   $register = mysql_query($queryTES);
                   if ($queryTES) {
                   	 echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='../index.php' </script>";exit;
