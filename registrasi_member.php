@@ -106,7 +106,7 @@
               <div class="col-md-6">
                 <label class="col-md-4">FOTO</label>
                 <div class="col-md-8">
-                  <input type="file" name="member_photo" required="true">
+                  <input type="file" name="member_idcard_photo" required="true">
                 </div>
               </div>
             </div>
