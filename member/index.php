@@ -2,6 +2,8 @@
     session_start();
     include '../menejemen/inc/inc-db.php';
     if (isset($_GET['logout'])) {
+
+        $updateLogin = mysql_query("UPDATE tbl_member set member_login = 'N' where member_id = '".$_SESSION['member_id']."' ");
         session_destroy();
         echo "<script> alert('Anda Berhasil Keluar Aplikasi'); location.href='../index.php' </script>";exit;}
     if ($_SESSION['member_id']&&$_SESSION['member_name']) {

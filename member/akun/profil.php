@@ -32,10 +32,10 @@
                                 <div class="user-button">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-envelope"></i> Send Message</button>
+                                            <button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-picture-o"></i> Ubah Foto</button>
                                         </div>
                                         <div class="col-md-6">
-                                            <button type="button" class="btn btn-default btn-sm btn-block"><i class="fa fa-coffee"></i> Buy a coffee</button>
+                                            <button type="button" class="btn btn-danger btn-sm btn-block"><i class="fa fa-trash"></i> Hapus</button>
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@
                                         <div class="col-md-12 text-center">
                                           <?php 
                                               if ($rowMember['member_photo']=='') {
-                                                echo "<img src='members/image/testimonial-icon1.png' class='img-circle dim_about'>";
+                                                echo "<img src='../img/user.png' class='img-circle dim_about' width='100px;'>";
                                               }else{
                                                 echo "<center>
                                                 <img src='../img/".$_SESSION['member_photo']."' class='img-circle dim_about img-responsive' style='width:100px; height:100px;'>

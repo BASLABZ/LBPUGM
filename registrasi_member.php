@@ -6,7 +6,7 @@
         <h4 class="modal-title" style="color:white;"><span class="fa fa-user-plus"></span> REGISTRASI SISTEM LBP - UGM</h4>
       </div>
       <div class="modal-body">
-        <form class="role" method="POST" id="frmAjaxregis" action="member/proses_login_member.php" enctype="multipart/form-data">
+        <form class="role" method="POST" id="frmAjaxregis" action="member/proses_registrasi_member.php" enctype="multipart/form-data">
           <div class="well">
             <div class="form-group row">
             <div class="col-md-6">

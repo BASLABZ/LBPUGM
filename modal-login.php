@@ -28,6 +28,7 @@
                 $_SESSION['member_address'] = $alamat;
                 $_SESSION['member_idcard_photos'] = $idcard;
                 $_SESSION['member_photo']  = $foto;
+                $AkuratLogin = mysql_query("UPDATE tbl_member set member_login='Y' where member_id='".$_SESSION['member_id']."'");
                 
                 echo "<script> alert('Login sukses'); location.href='member/index.php';</script>  ";exit;
             }else{
