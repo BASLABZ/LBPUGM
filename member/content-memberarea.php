@@ -98,10 +98,10 @@
 </div>
 <div class="row" style="padding-top: 10px;">
     <div class="col-md-12">
-        <div class="col-md-3">
-               <a href="#" class="btn btn-danger btn-lg dim_about"><span class="fa fa-shopping-cart"></span> Pilih Alat Untuk Pengajuan </a>
+        <div class="col-md-4">
+               <a href="index.php?hal=pengajuan-member/pengajuan" class="btn btn-danger btn-lg dim_about"><span class="fa fa-search"></span> CARI ALAT / INSTRUMENT </a>
            </div>
-       <div class="col-md-9">
+       <div class="col-md-8">
             <div class="alert alert-success alert-dismissable dim_about yellow-bg" style="border-color: #f8ac59; color: white;">
         <button aria-hidden="true" data-dismiss="alert" class="close" type="button" style="color: white;">×</button>
           <span class="fa fa-check"></span> Selamat Datang Di LPB - UGM / PEMINJAMAN ALAT LAB.
@@ -109,4 +109,3 @@
        </div>
     </div>
 </div>
-<!-- <span class="fa fa-exclamation-triangle"></span> -->

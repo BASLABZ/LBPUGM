@@ -21,6 +21,9 @@
                         </div>
                     </li>
                     <li>
+                        <a href="index.php"><i class="fa fa-home"></i> <span class="nav-label">HOME</span></a>
+                    </li>
+                    <li>
                         <a href="layouts.html"><i class="fa fa-file-o"></i> <span class="nav-label">PENGAJUAN</span></a>
                     </li>
                     <li>
