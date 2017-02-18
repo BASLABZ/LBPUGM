@@ -58,11 +58,11 @@
 <!-- prosedur -->
 <section class="timeline gray-section" id="prosedur">
     <div class="container">
-        <div class="row">
+         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="navy-line"></div>
-                <h1>PROSEDUR LAB. BIO-PELEONTROPOLOGI UGM</h1>
-                <p>Berikut Prosedur Penyewaan Peralatan LAB. BIO-PELEONTROPOLOGI UGM </p>
+                <h1>PROSEDUR PENDAFTARAN MEMBER</h1>
+                <p>Berikut Prosedur Pendaftaran Member Lab. Bio-Paleoantropologi UGM </p>
             </div>
         </div>
         <div class="row features-block">
@@ -75,11 +75,33 @@
                         </div>
 
                         <div class="vertical-timeline-content dim_about">
-                            <h2>Meeting</h2>
-                            <p>Conference on the sales results for the previous year. Monica please examine sales trends in marketing and products. Below please find the current status of the sale.
-                            </p>
-                            <a href="#" class="btn btn-xs btn-primary"> More info</a>
+                            <div class="col-xs-12">
+                            <style type="text/css">
+                                    .step-number {
+                                        display: inline-block;
+                                        margin: 10px 0 0 20px;
+                                        padding: 8px 14px;
+                                        border-radius: 50%;
+                                        color: white;
+                                        font-size: 21px;
+                                        background-color:#1ab394;
+                                    }
+                                </style>
+                                 <div class="row">
+                                     <div class="col-md-2">
+                                         <span class="step-number">1</span> 
+                                     </div>
+                                     <div class="col-md-10">
+                                       <h2 style="padding-top: 10px;"> Registrasi </h2>
+                                         <p>Silahkan melihat alat-alat pada halaman daftar ketersediaan alat</p>
+                                         <a href="#modal_registrasi_member" class="btn btn-xs btn-primary" data-toggle="modal">Info Selengkapnya</a>
+                                     </div>
+                                 </div>
+                                  
+                            </div> 
+                            <div class="col-xs-12">
                             <span class="vertical-date"> Today <br/> <small>Dec 24</small> </span>
+                            </div>
                         </div>
                     </div>
 
@@ -89,10 +111,103 @@
                         </div>
 
                         <div class="vertical-timeline-content dim_about">
-                            <h2>Decision</h2>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</p>
-                            <a href="#" class="btn btn-xs btn-primary"> More info</a>
-                            <span class="vertical-date"> Tomorrow <br/> <small>Dec 26</small> </span>
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <span class="step-number">2</span> 
+                                </div>
+                                <div class="col-md-10">
+                                    <h2 style="padding-top: 10px">Aktivasi Akun</h2>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+                                    <a href="#modal_aktivasi_member" class="btn btn-xs btn-primary" data-toggle="modal"> Info Selengkapnya</a>
+                                </div>
+                                     <span class="vertical-date"> Tomorrow <br/> <small>Dec 26</small> </span>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- prosedur peminjaman  -->
+<section class="timeline gray-section" id="prosedur">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="navy-line"></div>
+                <h1>PROSEDUR PENYEWAAN ALAT PENELITIAN</h1>
+                <p>Berikut Prosedur Penyewaan Peralatan Lab. Bio-Paleoantropologi UGM </p>
+            </div>
+        </div>
+        <div class="row features-block">
+
+            <div class="col-lg-12">
+                <div id="vertical-timeline" class="vertical-container light-timeline center-orientation">
+                    <div class="vertical-timeline-block">
+                        <div class="vertical-timeline-icon navy-bg">
+                            <i class="fa fa-briefcase"></i>
+                        </div>
+
+                        <div class="vertical-timeline-content dim_about">
+                            <div class="col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <span class="step-number">1</span> 
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h2 style="padding-top: 10px">Cari Alat</h2>
+                                        <p>Sebelum melakukan penyewaan alat, terlebih dahulu Anda diwajibkan melakukan pengajuan pinjaman dengan cara berikut : </p>
+                                        <a href="#modal_cari_alat" class="btn btn-xs btn-primary" data-toggle="modal"> Info Selengkapnya</a>
+                                    </div>
+                                     <span class="vertical-date"> Tomorrow <br/> <small>Dec 26</small> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="vertical-timeline-block">
+                        <div class="vertical-timeline-icon navy-bg">
+                            <i class="fa fa-briefcase"></i>
+                        </div>
+
+                        <div class="vertical-timeline-content dim_about">
+                            <div class="col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <span class="step-number">2</span> 
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h2 style="padding-top: 10px">Pengajuan Peminjaman Alat</h2>
+                                        <p>Review ringkasan peminjaman melalui keranjang peminjaman.</p>
+                                        <a href="#modal_pengajuan" class="btn btn-xs btn-primary" data-toggle="modal"> Info Selengkapnya</a>
+                                    </div>
+                                     <span class="vertical-date"> Tomorrow <br/> <small>Dec 26</small> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vertical-timeline-block">
+                        <div class="vertical-timeline-icon navy-bg">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+
+                        <div class="vertical-timeline-content dim_about">
+                           <div class="col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <span class="step-number">3</span> 
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h2 style="padding-top: 10px">Konfirmasi Admin</h2>
+                                        <p>Admin akan memberikan konfirmasi pengajuan pinjaman melalui notifikasi email</p>
+                                        <a href="#modal_konfirm_alat" class="btn btn-xs btn-primary" data-toggle="modal"> Info Selengkapnya</a>
+                                    </div>
+                                     <span class="vertical-date"> Tomorrow <br/> <small>Dec 26</small> </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -102,10 +217,63 @@
                         </div>
 
                         <div class="vertical-timeline-content dim_about">
-                            <h2>Implementation</h2>
-                            <p>Go to shop and find some products. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. </p>
-                            <a href="#" class="btn btn-xs btn-primary"> More info</a>
-                            <span class="vertical-date"> Monday <br/> <small>Jan 02</small> </span>
+                            <div class="col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <span class="step-number">4</span> 
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h2 style="padding-top: 10px">Pembayaran</h2>
+                                        <p>Pembayaran dapat dilakukan melalui transfer via ATM, setor tunai bank, maupun sms bangking</p>
+                                        <a href="#modal_pembayaran" class="btn btn-xs btn-primary" data-toggle="modal"> Info Selengkapnya</a>
+                                    </div>
+                                     <span class="vertical-date"> Tomorrow <br/> <small>Dec 26</small> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="vertical-timeline-block">
+                        <div class="vertical-timeline-icon navy-bg">
+                            <i class="fa fa-cogs"></i>
+                        </div>
+
+                        <div class="vertical-timeline-content dim_about">
+                            <div class="col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <span class="step-number">5</span> 
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h2 style="padding-top: 10px">Pengambilan alat</h2>
+                                        <p>Pengambilan alat dilakukan dengan membawa kwitansi yang anda cetak melalui sistem setelah Anda melakukan konfirmasi pembayaran</p>
+                                        <a href="#modal_pengambilan" class="btn btn-xs btn-primary" data-toggle="modal"> Info Selengkapnya</a>
+                                    </div>
+                                     <span class="vertical-date"> Tomorrow <br/> <small>Dec 26</small> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vertical-timeline-block">
+                        <div class="vertical-timeline-icon navy-bg">
+                            <i class="fa fa-cogs"></i>
+                        </div>
+
+                        <div class="vertical-timeline-content dim_about">
+                            <div class="col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <span class="step-number">6</span> 
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h2 style="padding-top: 10px">Pengembalian Alat</h2>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+                                        <a href="#modal_pengembalian" class="btn btn-xs btn-primary" data-toggle="modal"> Info Selengkapnya</a>
+                                    </div>
+                                     <span class="vertical-date"> Tomorrow <br/> <small>Dec 26</small> </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -113,7 +281,8 @@
             </div>
 
         </div>
-    </div></section>
+    </div>
+</section>
     <section id="instrumen" class="pricing">
     <div class="container">
         <div class="row">
@@ -237,5 +406,5 @@
 </section>
  <?php } ?>
 <!-- contact LBP UGM -->
-<?php //include 'registrasi.php'; ?>
+<?php include 'modal-prosedur.php'; ?>
 
