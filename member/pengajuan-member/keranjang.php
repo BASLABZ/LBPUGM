@@ -7,7 +7,6 @@
         $kode      = buatkode("trx_loan_application","");
         $invoice   = "".$kode."/INV/".$subtahun."";
                $lamapinjam = $_POST['totalbayarpenajuan'];
-              
                 $kodealat  = $_POST['instrument_id_fk'];
                 $jumlahalat = $_POST['jumlah'];
                 $subtotalpinjam = $_POST['subtotal'];
@@ -17,52 +16,7 @@
                     $$totalFee   = ($subtotalpinjam + $totalFee)*$lamapinjam;
                     $total_loan = $jumlahalatinstrument+$total_loan;
                 }
-        // simpan data ke table peminjaman & detail peminjaman
-        if (isset($_POST['ajukanpeminjaman'])) {        
-               
-               if (!empty($_FILES) && $_FILES['frm_file']['error'] == 0) {
-                          $fileName = $_FILES['frm_file']['name'];
-                          $move = move_uploaded_file($_FILES['frm_file']['tmp_name'], '../surat/'.$fileName);
-                      $konversitgl_pinjam = jin_date_sql($_POST['tgl_pinjam']);
-                       $konversitgl_kembali = jin_date_sql($_POST['tanggal_kembali']);
-                  
-             if ($move) {
-
-                $queryInsert_loan_app = mysql_query("INSERT INTO trx_loan_application 
-                                                        (loan_app_id,loan_invoice,
-                                                        loan_date_input,loan_date_start,
-                                                        loan_date_return,loan_file,
-                                                        loan_total_item,loan_total_fee,
-                                                        loan_status,member_id_fk
-                                                        ) 
-                                          VALUES ('".$kode."','".$invoice."',NOW(),
-                                                  '".$konversitgl_pinjam."','".$konversitgl_kembali."',
-                                                  '".$fileName."','".$total_loan."','".$totalFee."','MENUNGGU','".$_SESSION['member_id']."')"); 
-                          $kodealats  = $_POST['instrument_id_fk'];
-                          $jumlahalats = $_POST['jumlah'];
-                          $subtotalpinjams = $_POST['subtotal'];
-                          $banyaks        = count($kodealats);
-                         for ($x=0; $x <  $banyaks ; $x++) { 
-                           $kodeInstruments = $kodealats[$x];
-                           $jumlahalatinstruments = $jumlahalats[$x];
-                           $queryInsertDetail_loan = mysql_query("INSERT INTO trx_loan_application_detail 
-                                                                (loan_app_id_fk,instrument_id_fk,loan_amount,loan_subtotal,loan_status_detail)
-                                                     VALUES 
-                                                     ('".$kode."','".$kodeInstruments."',
-                                                     '".$jumlahalatinstruments."','".$subtotalpinjams."','MENUNGGU')");
-                         
-
-                                                     
-                         }
-                            
-                        }
-                        $queryDeleteLoan_temp = mysql_query("DELETE FROM trx_loan_temp where member_id_fk='".$_SESSION['member_id']."' ");
-                        if ($queryDeleteLoan_temp) {
-                          echo "<script> alert('Terimakasih Data Berhasil Disimpan & Tunggu Konfirmasi Dari Kami'); location.href='index.php?hal=member/index' </script>";exit;
-                        }
-                        
-                     }
-        }
+       
  ?>
 
 <!-- keranjang table -->
@@ -101,7 +55,7 @@
                               <a href="index.php?hal=pengajuan-member/pengajuan" class="btn btn-warning btn-sm dim_about"><span class="fa fa-arrow-left"></span> Kembali Ke Instrument</a>
                            </p><br><br>
           
-            <form class="role" method="POST" enctype="multipart/form-data">
+            <form class="role" method="POST" enctype="multipart/form-data" action="index.php?hal=pengajuan-member/proses_pengajuan">
                     <input name="idpeminjaman"  type="hidden" value="<?php echo $invoice; ?>">
             <table class="table table-bordered table-responsive table-hover" id="keranjang" >
             <thead>
@@ -149,8 +103,8 @@
             <tfoot>
               <tr>
                 <td colspan="2"></td>
-                <td><input type="text" disabled id="totaljum"> /Item</td>
-                <td>Rp. <input type="text" disabled id="totalsus"></td>
+                <td><input type="text" readonly id="totaljum" name="totaljumlahSEMUAITEM"> /Item</td>
+                <td>Rp. <input type="text" readonly id="totalsus"></td>
               </tr>
 
             </tfoot>
@@ -185,17 +139,16 @@
                                      <label>Dihitung (Minggu)</label>
                                   </div>
                                    <div class="col-md-6">
-                                     <input type="text" id="Minggu" disabled class="form-control" name="totalbayarpenajuan">
+                                     <input type="text" id="Minggu" readonly class="form-control" name="totalbayarpenajuan">
                                   </div>
                               </div>
                   </div>
                   
                   <div class="col-md-4">
-                  
                         <button type="button" data-toggle="tooltip" data-placement="top"
                          title="HITUNG PINJAMAN" onclick="hitungFIX()" class="btn btn-primary dim btn-large-dim" id="hitungsemua"><span class="fa fa-calculator"> </span> </button>
                         <label>Total Pembelian (Rp.)</label>
-                        <input type="text" disabled id="totalpenyewaan" class="form-control">
+                        <input type="text" readonly id="totalpenyewaan" name="totalpenyewaanBayar" class="form-control">
                  </div>
                   <div class="col-md-4">
                     <div class="panel panel-primary">
@@ -303,7 +256,7 @@ function hitung(no) {
 
           if (!isNaN(num)) {
               subtotaljumlah += num;
-              console.log(subtotaljumlah);
+              console
           }
         })
 
@@ -331,7 +284,7 @@ function hitungFIX() {
     var lamapinjamFix = document.getElementById('Minggu').value; 
     var totalBayarFIX = subtotalFIX * lamapinjamFix;
     $('#totalpenyewaan').val(totalBayarFIX);
-    console.log(totalBayarFIX);
+    
 }
 
 function hitungTotalNIlai() {
