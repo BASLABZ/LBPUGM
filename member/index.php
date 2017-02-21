@@ -77,6 +77,7 @@
     <script src="../includes/js/plugins/toastr/toastr.min.js"></script>
     <script src="../menejemen/admin/assets/plugins/jasny/js/bootstrap-fileupload.js"></script>
    <script type="text/javascript">
+     $('[data-toggle="tooltip"]').tooltip();
        $(document).ready(function(){
         $('#myModal').on('show.bs.modal', function (e) {
             var rowid = $(e.relatedTarget).data('id');
@@ -156,6 +157,7 @@
                     if (diffDays < 0) {
                       alert('data tidak valid');
                       $('#totaldays').val(0);
+                       $('#Minggu').val(0);
                     }else{
                       $("#totaldays").val(diffDays)
                        var bagi = diffDays/5;
@@ -177,6 +179,7 @@
                    if (diff<0) {
                     alert('data tidak valid');
                     $('#totaldays').val(0);
+                    $('#Minggu').val(0);
                    }else{
                     var bagi = diff/5;
                     var hasilconversi = bagi.toFixed();
@@ -231,6 +234,9 @@
           
      }
       );
+   </script>
+   <script type="text/javascript">
+     window.onload = hitung(1)
    </script>
 </body>
 </html>

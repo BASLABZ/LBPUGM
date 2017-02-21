@@ -55,7 +55,16 @@
                             </div>
                             <div class="col-md-2">
                                  <br>
-                                 <a href="index.php?hal=pengajuan-member/keranjang" class="btn btn-primary btn-lg dim_about"> <span class="fa fa-shopping-cart"></span> Keranjang</a>
+                                 <?php  
+                                        $queryCekKeranjang  = mysql_query("SELECT count(member_id_fk) as jumlah FROM trx_loan_temp where member_id_fk='".$_SESSION['member_id']."'");
+                                             $rowcekkeranjang = mysql_fetch_array($queryCekKeranjang);
+                                             $cekJumlah = $rowcekkeranjang['jumlah'];
+                                             if ($cekJumlah == 0) {
+                                                 
+                                             }else{
+                                                 echo "<a href='index.php?hal=pengajuan-member/keranjang' class='btn btn-primary btn-lg dim_about'> <span class='fa fa-shopping-cart'></span> Keranjang</a>";
+                                             }
+                                  ?>
                             </div>
                         </div>
                          <form method="POST">

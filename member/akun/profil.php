@@ -4,6 +4,7 @@
           $password_baru =$_POST['password_baru'];
           $queryganti_password  = mysql_query("UPDATE tbl_member 
                                                   set 
+                                                  member_username = '".$_POST['member_username']."',
                                                   member_hint_question='".$_POST['member_hint_question']."' , 
                                                   member_answer_question = '".$_POST['member_answer_question']."', 
                                                   member_password = md5('".$password_baru."') where member_id  = '".$_SESSION['member_id']."'");
@@ -239,7 +240,7 @@
                                       <div class="form-group row">
                                         <label class="col-md-4">Tanggal Lahir</label>
                                         <div class="col-md-4">
-                                          <input type="date" class="form-control" name="member_birth_date" value="<?php echo jin_date_str($rowMember['member_birth_date']); ?>" required>
+                                          <input type="date" class="form-control" name="member_birth_date" value="<?php echo $rowMember['member_birth_date']; ?>" required>
                                         </div>
                                         <div class="col-md-4">
                                             <input type="text" disabled="" class="form-control" value="<?php echo $rowMember['member_birth_date']; ?>">
@@ -303,6 +304,12 @@
                             <div id="tab-2" class="tab-pane">
                                 <div class="panel-body">
                                      <form class="role" method="POST">
+                                      <div class="form-group row">
+                                          <label class="col-md-4 pu"><center>Username</center></label>
+                                          <div class="col-md-6">
+                                              <input type="text" class="form-control" name="member_username" required value="<?php echo $rowMember['member_username']; ?>">
+                                          </div>
+                                      </div>
                                       <div class="form-group row">
                                           <label class="col-md-4 pu"><center>Password Lama</center></label>
                                           <div class="col-md-6">

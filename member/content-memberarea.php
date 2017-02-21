@@ -98,10 +98,67 @@
 </div>
 <div class="row" style="padding-top: 10px;">
     <div class="col-md-12">
-        <div class="col-md-4">
-               <a href="index.php?hal=pengajuan-member/pengajuan" class="btn btn-danger btn-lg dim_about"><span class="fa fa-search"></span> CARI ALAT / INSTRUMENT </a>
-           </div>
-       <div class="col-md-8">
+      
+       <?php  
+                $query_profilmember= mysql_query("SELECT * from tbl_member where member_id = '".$_SESSION['member_id']."'");
+                  $peringatan_lengkapi_identitas = mysql_fetch_array($query_profilmember);
+                     $member_birth_date_cek          = $peringatan_lengkapi_identitas['member_birth_date'];
+                     $member_gender_cek              = $peringatan_lengkapi_identitas['member_gender'];
+                     $member_phone_number_cek        = $peringatan_lengkapi_identitas['member_phone_number'];
+                     $member_address_cek             = $peringatan_lengkapi_identitas['member_address'];
+               
+                  if ($member_birth_date_cek  != '' AND $member_gender_cek  != '' AND 
+                        $member_phone_number_cek !='' AND $member_address_cek  != '') {
+                         echo "
+                                  <div class='col-md-4'>
+                                       <a href='index.php?hal=pengajuan-member/pengajuan' class='btn btn-danger btn-lg dim_about'><span class='fa fa-search'></span> CARI ALAT / INSTRUMENT </a>
+                                   </div>
+                              ";
+                          echo "<div class='col-md-8'>
+                          <div class='alert alert-success alert-dismissable dim_about navy-bg' style='border-color: #f8ac59; color: white;'>
+                              <button aria-hidden='true' data-dismiss='alert' class='close' type='button' style='color: white;'>×</button>
+                                <span class='fa fa-check'></span>
+                                SILAHKAN MELAKUKAN PENGAJUAN PEMINJAMAN ALAT
+                                </b>
+                             </div>
+                        </div>";
+                       }else{
+                          echo "
+                                  <div class='col-md-4'>
+                                       <div class='panel-group'>
+                                          <div class='panel panel-warning dim_about'>
+                                            <div class='panel-heading'>
+                                              <h4 class='panel-title'>
+                                                <a data-toggle='collapse' href='#peringatan'>
+                                                        <span class='fa fa-search'></span> CARI ALAT / INSTRUMENT 
+                                                </a>
+                                              </h4>
+                                            </div>
+                                            <div id='peringatan' class='panel-collapse collapse'>
+                                              <div class='panel-body'>
+                                                    <p>Silahkan Lengkapi Data Anda Terlebih Dahulu Sebelum Melakukan Pengajuan Alat Agar Data Pengajuan Anda Segera Di ACC Oleh Petugas Kami, </p><br>
+                                                        Terima Kasih
+                                              </div>
+                                              <div class='panel-footer dim_about'><span class='fa fa-arrow-right'></span> <a href='index.php?hal=akun/profil'>LENGAKAPI IDENTITAS ANDA</a></div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                   </div>
+                              ";
+                        echo "<div class='col-md-8'>
+                          <div class='alert alert-danger alert-dismissable dim_about red-bg' style='border-color: #f8ac59; color: white;'>
+                              <button aria-hidden='true' data-dismiss='alert' class='close' type='button' style='color: white;'>×</button>
+                                <span class='fa fa-times'></span>
+                               LENGKAPI DATA ANDA
+                                </b>
+                             </div>
+                        </div>";
+                       }                  
+
+                
+        ?>
+       <div class="row">
+          <div class="col-md-12">
        <?php 
 
               $queryPeringatan = mysql_query("SELECT loan_status,loan_invoice from trx_loan_application where member_id_fk='".$_SESSION['member_id']."' order by loan_app_id DESC  limit 1");
@@ -136,5 +193,6 @@
              ?>
         <?php } ?> 
        </div>
+        </div>
     </div>
 </div>
