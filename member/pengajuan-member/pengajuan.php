@@ -48,8 +48,14 @@
                                 <div class="col-md-8">
                                     <input type="text" class="form-control" placeholder="CARI ALAT">
                                 </div>
-                                <div class="col-md-2"><button class="btn btn-info"><span class="fa fa-search"></span></button></div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-info"><span class="fa fa-search"></span></button>
+                                </div>
 
+                            </div>
+                            <div class="col-md-2">
+                                 <br>
+                                 <a href="index.php?hal=pengajuan-member/keranjang" class="btn btn-primary btn-lg dim_about"> <span class="fa fa-shopping-cart"></span> Keranjang</a>
                             </div>
                         </div>
                          <form method="POST">
@@ -80,14 +86,23 @@
                                                 $jumlah = $rowI['instrument_quantity'];
                                                 $temp = $rowI['intrument_quantity_temp'];
                                                 $cekDisable  = $jumlah-$temp;
-                                                
+                                                // $queryKeranjang = mysql_query("SELECT instrument_id_fk  from trx_loan_temp where member_id_fk = '".$_SESSION['member_id']."'");
+                                                // while ($rowKeranang = mysql_fetch_array($queryKeranjang)) {
+                                                //     $kodeinstrument = $rowKeranang['instrument_id_fk'];
+                                                //     if ($rowI['instrument_id']==$kodeinstrument) {
+                                                //     echo "<input type='checkbox'  
+                                                //         value='".$rowI['instrument_id']."' name='cek[]' checked>";
+                                                // }
                                                 if ($jumlah == $temp) {
                                                     echo "<input type='checkbox'  
                                                         value='".$rowI['instrument_id']."' name='cek[]' disabled>";
-                                                }else{
+                                                }
+                                                else{
                                                     echo "<input type='checkbox'  
                                                         value='".$rowI['instrument_id']."' name='cek[]'>";    
                                                 }
+                                                
+
                                                 
                                           ?>
                                             </td>
@@ -162,3 +177,22 @@
     </div>
 </div>
 </div>
+
+ <!-- modal load data detail instrument -->
+    <div class="modal fade" id="myModal" role="dialog" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #1ab394; color:white;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><span class="fa fa-flask"></span> Detail Instrument</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="fetched-data"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger dim_about" data-dismiss="modal"><span class="fa fa-times"></span> Keluar</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+    

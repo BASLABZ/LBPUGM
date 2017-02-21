@@ -6,13 +6,14 @@
         $subtahun  = substr($tahun, 2);
         $kode      = buatkode("trx_loan_application","");
         $invoice   = "".$kode."/INV/".$subtahun."";
+                $lamapinjam = $_POST['totalbayarpenajuan'];
                 $kodealat  = $_POST['instrument_id_fk'];
                 $jumlahalat = $_POST['jumlah'];
                 $subtotalpinjam = $_POST['subtotal'];
                 $banyak        = count($kodealat);
                 for ($i=0; $i < $banyak ; $i++) { 
                     $jumlahalatinstrument = $jumlahalat[$i];
-                    $totalFee   = $subtotalpinjam + $totalFee;
+                    $totalFee   = ($subtotalpinjam + $totalFee)*$lamapinjam;
                     $total_loan = $jumlahalatinstrument+$total_loan;
                 }
         // simpan data ke table peminjaman & detail peminjaman
@@ -199,6 +200,8 @@
 	</div>
 </section>
 <script>
+    // lamapinjam = 
+
     function cekberkas() {
     var filesaya = document.getElementById('ifile').value;
     var btn = document.getElementById('ibtn_bayar');

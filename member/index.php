@@ -22,8 +22,16 @@
     <link href="../includes/css/animate.css" rel="stylesheet">
     <link href="../includes/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="../menejemen/admin/assets/css/bootstrap-fileupload.min.css" /> 
+        <link rel="stylesheet" type="text/css" href="../includes/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../includes/css/plugins/datapicker/datepicker3.css">
     <style type="text/css">
         .dim_about {box-shadow: inset 0 0 0 rgba(30, 172, 174, 0.39), 0 10px 0 0 rgba(30, 172, 174, 0), 0 8px 10px rgba(123, 83, 83, 0.58);}
+        .ui-datepicker-month{
+          color: black;
+        }
+        .ui-datepicker-year{
+          color: black;
+        }
     </style>
 </head>
 <body class="md-skin">
@@ -47,6 +55,7 @@
     </div>
     <script src="../includes/js/jquery-2.1.1.js"></script>
     <script src="../includes/js/bootstrap.min.js"></script>
+    <script src="../includes/js/plugins/datapicker/bootstrap-datepicker.js"></script>
     <script src="../includes/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="../includes/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="../includes/js/plugins/flot/jquery.flot.js"></script>
@@ -59,28 +68,14 @@
     <script src="../includes/js/inspinia.js"></script>
     <script src="../includes/js/plugins/pace/pace.min.js"></script>
     <script src="../includes/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="../includes/jquery-ui.js"></script>
+
     <script src="../includes/js/plugins/gritter/jquery.gritter.min.js"></script>
     <script src="../includes/js/plugins/sparkline/jquery.sparkline.min.js"></script>
     <script src="../includes/js/demo/sparkline-demo.js"></script>
     <script src="../includes/js/plugins/toastr/toastr.min.js"></script>
     <script src="../menejemen/admin/assets/plugins/jasny/js/bootstrap-fileupload.js"></script>
-    <!-- modal load data detail instrument -->
-    <div class="modal fade" id="myModal" role="dialog" >
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header" style="background-color: #1ab394; color:white;">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"><span class="fa fa-flask"></span> Detail Instrument</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="fetched-data"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger dim_about" data-dismiss="modal"><span class="fa fa-times"></span> Keluar</button>
-                    </div>
-                </div>
-            </div>
-    </div>
    <script type="text/javascript">
        $(document).ready(function(){
         $('#myModal').on('show.bs.modal', function (e) {
@@ -109,20 +104,134 @@
                     });
                       $("#total_sum_value").html(calculated_total_sum);
                });
-});
+    });
+     // detail peminjaman member untuk di pengajuan
+     $(document).ready(function(){
+        $('#detail_peminjaman').on('show.bs.modal', function (e) {
+            var rowid = $(e.relatedTarget).data('id');
+            //menggunakan fungsi ajax untuk pengambilan data
+            $.ajax({
+                type : 'post',
+                url : 'pengajuan-member/detail_peminjaman.php',
+                data :  'id='+ rowid,
+                success : function(data){
+                $('.peminjaman-data').html(data);//menampilkan data ke dalam modal
+                }
+            });
+         });
+    });
+
+     
+   </script>
+   <script type="text/javascript">
+     // Calendar Dates
+    /* create an array of days which need to be disabled */
+    var disabledDays = ["11-13-2012","11-14-2012","11-15-2012","11-29-2012","11-30-2012"];
+
+    /* utility functions */
+    function nationalDays(date) {
+      var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+      //console.log('Checking (raw): ' + m + '-' + d + '-' + y);
+      for (i = 0; i < disabledDays.length; i++) {
+        if($.inArray((m+1) + '-' + d + '-' + y,disabledDays) != -1 || new Date() > date) {
+          return [false];
+        }
+      }
+      return [true];
+    }
+      //Block the Weekends
+      function noWeekendsOrHolidays(date) {
+         var noWeekend = $.datepicker.noWeekends(date);
+          if (noWeekend[0]) {
+              return nationalDays(date);
+          } else {
+              return noWeekend;
+          }
+      }
+        function days() {
+                    var a = $("#tgl_pinjams").datepicker('getDate').getTime(),
+                        b = $("#tgl_kembalis").datepicker('getDate').getTime(),
+                        c = 24*60*60*1000,
+                        diffDays = Math.round(Math.abs((a - b)/(c)));
+                    if (diffDays < 0) {
+                      alert('data tidak valid');
+                      $('#totaldays').val(0);
+                    }else{
+                      $("#totaldays").val(diffDays)
+                       var bagi = diffDays/5;
+                       var hasilconversi = bagi.toFixed();
+                      $("#Minggu").val(hasilconversi)
+                    }
+        }
+
+
+        $(document).ready(function () {
+        $.datepicker.setDefaults({dateFormat: 'mm/dd/yy',minDate: +1,changeMonth: true,changeYear: true,numberOfMonths: 2,constrainInput:true,beforeShowDay:nationalDays,});
+                var selector = function (dateStr) {
+                    var d1 = $('#tgl_pinjams').datepicker('getDate');
+                    var d2 = $('#tgl_kembalis').datepicker('getDate');
+                    var diff = 0;
+                    if (d1 && d2) {
+                        diff = Math.floor((d2.getTime() - d1.getTime()) / 86400000); // ms per day
+                    }
+                   if (diff<0) {
+                    alert('data tidak valid');
+                    $('#totaldays').val(0);
+                   }else{
+                    var bagi = diff/5;
+                    var hasilconversi = bagi.toFixed();
+                     $('#totaldays').val(diff);
+                     $("#Minggu").val(hasilconversi);
+                   }
+                }
+        $('#tgl_pinjams').datepicker({
+                    onSelect: function(selectedDate) {
+            var minDate = $(this).datepicker('getDate');
+            if (minDate) {minDate.setDate(minDate.getDate() + 3);}//min days requires
+            $('#tgl_kembalis').datepicker('option', 'minDate', minDate || 1); // Date + 1 or tomorrow by default
+            days();
+        }});
+        $('#tgl_kembalis').datepicker({minDate: 1, onSelect: function(selectedDate) {
+            var maxDate = $(this).datepicker('getDate');    
+            if (maxDate) {maxDate.setDate(maxDate.getDate() - 1);}
+            $('#tgl_pinjams').datepicker('option', 'maxDate', maxDate); // Date - 1    
+            days();
+        }});
+            $('#tgl_pinjams,#tgl_kembalis').change(selector)
+                });
+
+   </script>
+   <script type="text/javascript">
+     // keranjang
      $("#keranjang").on('input', '.txtCal', function () {
        var calculated_total_sum = 0;
-       
+       var lamapinjam = document.getElementById('totaldays').value;
        $("#keranjang .txtCal").each(function () {
            var get_textbox_value = $(this).val();
            if ($.isNumeric(get_textbox_value)) {
               calculated_total_sum += parseFloat(get_textbox_value);
+              
               }                  
             });
               $("#total_sum_value").html(calculated_total_sum);
        });   
+     // datepinjam
+     var yesterday = new Date((new Date()).valueOf()-1000*60*60*24);
+     $('#tgl_pinjams').datepicker(
+        {
+          minDate: 0,
+          beforeShowDay: $.datepicker.noWeekends
+        }
+      );
+     // date kembali
+     $('#tgl_kembalis').datepicker(
+     {
+          minDate: 0,
+          beforeShowDay: $.datepicker.noWeekends
+          
+     }
+      );
    </script>
-
 </body>
 </html>
 <?php }else{

@@ -6,13 +6,15 @@
         $subtahun  = substr($tahun, 2);
         $kode      = buatkode("trx_loan_application","");
         $invoice   = "".$kode."/INV/".$subtahun."";
+               $lamapinjam = $_POST['totalbayarpenajuan'];
+              
                 $kodealat  = $_POST['instrument_id_fk'];
                 $jumlahalat = $_POST['jumlah'];
                 $subtotalpinjam = $_POST['subtotal'];
                 $banyak        = count($kodealat);
                 for ($i=0; $i < $banyak ; $i++) { 
                     $jumlahalatinstrument = $jumlahalat[$i];
-                    $totalFee   = $subtotalpinjam + $totalFee;
+                    $$totalFee   = ($subtotalpinjam + $totalFee)*$lamapinjam;
                     $total_loan = $jumlahalatinstrument+$total_loan;
                 }
         // simpan data ke table peminjaman & detail peminjaman
@@ -20,7 +22,7 @@
                
                if (!empty($_FILES) && $_FILES['frm_file']['error'] == 0) {
                           $fileName = $_FILES['frm_file']['name'];
-                          $move = move_uploaded_file($_FILES['frm_file']['tmp_name'], 'surat/'.$fileName);
+                          $move = move_uploaded_file($_FILES['frm_file']['tmp_name'], '../surat/'.$fileName);
                       $konversitgl_pinjam = jin_date_sql($_POST['tgl_pinjam']);
                        $konversitgl_kembali = jin_date_sql($_POST['tanggal_kembali']);
                   
@@ -56,7 +58,7 @@
                         }
                         $queryDeleteLoan_temp = mysql_query("DELETE FROM trx_loan_temp where member_id_fk='".$_SESSION['member_id']."' ");
                         if ($queryDeleteLoan_temp) {
-                          echo "<script> alert('Terimakasih Data Berhasil Disimpan & Tunggu Konfirmasi Dari Kami'); location.href='index.php?hal=members/list' </script>";exit;
+                          echo "<script> alert('Terimakasih Data Berhasil Disimpan & Tunggu Konfirmasi Dari Kami'); location.href='index.php?hal=member/index' </script>";exit;
                         }
                         
                      }
@@ -136,7 +138,7 @@
                                                     value='".$subtotal."' class='subtotal'/>
                                                 <label id='subtotalf".$no."'>".$subtotal."</label>
                                             </td>
-                                            <td><a href='index.php?hal=members/peminjaman/keranjang&hapusitem=".$row['instrument_id_fk']."' class='btn btn-sm btn-danger dim_about'><span class='fa fa-trash'></span></a></td>
+                                            <td><a href='index.php?hal=pengajuan-member/keranjang&hapusitem=".$row['instrument_id_fk']."' class='btn btn-sm btn-danger dim_about'><span class='fa fa-trash'></span></a></td>
                                             
                                         </tr>";
                         }
@@ -161,11 +163,26 @@
                                   <div class="col-md-6">
                                       <input type="text" class="form-control" name="tanggal_kembali" required id="tgl_kembalis">
                                   </div>
-                                <!--   <input type="text" id="hasilPerhitungan"> -->
+                              </div>
+                              <div class="form-group row">
+                                 <div class="col-md-6">
+                                     <label>Lama Pinjma (Hari)</label>
+                                  </div>
+                                   <div class="col-md-6">
+                                     <input type="text" id="totaldays" class="form-control" disabled>
+                                  </div>
+                              </div>
+                               <div class="form-group row">
+                                 <div class="col-md-6">
+                                     <label>Dihitung (Minggu)</label>
+                                  </div>
+                                   <div class="col-md-6">
+                                     <input type="text" id="Minggu" class="form-control" name="totalbayarpenajuan" disabled>
+                                  </div>
                               </div>
                   </div>
                   <div class="col-md-2"></div>
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <div class="panel panel-primary">
                                 <div class="panel-heading dim_about">
                                     <div class="form-group">
@@ -215,6 +232,7 @@
 
 <script>
     function cekberkas() {
+   
     var filesaya = document.getElementById('ifile').value;
     var btn = document.getElementById('ibtn_bayar');
     if (filesaya=='') {
@@ -236,16 +254,19 @@ function hitung(no) {
         var subtotal = jumlah*biaya;
         var total = total+subtotal;
     }else if (jumlah > stokTersedia) {
-      alert('MAAF STOK TIDAK TERSEDIA');
-      
         $('#jumlah'+no).val("1");
         var biaya   =  $('#biaya'+no).val();
         var subtotal = 1*biaya;
         var total = total+subtotal;
         document.getElementById('subtotalf'+no).innerHTML = subtotal;
         $('#subtotal'+no).val(subtotal);
+      alert('MAAF STOK TIDAK TERSEDIA');
+
     
     }
 }
+
+
+
 
 </script>

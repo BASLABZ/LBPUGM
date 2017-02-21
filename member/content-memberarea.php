@@ -102,10 +102,39 @@
                <a href="index.php?hal=pengajuan-member/pengajuan" class="btn btn-danger btn-lg dim_about"><span class="fa fa-search"></span> CARI ALAT / INSTRUMENT </a>
            </div>
        <div class="col-md-8">
-            <div class="alert alert-success alert-dismissable dim_about yellow-bg" style="border-color: #f8ac59; color: white;">
-        <button aria-hidden="true" data-dismiss="alert" class="close" type="button" style="color: white;">×</button>
-          <span class="fa fa-check"></span> Selamat Datang Di LPB - UGM / PEMINJAMAN ALAT LAB.
-        </div>    
+       <?php 
+
+              $queryPeringatan = mysql_query("SELECT loan_status,loan_invoice from trx_loan_application where member_id_fk='".$_SESSION['member_id']."' order by loan_app_id DESC  limit 1");
+            while ($rowPeringatan = mysql_fetch_array($queryPeringatan)) {
+                 $statusKonfirmasi = $rowPeringatan['loan_status'];
+        ?>
+            <?php 
+                 if($statusKonfirmasi=='ACC') {
+                        echo " <div class='alert alert-success alert-dismissable dim_about yellow-bg' style='border-color: #f8ac59; color: white;'>
+                              <button aria-hidden='true' data-dismiss='alert' class='close' type='button' style='color: white;'>×</button>
+                                <span class='fa fa-check'></span>
+                                PERINGATAN : PENGAJUAN PEMINJAMAN DENGAN NO INVOICE ".$rowPeringatan['loan_invoice']." ANDA TELAH DI ACC & SILAHKAN MELAKUKAN PEMBAYARAN , WAKTU TEMPO PEMBAYAAN 3 JAM 60 MENIT.<hr><b>JIKA SELAMA WAKTU TEMPO ANDA TIDAK MELAKUKAN PEMBAYARAN MAKA PENGAJUAN PEMINJAMAN ANDA AKAN DIBATALKAN OTOMATIS</b>
+                             </div>";
+                    }elseif ($statusKonfirmasi == 'DITOLAK') {
+                        echo "<div class='alert alert-success alert-dismissable dim_about red-bg' style='border-color: #f8ac59; color: white;'>
+                          <button aria-hidden='true' data-dismiss='alert' class='close' type='button' style='color: white;'>×</button>
+                            <span class='fa fa-check'></span> PERINGATAN : PENGAJUAN PEMINJAMAN DENGAN NO INVOICE ".$rowPeringatan['loan_invoice']." ANDA TELAH DI DITOLAK DAN LIHAT DETAIL PEMINJAMAN
+                         </div>";
+                      
+                    }elseif($statusKonfirmasi == 'MENUNGGU'){
+                      echo "<div class='alert alert-success alert-dismissable dim_about navy-bg' style='border-color: #f8ac59; color: white;'>
+              <button aria-hidden='true' data-dismiss='alert' class='close' type='button' style='color: white;'>×</button>
+                <span class='fa fa-check'></span> Menunggu Persetujuan Dari Admin
+             </div> ";
+                    }
+                    else if($statusKonfirmasi != 'ACC' && $statusKonfirmasi != 'DITOLAK'){
+                        echo "<div class='alert alert-success alert-dismissable dim_about lazur-bg' style='border-color: #f8ac59; color: white;'>
+                          <button aria-hidden='true' data-dismiss='alert' class='close' type='button' style='color: white;'>×</button>
+                            <span class='fa fa-check'></span> Selamat Datang Di LPB - UGM / PEMINJAMAN ALAT LAB.
+                         </div> ";
+                    }
+             ?>
+        <?php } ?> 
        </div>
     </div>
 </div>
