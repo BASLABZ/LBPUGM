@@ -35,7 +35,25 @@
 
                                 $updateStatusPeminjaman = mysql_query("UPDATE trx_loan_application set loan_status = 'MEMBAYAR TAGIHAN' where loan_app_id='".$_POST['loan_app_id_fk']."'");
 
-                }
+                }elseif ($Ceksaldo >  0) {
+
+                                                  $saldobertambah = $penguranganSaldo+$saldoAwal;
+                                                  $querySimpanSaldo = mysql_query("INSERT INTO tbl_saldo 
+                                                                                    (loan_app_id_fk,saldo_nominal,member_id_fk) 
+                                                                                    VALUES ('".$_POST['loan_app_id_fk']."','".$saldobertambah."','".$_SESSION['member_id']."') ");
+                                                  $querySimpanPayment = mysql_query( "INSERT INTO trx_payment_temp 
+                                                    (bankname,payment_bill,payment_temp_amount_transfer,
+                                                    payment_temp_amount_saldo,payment_temp_date,
+                                                    payment_temp_confirm_date,payment_temp_photo,
+                                                    payment_temp_info,loan_app_id_fk,member_id_fk,payment_status
+                                                    ) 
+                                                VALUES ('".$_POST['bankname']."','".$_POST['payment_bill']."',
+                                                        '".$_POST['payment_temp_amount_transfer']."','".$saldobertambah."',NOW(),
+                                                        '".$tanggal_konfirmasi_pembayaran_member."','".$fileName."','".$_POST['payment_temp_info']."',
+                                                        '".$_POST['loan_app_id_fk']."','".$_SESSION['member_id']."','SALDO')");
+
+                            $updateStatusPeminjaman = mysql_query("UPDATE trx_loan_application set loan_status = 'MEMBAYAR TAGIHAN' where loan_app_id='".$_POST['loan_app_id_fk']."'");
+                           } 
                 if ($updateStatusPeminjaman) {
                              echo "<script> alert('Terimakasih Data Konfirmasi Pembayaran Berhasil Disimpan'); location.href='index.php?hal=pengajuan-member/pengajuan-alat' </script>";exit;
                            }

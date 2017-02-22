@@ -45,11 +45,8 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">SALDO</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="graph_flot.html">SALDO</a></li>
-                            <li><a href="graph_morris.html">PENCAIRAN SALDO</a></li>
-                        </ul>
+                        <a href="index.php?hal=saldo/saldo"><i class="fa fa-share"></i> <span class="nav-label">SALDO</span>
+                        </a>
                     </li>
                     <li>
                         <a href="index.php?logout=1"><i class="fa fa-sign-out"></i> <span class="nav-label">KELUAR</span></a>
