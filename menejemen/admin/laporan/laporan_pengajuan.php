@@ -9,7 +9,7 @@ session_start();
                     <div class="panel-heading">
                        <div class="row">
                             <div class="col-md-4">
-                             <span class="fa fa-users"></span> LAPORAN
+                             <span class="fa fa-users"></span> LAPORAN PENGAJUAN
                         </div>
                         <div class="col-md-8">
                             <div class="text-right"><b><i><span class="fa fa-home"></span> Home / <span class="fa fa-list"></span> Laporan / <span class="fa fa-users"> </span> Operator</i></b></div>
