@@ -26,8 +26,8 @@
 				<td>
 					<button class="btn btn-warning dim_about"><span class="fa fa-exclamation-triangle"></span> <?php echo $rowDetailPeminjaman['loan_status_detail']; ?></button>
 				</td>
-				<td><?php echo $rowDetailPeminjaman['loan_amount']; ?></td>
-				<td><?php echo $rowDetailPeminjaman['loan_subtotal']; ?></td>
+				<td class="text-right"><?php echo $rowDetailPeminjaman['loan_amount']; ?></td>
+				<td class="text-right">Rp.<?php echo $rowDetailPeminjaman['loan_subtotal']; ?></td>
 				<td>
 					<?php if ($status == 'DITOLAK' ) {
 						echo "<a href='index.php?hal=members/list&hapus=".$rowDetailPeminjaman['loan_app_detail_id']."&jumlah=".$rowDetailPeminjaman['loan_amount']."&subtotal=".$rowDetailPeminjaman['loan_subtotal']."&invoice=".$rowDetailPeminjaman['loan_invoice']."' class='btn btn-danger dim_about'><span class='fa fa-trash'></span></a>";
@@ -42,7 +42,11 @@
 <?php } ?>
 		</tbody>
 		<?php 
-				$queryTotal = mysql_query("SELECT * FROM trx_loan_application where loan_invoice ='".$invoice."'");
+				$rowjumlahsubtotal = mysql_query("SELECT sum(loan_subtotal) as sub FROM trx_loan_application_detail d join trx_loan_application x 
+					  on d.loan_app_id_fk = x.loan_app_id  where x.loan_invoice ='".$invoice."' ");
+				$xs = mysql_fetch_array($rowjumlahsubtotal);
+				$sub = $xs['sub'];
+				$queryTotal = mysql_query("SELECT loan_total_item,loan_total_fee, long_loan FROM trx_loan_application where loan_invoice ='".$invoice."'");
 				while ($roTotal = mysql_fetch_array($queryTotal)){	
 		 ?>
 		<tfoot>
@@ -52,8 +56,18 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td colspan="4">Total</td>
-				<td><?php echo $roTotal['loan_total_fee']; ?></td>
+				<td colspan="3"> Lama Pinjam</td>
+				<td><?php echo $roTotal['long_loan']; ?>/Minggu  </td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="3"> Jumlah Subtotal : </td>
+				<td></td>
+				<td>Rp.<?php echo $sub; ?></td>
+			</tr>
+			<tr>
+				<td colspan="3">Total = Lama Pinjam x Jumlah Subtotal</td>
+				<td>Rp.<?php echo $roTotal['loan_total_fee']; ?></td>
 			</tr>
 		</tfoot>
 		<?php } ?>
@@ -67,20 +81,23 @@
 					$statusKonfirmasi = $ubahstatus['loan_status'];
                                    if ($statusKonfirmasi == 'MEMBAYAR TAGIHAN') {
                                      echo "<a class='CETAK'><a>";
-                                   echo "<a href='index.php?hal=members/pengembalian/lists&id=".$ubahstatus['loan_invoice']."'>INGIN PERPANJANG ALAT ? </a>";
+                                  
                                    }else if ($statusKonfirmasi == 'ACC') {
                                    	echo "<div class='well'><i>Silahkan Melakukan Pembayaran Waktu Tempo Pembayaran : 3 JAM 60 MENIT, Jika Anda Tidak Melakukan Pembayaran Maka Pengajuan Anda Akan otomatis Dibatalkan</i></div>";
-                                     echo " <a href='index.php?hal=members/peminjaman/pembayaran&id=".$ubahstatus['loan_invoice']."' class='btn btn-info btn-xs pull-right dim_about'
+                                     echo " <a href='index.php?hal=pembayaran/konfirmasi_pembayaran&id=".$ubahstatus['loan_invoice']."' class='btn btn-info btn-xs pull-right dim_about'
                                     ><span class='fa fa-check'></span> KONFIRMASI <br>PEMBAYARAN</a>";
                                    }else if ($statusKonfirmasi == 'DIBATALKAN') {
-                                        echo "<a href='index.php?hal=members/list&konfirmasi=".$ubahstatus['loan_invoice']."' class='btn btn-success dim_about'> <span class='fa fa-share'> </span>
+                                        echo "<a href='index.php?hal=pengajuan-member/pengajuan-alat&batalkan=".$ubahstatus['loan_invoice']."' class='btn btn-success dim_about'> <span class='fa fa-share'> </span>
                                          KIRIM PENGAJUAN</a>";                            
                                    }else if ($statusKonfirmasi == 'DITOLAK'){
                                       echo " <a href='index.php?hal=members/peminjaman/pembayaran&id=".$ubahstatus['loan_invoice']."' class='btn btn-info btn-xs dim_about'
                                     ><span class='fa fa-check'></span> KONFIRMASI <br>PEMBAYARAN</a>";
                                    }else if($statusKonfirmasi == 'MENUNGGU'){
-                                   		echo "<a href='index.php?hal=members/list&konfirmasi=".$ubahstatus['loan_invoice']."' class='btn btn-danger dim_about'> <span class='fa fa-share'> </span>
+                                   		echo "<a href='index.php?hal=pengajuan-member/pengajuan-alat&konfirmasi=".$ubahstatus['loan_invoice']."' class='btn btn-danger dim_about'> <span class='fa fa-share'> </span>
                                          BATALKAN PENGAJUAN</a>";   
+                                   }else if($statusKonfirmasi == 'DIPINJAM'){
+                                   		 echo "<a href='index.php?hal=pembayaran/preview_rekappembayaran_perinvoice&id=".$invoice."' class='btn btn-info dim_about'><span class='fa fa-print'></span> Cetak<a>";
+                                   		echo "<a href='index.php?hal=members/pengembalian/lists&id=".$ubahstatus['loan_invoice']."'>INGIN PERPANJANG ALAT ? </a>";  
                                    }
                                      ?>
                                    

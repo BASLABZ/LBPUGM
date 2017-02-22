@@ -1,3 +1,13 @@
+<?php 
+        if (isset($_GET['batalkan'])) {
+                
+              $queryPembatalanPengajuan = mysql_query("UPDATE trx_loan_application set loan_status ='MENUNGGU' where loan_invoice='".$_GET['batalkan']."' ");
+            }
+            if (isset($_GET['konfirmasi'])) {
+                 
+                $queryKonfirmasiSetelahbatal = mysql_query("UPDATE trx_loan_application set loan_status ='DIBATALKAN' where loan_invoice='".$_GET['konfirmasi']."' ");
+            }
+ ?>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
         <h2>PENGAJUAN ALAT</h2>
@@ -30,6 +40,7 @@
                                 <option value="ACC">ACC</option>
                                 <option value="DITOLAK">DITOLAK</option>
                                 <option value="DIKONFIRMASI">DIKONFIRMASI</option>
+                                <option value="PEMBATALAN">PEMBATALAN</option>
                             </select>
                             </div>
                         </div>
@@ -50,7 +61,7 @@
                         </thead>
                         <tbody>
                            <?php 
-                            $queryPeminjaman = mysql_query("SELECT * FROM trx_loan_application where member_id_fk  = '".$_SESSION['member_id']."'");
+                            $queryPeminjaman = mysql_query("SELECT * FROM trx_loan_application where member_id_fk  = '".$_SESSION['member_id']."' ORDER BY loan_app_id desc");
                             $no=0;
                             while ($rowPeminjaman = mysql_fetch_array($queryPeminjaman)) {
                               ?>

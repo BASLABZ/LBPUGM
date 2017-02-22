@@ -4,6 +4,9 @@
 		$sqldetail = mysql_query("SELECT * FROM  ref_instrument where instrument_id = '$id'");
 		while ($rowinstrument = mysql_fetch_array($sqldetail)) {
 		$gambar  = $rowinstrument['instrument_picture']	;
+		$jumlah_alat = $rowinstrument['instrument_quantity'];
+		$jumlah_dipinjam = $rowinstrument['intrument_quantity_temp'];
+		$jumlahKetersediaan_alat = $jumlah_alat - $jumlah_dipinjam;
  ?>
 	<form  method="post"class="form-horizontal" enctype="multipart/form-data" >
 		<div class="form-group">
@@ -39,6 +42,23 @@
 			    <div class="col-sm-3">
 			     <input type="text" class="form-control" readonly value="<?php echo $rowinstrument['instrument_weight']; ?>">
 			 </div>
+	  </div>
+	  <div class="form-group row">
+	        <div class="col-lg-2"></div>
+		    	<label class="control-label col-sm-2">Jumlah</label>
+			    <div class="col-sm-3">
+			     <input type="text" class="form-control" readonly value="<?php echo $rowinstrument['instrument_quantity']; ?>">
+			    </div>
+			    <?php 
+			    	if ($jumlahKetersediaan_alat < 1) {
+			    		echo "<label class='label label-primary'>STOK HABIS</label>";
+			    	}else{
+			     ?>
+			     <label class="control-label col-sm-2">Sisa</label>
+			    <div class="col-sm-3">
+			     <input type="text" class="form-control" readonly value="<?php echo $jumlahKetersediaan_alat; ?>">
+			 	</div>
+			     <?php } ?>
 	  </div>  
       <div class="form-group">
           <label class="control-label col-lg-4">Deskripsi Alat</label>

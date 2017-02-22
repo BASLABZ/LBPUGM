@@ -88,7 +88,7 @@
                                                 <label>".$row['instrument_fee']."</label>
                                             </td>
                                             <td>
-                                                <input type='hidden' name='subtotal' id='subtotal".$no."' 
+                                                <input type='hidden' name='subtotal[]' id='subtotal".$no."' 
                                                     value='".$subtotal."' class='subtotalz'/>
                                                 <label id='subtotalf".$no."'>".$subtotal."</label>
                                             </td>
@@ -101,12 +101,14 @@
                         
             </tbody>
             <tfoot>
+            
               <tr>
-                <td colspan="2"></td>
-                <td><input type="text" readonly id="totaljum" name="totaljumlahSEMUAITEM"> /Item</td>
+                <td colspan="2" class="text-right"><b>Jumlah :</b> </td>
+                <td><input type="text" readonly id="totaljum" name="totaljumlahSEMUAITEM"> <b>/ Item</b></td>
+                <td><b>Sub total :</b></td>
                 <td>Rp. <input type="text" readonly id="totalsus"></td>
               </tr>
-
+              
             </tfoot>
         </table>
           <hr>
