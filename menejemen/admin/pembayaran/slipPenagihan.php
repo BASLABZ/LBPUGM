@@ -38,8 +38,8 @@
 			<tr>
 				<td><?php echo $no++; ?></td>
 				<td><?php echo $rowDetailPeminjaman['instrument_name']; ?></td>
-				<td><?php echo $rowDetailPeminjaman['loan_subtotal']; ?></td>
 				<td><?php echo $rowDetailPeminjaman['loan_amount']; ?></td>
+				<td>Rp.<?php echo $rowDetailPeminjaman['loan_subtotal']; ?></td>
 			</tr>
 <?php } ?>
 		</tbody>
@@ -79,7 +79,7 @@
 								
 								$tagihan  = $rowPenagihan['payment_bill'];
 								$bayar  =$rowPenagihan['payment_temp_amount_transfer'];
-								$cekPembayaran = $tagihan-$bayar;
+								$cekPembayaran = $bayar-$tagihan;
 								if ($cekPembayaran == 0) {
 									echo "VALID";
 								}else if ($cekPembayaran > 0 ) {
@@ -92,8 +92,31 @@
 					</label>
 				</td>
 			</tr>
-			
 		</tfoot>
 	</table>
+	<div class="row well">
+		<form class="role" method="POST" action="index.php?hal=pembayaran/verifikasi_status_pembayaran">
+						<div class="col-md-6">
+							<input type="hidden" name="idpayment" value="<?php echo $rowPenagihan['payment_temp_id']; ?>" >
+							<select class="form-control" name="payment_notif" required>
+								<option value=""
+                                                <?php if($rowPenagihan['payment_notif']==''){echo "selected=selected";}?>>UBAH STATUS
+                                            </option>
+								<option value="VALID"
+                                                <?php if($rowPenagihan['payment_notif']=='VALID'){echo "selected=selected";}?>>VALID
+                                            </option>
+                                            <option value="TIDAK VALID"
+                                                <?php if($rowPenagihan['payment_notif']=='TIDAK VALID'){echo "selected=selected";}?>>TIDAK VALID
+                                            </option>
+								
+							</select>
+						</div>
+						<div class="col-md-3" style="padding-top: 3px;">
+							<button type="submit" class="btn btn-info btn-sm"><span class="fa fa-check
+							"></span> VERIFIKASI</button>
+						</div>
+
+					</form>
+	</div>
 	
 	

@@ -111,12 +111,28 @@
                                         <tfoot>
                                             <tr>
                                                 <td colspan="4">Jumlah Item</td>
-                                                <td><?php echo $roTotal['loan_total_item']; ?> /Buah</td>
+                                                <td><?php echo $roTotal['loan_total_item']; ?> /Item</td>
                                                 
                                             </tr>
                                             <tr>
-                                                <td colspan="5">Total</td>
-                                                <td><?php echo $roTotal['loan_total_fee']; ?></td>
+                                                <td colspan="5">Subtotal Pinjam</td>
+                                                <?php 
+                                                    $rowjumlahsubtotal = mysql_query("SELECT sum(loan_subtotal) as sub FROM trx_loan_application_detail d join trx_loan_application x 
+                                                          on d.loan_app_id_fk = x.loan_app_id  where x.loan_invoice ='".$invoice."' ");
+                                                    $xs = mysql_fetch_array($rowjumlahsubtotal);
+                                                    $sub = $xs['sub'];
+                                                 ?>
+                                                <td>Rp.<?php echo $sub; ?> </td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4">Lama Pinjam</td>
+                                                <td><?php echo $roTotal['long_loan']; ?>/Minggu</td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5">Total (Lama Pinjam x Subtotal)</td>
+                                                <td>Rp.<?php echo $roTotal['loan_total_fee']; ?></td>
                                             </tr>
                                         </tfoot>
                                         <?php } ?>

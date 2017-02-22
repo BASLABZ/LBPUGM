@@ -62,7 +62,7 @@
                                              if ($cekJumlah == 0) {
                                                  
                                              }else{
-                                                 echo "<a href='index.php?hal=pengajuan-member/keranjang' class='btn btn-primary btn-lg dim_about'> <span class='fa fa-shopping-cart'></span> Keranjang</a>";
+                                                 echo "<a href='index.php?hal=pengajuan-member/keranjang' class='btn btn-primary btn-lg dim_about'> <span class='fa fa-shopping-cart'></span> Kembali Keranjang</a>";
                                              }
                                   ?>
                             </div>

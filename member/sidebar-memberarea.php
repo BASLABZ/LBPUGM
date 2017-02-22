@@ -3,7 +3,13 @@
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle img-responsive" src="../img/user.png" style="width: 100px;" />
+                            <?php 
+                                    if ($_SESSION['member_photo']=='') {
+                             ?>
+                             <img alt="image" class="img-circle img-responsive" src="../img/user.png" style="width: 100px;" />
+                             <?php }else{ ?>
+                                <img alt="image" class="img-circle img-responsive dim_about" src="../img/<?php echo $_SESSION['member_photo']; ?>" style="width: 100px; height: 100px;" />
+                             <?php } ?>
                              </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">
@@ -24,7 +30,10 @@
                         <a href="index.php"><i class="fa fa-home"></i> <span class="nav-label">HOME</span></a>
                     </li>
                     <li>
-                        <a href="index.php?hal=pengajuan-member/pengajuan-alat"><i class="fa fa-file-o"></i> <span class="nav-label">PENGAJUAN</span><span class="label label-warning pull-right"><span class="fa fa-exclamation-triangle"></span> 1</span></a>
+                        <a href="index.php?hal=pengajuan-member/pengajuan-alat"><i class="fa fa-file-o"></i> <span class="nav-label">PENGAJUAN</span>
+                        <!-- peringatan Pengajuan -->
+                        <?php include 'peringatan_pengajuan.php'; ?>
+                        </a>
                     </li>
                     <li>
                         <a href="layouts.html"><i class="fa fa-file-o"></i> <span class="nav-label">PEMBAYARAN</span>
@@ -32,25 +41,12 @@
 
                         </a>
                          <ul class="nav nav-second-level collapse">
-                            <li><a href="graph_flot.html">TRANSAKSI PEMBAYARAN</a></li>
-                            <li><a href="graph_morris.html">REKAP PEMBAYARAN</a></li>
+                            <li><a href="index.php?hal=pembayaran/rekap_pembayaran">REKAP PEMBAYARAN</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">SALDO</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="graph_flot.html">SALDO</a></li>
-                            <li><a href="graph_morris.html">PENCAIRAN SALDO</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="mailbox.html">Inbox</a></li>
-                            <li><a href="mail_detail.html">Email view</a></li>
-                            <li><a href="mail_compose.html">Compose email</a></li>
-                            <li><a href="email_template.html">Email templates</a></li>
-                        </ul>
+                        <a href="index.php?hal=saldo/saldo"><i class="fa fa-share"></i> <span class="nav-label">SALDO</span>
+                        </a>
                     </li>
                     <li>
                         <a href="index.php?logout=1"><i class="fa fa-sign-out"></i> <span class="nav-label">KELUAR</span></a>
