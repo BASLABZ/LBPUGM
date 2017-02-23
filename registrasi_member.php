@@ -7,9 +7,9 @@
       </div>
       <div class="modal-body">
         <form class="role" method="POST" id="frmAjaxregis" action="member/proses_registrasi_member.php" enctype="multipart/form-data">
-          <div class="well">
+          <div class="well"> <b>*Semua Data Wajib diisi </b></br> </br>
             <div class="form-group row">
-            <div class="col-md-6">
+            <div class="col-md-6"> 
               <label class="col-md-4">Nama Lengkap</label>
               <div class="col-md-8">
                 <input type="text" class="form-control" placeholder="Nama Lengkap"  name="member_name" id="nama"   required>
@@ -34,7 +34,8 @@
                <div class="form-group row">
               <label class="col-md-2">Password</label>
               <div class="col-md-8">
-                <input type="password" class="form-control" required placeholder="Password" maxlength="8" minlength="6" name="member_password">
+                <input type="password" class="form-control" required placeholder="Password" maxlength="8" minlength="6" name="member_password"> </br>
+                Password Min 6 Karakter Max 8 Karakter
               </div>
             </div>   
             </div>
@@ -104,7 +105,7 @@
           <hr>
             <div class="form-group row">
               <div class="col-md-6">
-                <label class="col-md-4">FOTO</label>
+                <label class="col-md-4">FOTO KTM / IDENTITAS PRIBADI</label>
                 <div class="col-md-8">
                   <input type="file" name="member_idcard_photo" required="true">
                 </div>

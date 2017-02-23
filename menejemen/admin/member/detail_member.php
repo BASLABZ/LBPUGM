@@ -6,7 +6,7 @@
 		$query = mysql_query("SELECT * FROM tbl_member m JOIN ref_category c ON m.category_id_fk = c.category_id where member_id = '".$member_id."'");
 		$rowMember = mysql_fetch_array($query);
  ?>
-<form class="role">
+
 
 	<div class="form-group row">
 		
@@ -82,12 +82,13 @@
 	</div>
 	<div class="form-group row">
 		<div class="col-md-12">
-			<form class="role" method="POST">
+			<form class="role" method="POST" action="index.php?hal=member/proses_ubahstatus">
 				<div class="col-md-6">
-					<button type="submit" class="btn btn-warning dim_about"> <span class="fa fa-check"></span> Konfirmasi Penolakan</button>
+					<input type="hidden" name="idmember" value="<?php echo $rowMember['member_id']; ?>">
+					<button type="submit" name="ubahstatustolak" class="btn btn-warning dim_about"> <span class="fa fa-check"></span> Konfirmasi Penolakan</button>
 				</div>
 				<div class="col-md-6">
-					<button type="submit" class="btn btn-info dim_about"> <span class="fa fa-check"></span> Konfirmasi Penerimaan</button>
+					<button type="submit" name="ubahstatusterima" class="btn btn-info dim_about"> <span class="fa fa-check"></span> Konfirmasi Penerimaan</button>
 				</div>
 			</form>
 		</div>
@@ -95,4 +96,3 @@
 
 
 
-</form>

@@ -1,6 +1,6 @@
 <?php 
-        if (isset($_POST['ubahstatus'])) {
-            $updatestatus = mysql_query("UPDATE tbl_member set member_status='".$_POST['member_status']."'
+        if (isset($_POST['ubahstatusterima'])) {
+            $updatestatus = mysql_query("UPDATE tbl_member set member_status='Actived'
                 WHERE member_id = '".$_POST['member_id']."'
              ");
              if ($updatestatus) {
