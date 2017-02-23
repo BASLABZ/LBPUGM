@@ -167,7 +167,7 @@
                               echo "Anda Mendapat Potongan 50 %";
                               echo "<br>
                                     <label>Potongan : </label>
-                                    <input type='text' name='category_member' value='".$kategori_member['category_id']."' id='mhs_s1'>
+                                    <input type='hidden' name='category_member' value='".$kategori_member['category_id']."' id='mhs_s1'>
                                     <input type='text' disabled  class='form-control' id='potongan'>
                                     <br>
                                     <label>Total Bayar : </label>

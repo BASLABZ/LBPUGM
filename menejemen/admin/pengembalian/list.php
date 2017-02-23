@@ -73,7 +73,7 @@
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1ab394; color:white;">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><span class="fa fa-flask"></span> DETAIL PEMINJAMAN</h4>
+                    <h4 class="modal-title"><span class="fa fa-flask"></span> DETAIL PENGEMBALIAN ALAT</h4>
                 </div>
                 <div class="modal-body">
                     <div class="pengembalian-data"></div>

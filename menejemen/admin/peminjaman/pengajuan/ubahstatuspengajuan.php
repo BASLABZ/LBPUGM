@@ -53,6 +53,7 @@
  						<th>No</th>
  						<th>Nama Instrument</th>
  						<th>Jumlah Stok</th>
+ 						<th>Ketersediaan</th>
  						<th>Gambar</th>
  						<th>Keterangan</th>
  					</thead>
@@ -69,6 +70,13 @@
  							<td><?php echo ++$no; ?></td>
  							<td><?php echo $rowAlat['instrument_name']; ?></td>
  							<td><?php echo $rowAlat['instrument_quantity']; ?></td>
+ 							<td>
+ 								<?php $jumlah_sementara = $rowAlat['instrument_quantity'];
+                                                            $jumlah_temp = $rowAlat['intrument_quantity_temp'];
+                                                            $ketersediaan = $jumlah_sementara-$jumlah_temp;
+                                                            echo $ketersediaan;
+                                                 ?>
+ 							</td>
  							<td><img src="../image/<?php echo $rowAlat['instrument_picture']; ?>" class='img-responsive' width='100px'></td>
  							<td>
  								<?php echo "<textarea class='form-control' name='keterangan' id='keterangan_penawaran".$no."' ></textarea>"; ?>

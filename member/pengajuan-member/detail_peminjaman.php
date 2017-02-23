@@ -150,11 +150,11 @@
 		<div class="col-md-12">
 			<p align="right">
 				<?php  
-				$queryUbahstatus = "SELECT loan_invoice,loan_status FROM trx_loan_application where loan_invoice  = '".$invoice."' ";
+				$queryUbahstatus = "SELECT loan_invoice,loan_status,loan_date_return,member_id_fk,loan_total_fee FROM trx_loan_application where loan_invoice  = '".$invoice."' ";
 				$ubahstatus = mysql_fetch_array(mysql_query($queryUbahstatus));
 					$statusKonfirmasi = $ubahstatus['loan_status'];
                                    if ($statusKonfirmasi == 'MEMBAYAR TAGIHAN') {
-                                     echo "<a class='CETAK'><a>";
+                                     echo "<a class='btn btn-info dim_about' href='index.php?hal=pembayaran/preview_rekappembayaran_perinvoice&id=".$invoice."'> <span class='fa fa-print'></span> Cetak<a>";
                                   
                                    }else if ($statusKonfirmasi == 'ACC') {
                                    	echo "<div class='well'><i>Silahkan Melakukan Pembayaran Waktu Tempo Pembayaran : 3 JAM 30 MENIT, Jika Anda Tidak Melakukan Pembayaran Maka Pengajuan Anda Akan otomatis Dibatalkan</i></div>";
@@ -170,8 +170,25 @@
                                    		echo "<a href='index.php?hal=pengajuan-member/pengajuan-alat&konfirmasi=".$ubahstatus['loan_invoice']."' class='btn btn-danger dim_about'> <span class='fa fa-share'> </span>
                                          BATALKAN PENGAJUAN</a>";   
                                    }else if($statusKonfirmasi == 'DIPINJAM'){
-                                   		 echo "<a href='index.php?hal=pembayaran/preview_rekappembayaran_perinvoice&id=".$invoice."' class='btn btn-info dim_about'><span class='fa fa-print'></span> Cetak<a>";
-                                   		echo "<a href='index.php?hal=members/pengembalian/lists&id=".$ubahstatus['loan_invoice']."'>INGIN PERPANJANG ALAT ? </a>";  
+                                   		 // jika time limit 
+                                   		 	$queryLamaPinjam = mysql_query("SELECT trx_loan_application.* , current_date tanggal , datediff(current_date,loan_date_return) selisih , case when datediff(current_date,loan_date_return)>0 then 'Habis' else 'aktif' end status from trx_loan_application where member_id_fk= '".$ubahstatus['member_id_fk']."' ");
+                                   		 	$hariH = mysql_fetch_array($queryLamaPinjam);
+                                   		 	$sisaHari  = $hariH['selisih']; 
+                                   		 	if ($sisaHari == 0) {
+                                   		 		echo "<a href='index.php?hal=members/pengembalian/lists&id=".$ubahstatus['loan_invoice']."'>INGIN PERPANJANG ALAT ? </a> <br><p>Hari Ini Adalah Waktu Pengembalian Alat, <br>Silahkan Melakukan Pengembalian/Perpanjang Alat, Jika Anda Melewatkan Waktu <br>Pengembalian Alat Maka Anda Akan Dikenakan Denda Sebesar 25% dari Total Peminjaman <br> Dan Kartu Identitas Anda Akan Kami Tahan Sebelum Melakukan Pembayaran Denda,</p>";  	
+                                   		 	}else if ($sisaHari < 0 AND $sisaHari == -2 AND $hariH['status'] != 'Habis') {
+                                   		 		echo "<a href='index.php?hal=members/pengembalian/lists&id=".$ubahstatus['loan_invoice']."'>INGIN PERPANJANG ALAT ? </a><br>
+                                   		 		<p>Waktu Pengembalian Anda Kurang Dari ".-($sisaHari)." Hari,Yaitu Pada Tanggal :".$hariH['loan_date_return'].", Lakukan Pengembalian / Perpanjang Dan Jika Pengembalian Melewati Batas Waktu Pengembalian Akan Dikenakan Denda 25% dari Total Peminjaman,<br>Dan Kartu Identitas Anda Akan Kami Tahan Sebelum Melakukan Pembayaran Denda</p>";
+                                   		 	}
+                                   		 	else if ($sisaHari > 0 AND $hariH['status'] == 'Habis') {
+                                   		 		$totalBayarPeminjaman = $ubahstatus['loan_total_fee'];
+                                   		 		$denda = $totalBayarPeminjaman * 0.25;
+                                   		 		echo "
+                                   		 		<a class='btn btn-warning dim_about' href='index.php?hal=pembayaran/pembayaran_denda&id=".$ubahstatus['loan_invoice']."'>Bayar Denda </a>
+                                   		 		<p>Anda Dikenakan Denda , <br>Karena Saat Ini Anda Belum Mengembalikan Alat,Anda Melewati Tanggal : ".$hariH['loan_date_return']." <br></p>";
+                                   		 		echo "<p>Anda Terlambat Selama :<b> ".$hariH['selisih']." Dan Anda Dikenakan Denda 
+                                   		 		Sebesar : Rp.".$denda." </b><br>Dan Kartu Identitas Anda Akan Kami Tahan Sebelum Melakukan Pembayaran Denda</p>";
+                                   		 	}
                                    }
                                      ?>
                                    
