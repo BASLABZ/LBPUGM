@@ -237,10 +237,10 @@
      // tanggal konfirmasi pembayaran 
      $('#tanggal_konfirmasi_pembayaran_member').datepicker(
         {
-          minDate:0,
+          minDate: 0,
           beforeShowDay: $.datepicker.noWeekends
         }
-      )
+      );
    </script>
    <script type="text/javascript">
      window.onload = hitung(1)

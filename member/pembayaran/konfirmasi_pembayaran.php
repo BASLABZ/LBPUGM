@@ -7,9 +7,8 @@
  ?>
  <?php 
         if (isset($_POST['simpanPembayaranAlat'])) {
-             $fileName = $_FILES['frm_file']['name'];
-              
-                 $paymentBill = $_POST['payment_bill'];
+                  $fileName = $_FILES['frm_file']['name'];
+                  $paymentBill = $_POST['payment_bill'];
                   $Ceksaldo = $_POST['cekSaldos'];  
                   $transfer = $_POST['payment_temp_amount_transfer'];
                   $penguranganSaldo = $transfer-$paymentBill;
@@ -27,11 +26,11 @@
                                                 VALUES ('".$_POST['bankname']."','".$_POST['payment_bill']."',
                                                         '".$_POST['payment_temp_amount_transfer']."','".$penguranganSaldo."',NOW(),
                                                         '".$tanggal_konfirmasi_pembayaran_member."','".$fileName."','".$_POST['payment_temp_info']."',
-                                                        '".$_POST['loan_app_id_fk']."','".$_SESSION['member_id']."')");
+                                                        '".$_POST['loan_app_id_fk']."','".$_SESSION['member_id']."','TANPA SALDO')");
                              $saldobertambah = $penguranganSaldo+$saldoAwal;
                                                   $querySimpanSaldo = mysql_query("INSERT INTO tbl_saldo 
                                                                                     (loan_app_id_fk,saldo_nominal,member_id_fk) 
-                                                                                    VALUES ('".$_POST['loan_app_id_fk']."','".$saldobertambah."','".$_SESSION['member_id']."','TANPA SALDO') ");
+                                                                                    VALUES ('".$_POST['loan_app_id_fk']."','".$saldobertambah."','".$_SESSION['member_id']."') ");
 
                                 $updateStatusPeminjaman = mysql_query("UPDATE trx_loan_application set loan_status = 'MEMBAYAR TAGIHAN' where loan_app_id='".$_POST['loan_app_id_fk']."'");
 
@@ -202,7 +201,9 @@
                                         <div class="form-group row">
                                           <label class="col-md-4">TANGGAL PEMBAYARAN</label>
                                           <div class="col-md-6">
-                                            <input type="text" class="form-control" name="payment_temp_confirm_date" id="tanggal_konfirmasi_pembayaran_member" required />
+                                            <!-- <input type="date" class="form-control" name="payment_temp_confirm_date" id="tanggal_konfirmasi_pembayaran_member" required /> -->
+                                            <input type="date" class="form-control" name="payment_temp_confirm_date" required />
+                                            
                                           </div>
                                         </div>
                                         <div class="form-group row">

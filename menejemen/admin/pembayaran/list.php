@@ -42,7 +42,6 @@
                                                     $queryPembayaran = 
                                                         mysql_query("SELECT * FROM trx_payment_temp p JOIN trx_loan_application pe on p.loan_app_id_fk = pe.loan_app_id 
                                                         JOIN tbl_member m on pe.member_id_fk = m.member_id 
-                                                    
                                                         ORDER by p.payment_temp_id DESC
                                                         ");
                                                         

@@ -103,40 +103,104 @@
                                             </tr>
                                             <?php } ?>
                                         </tbody>
-                                        <tfoot>
                                         <?php 
-                                            $queryTotal = mysql_query("SELECT * FROM trx_loan_application where loan_invoice ='".$invoice."'");
-                                            while ($roTotal = mysql_fetch_array($queryTotal)){  
-                                         ?>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="4">Jumlah Item</td>
-                                                <td><?php echo $roTotal['loan_total_item']; ?> /Item</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td colspan="5">Subtotal Pinjam</td>
-                                                <?php 
-                                                    $rowjumlahsubtotal = mysql_query("SELECT sum(loan_subtotal) as sub FROM trx_loan_application_detail d join trx_loan_application x 
-                                                          on d.loan_app_id_fk = x.loan_app_id  where x.loan_invoice ='".$invoice."' ");
-                                                    $xs = mysql_fetch_array($rowjumlahsubtotal);
-                                                    $sub = $xs['sub'];
-                                                 ?>
-                                                <td>Rp.<?php echo $sub; ?> </td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td colspan="4">Lama Pinjam</td>
-                                                <td><?php echo $roTotal['long_loan']; ?>/Minggu</td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td colspan="5">Total (Lama Pinjam x Subtotal)</td>
-                                                <td>Rp.<?php echo $roTotal['loan_total_fee']; ?></td>
-                                            </tr>
-                                        </tfoot>
-                                        <?php } ?>
-                                        </tfoot>
+                $rowjumlahsubtotal = mysql_query("SELECT sum(loan_subtotal) as sub   FROM trx_loan_application_detail d join trx_loan_application x 
+                      on d.loan_app_id_fk = x.loan_app_id  where x.loan_invoice ='".$invoice."' ");
+                $xs = mysql_fetch_array($rowjumlahsubtotal);
+                $sub = $xs['sub'];
+                $queryTotal = mysql_query("SELECT a.loan_total_item,a.loan_total_fee, a.long_loan,m.category_id_fk FROM trx_loan_application a
+                                        JOIN tbl_member m ON a.member_id_fk = m.member_id
+                    where a.loan_invoice ='".$invoice."'");
+                while ($roTotal = mysql_fetch_array($queryTotal)){  
+                    $potongan = $roTotal['loan_total_fee'];
+                    $hasil_akhirs1 = $potongan+$potongan;
+                    // hitung potongan/diskon s2 
+                    $lama =  $roTotal['long_loan'];
+                    $totals2 = $sub *  $lama;
+                    $diskons2 = $totals2*0.25;
+                    $hasil_akhirs2 = $potongan-$diskons2;
+                    // hasil akhir s3
+                    $totals3 = $sub *  $lama;
+                    $diskons3= $totals3*0.25;
+                    $hasil_akhirs3 = $totals3-$diskons3;
+         ?>
+        <tfoot>
+            <tr>
+                <td colspan="3">Jumlah Item</td>
+                <td><?php echo $roTotal['loan_total_item']; ?> /Buah</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3"> Lama Pinjam</td>
+                <td><?php echo $roTotal['long_loan']; ?>/Minggu  </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3"> Jumlah Subtotal : </td>
+                <td></td>
+                <td>Rp.<?php echo $sub; ?></td>
+            </tr>
+            <?php 
+                    if ($roTotal['category_id_fk']==1) {
+                        
+                    
+             ?>
+            
+            <tr>
+                <td colspan="3">Total </td>
+                <td>Rp.<?php echo $hasil_akhirs1; ?></td>
+            </tr>
+            <tr>
+                <td colspan="3">Potongan (50%)</td>
+                <td>Rp.<?php echo $potongan;  ?></td>
+            </tr>
+            <tr>
+                <td colspan="3">Total Bayar = (Lama Pinjam x Jumlah Subtotal)x 50 %</td>
+                <td>Rp.<?php echo $roTotal['loan_total_fee']; ?></td>
+            </tr>
+            <?php } else if ($roTotal['category_id_fk']==5) {
+                
+            ?>
+            
+            <tr>
+                <td colspan="3">Total </td>
+                <td>Rp.<?php echo $totals2; ?></td>
+            </tr>
+            <tr>
+                <td colspan="3">Potongan (25%)</td>
+                <td>Rp.<?php echo $diskons2;  ?></td>
+            </tr>
+            <tr>
+                <td colspan="3">Total Bayar </td>
+                <td>Rp.<?php 
+                echo $roTotal['loan_total_fee']; ?></td>
+            </tr>
+            <?php }elseif ($roTotal['category_id_fk']==6) {
+                
+             ?>
+            <tr>
+                <td colspan="3">Total </td>
+                <td>Rp.<?php echo $totals3; ?></td>
+            </tr>
+            <tr>
+                <td colspan="3">Potongan (25%)</td>
+                <td>Rp.<?php echo $diskons3;  ?></td>
+            </tr>
+            
+            <tr>
+                <td colspan="3">Total Bayar </td>
+                <td>Rp.<?php echo $hasil_akhirs3; ?></td>
+            </tr> 
+             <?php }else {
+                ?>
+                <tr>
+                <td colspan="3">Total </td>
+                <td>Rp.<?php echo $roTotal['loan_total_fee']; ?></td>
+            </tr>
+                <?php
+             } ?>
+        </tfoot>
+        <?php } ?>
                                         </table>
 
                                         </div>

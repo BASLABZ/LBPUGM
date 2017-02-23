@@ -16,6 +16,7 @@
                 $alamat     = $login['member_address']; 
                 $idcard     = $login['member_idcard_photos']; 
                 $foto = $login['member_photo'];
+                $categori = $login['category_id_fk'];
                 $no++;
             }
             if ($no>0) {
@@ -28,6 +29,7 @@
                 $_SESSION['member_address'] = $alamat;
                 $_SESSION['member_idcard_photos'] = $idcard;
                 $_SESSION['member_photo']  = $foto;
+                $_SESSION['category_id_fk'] = $categori;
                 $AkuratLogin = mysql_query("UPDATE tbl_member set member_login='Y' where member_id='".$_SESSION['member_id']."'");
                 
                 echo "<script> alert('Login sukses'); location.href='member/index.php';</script>  ";exit;

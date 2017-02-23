@@ -16,7 +16,7 @@
                                           member_confirm_date,category_id_fk
                                          ) 
                                 VALUES (
-                                    '".$_POST['member_name']."','".$tanggallahir."','".$_POST['member_gender']."','".$_POST['member_phone_number']."','".$_POST['member_address']."','".$_POST['member_username']."',md5('".$_POST['member_password']."'),'".$_POST['member_hint_question']."','".$_POST['member_answer_question']."','UGM','S1 KEDOKTERAN UGM','".$_POST['member_email']."','".$_POST['member_idcard_photo']."','','PENDING','N',NOW(),'','".$_POST['category_id_fk']."')";  
+                                    '".$_POST['member_name']."','".$tanggallahir."','".$_POST['member_gender']."','".$_POST['member_phone_number']."','".$_POST['member_address']."','".$_POST['member_username']."',md5('".$_POST['member_password']."'),'".$_POST['member_hint_question']."','".$_POST['member_answer_question']."','UGM','S1 KEDOKTERAN UGM','".$_POST['member_email']."','".$_POST['member_idcard_photo']."','','Aktived','N',NOW(),'','".$_POST['category_id_fk']."')";  
                                      if ($querySimpan) {
                          echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='index.php' </script>";exit;
                    }else{

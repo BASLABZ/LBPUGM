@@ -148,9 +148,63 @@
                   
                   <div class="col-md-4">
                         <button type="button" data-toggle="tooltip" data-placement="top"
-                         title="HITUNG PINJAMAN" onclick="hitungFIX()" class="btn btn-primary dim btn-large-dim" id="hitungsemua"><span class="fa fa-calculator"> </span> </button>
-                        <label>Total Pembelian (Rp.)</label>
+                         title="HITUNG PINJAMAN" onclick="hitungFIX()" class="btn btn-primary dim btn-small-dim" id="hitungsemua"><span class="fa fa-calculator"> </span> </button>
+                         <br>
+                        <label>Total Peminjaman (Rp.)</label>
                         <input type="text" readonly id="totalpenyewaan" name="totalpenyewaanBayar" class="form-control">
+                        <br>
+                        <!-- categori member -->
+                        <?php 
+                            $queryShowCategori = mysql_query("SELECT category_name,category_id from tbl_member m JOIN 
+                                    ref_category c ON m.category_id_fk = c.category_id where member_id = '".$_SESSION['member_id']."'
+                              ");
+                            $kategori_member = mysql_fetch_array($queryShowCategori);
+                         ?>
+                         <label>Kategori Member : <?php echo $kategori_member['category_name']; ?> </label> 
+                        <?php 
+                            if ($kategori_member['category_id']=='1') {
+
+                              echo "Anda Mendapat Potongan 50 %";
+                              echo "<br>
+                                    <label>Potongan : </label>
+                                    <input type='text' name='category_member' value='".$kategori_member['category_id']."' id='mhs_s1'>
+                                    <input type='text' disabled  class='form-control' id='potongan'>
+                                    <br>
+                                    <label>Total Bayar : </label>
+                                    <input type='text' disabled  class='form-control' id='hasilakahir'>";
+                            }elseif($kategori_member['category_id']=='5'){
+                              echo "Anda Mendapat Potongan 25 %";
+                              echo "<br>
+                                    <label>Potongan : </label>
+                                    <input type='hidden' name='category_member' value='".$kategori_member['category_id']."' id='mhs_s1'>
+                                    <input type='text' disabled  class='form-control' id='potongan'>
+                                    <br>
+                                    <label>Total Bayar : </label>
+                                    <input type='text' disabled  class='form-control' id='hasilakahir'>";
+                            }else if($kategori_member['category_id']=='6'){
+                              echo "Anda Mendapat Potongan 25 %";
+                              echo "<br>
+                                    <label>Potongan : </label>
+                                    <input type='hidden' name='category_member' value='".$kategori_member['category_id']."' id='mhs_s1'>
+                                    <input type='text' disabled  class='form-control' id='potongan'>
+                                    <br>
+                                    <label>Total Bayar : </label>
+                                    <input type='text' disabled  class='form-control' id='hasilakahir'>";
+                            }else if($kategori_member['category_id']=='2'){
+                              echo "<br>
+                                    <input type='hidden' name='category_member' value='".$kategori_member['category_id']."' id='mhs_s1'>
+                                    <input type='hidden' disabled  class='form-control' id='hasilakahir'>";
+                            }else if($kategori_member['category_id']=='3'){
+                              echo "<br>
+                                    <input type='hidden' name='category_member' value='".$kategori_member['category_id']."' id='mhs_s1'>
+                                    <input type='hidden' disabled  class='form-control' id='hasilakahir'>";
+                            }else if($kategori_member['category_id']=='4'){
+                              echo "<br>
+                                    <input type='hidden' name='category_member' value='".$kategori_member['category_id']."' id='mhs_s1'>
+                                    <input type='hidden' disabled  class='form-control' id='hasilakahir'>";
+                            }
+                         ?>
+                         
                  </div>
                   <div class="col-md-4">
                     <div class="panel panel-primary">
@@ -281,17 +335,57 @@ function hitung(no) {
 }
 
 // function for calculate total all trx_loan /penyewaaan
+var hasilakahir = 0;
 function hitungFIX() {
+    var categori = document.getElementById('mhs_s1').value;
     var subtotalFIX = document.getElementById('totalsus').value;
     var lamapinjamFix = document.getElementById('Minggu').value; 
     var totalBayarFIX = subtotalFIX * lamapinjamFix;
+    var hasilakahir = document.getElementById('hasilakahir').value;
+
+    console.log(categori);   
+     if (categori==1) {
+        
+        hitungdiskons1ugm = totalBayarFIX*0.5;  
+        console.log(hitungdiskons1ugm);
+        var potongan = totalBayarFIX*0.5;
+        $('#hasilakahir').val(hitungdiskons1ugm);
+        $('#potongan').val(potongan);
+     }else if (categori==5) {
+        hitungdiskons2ugm = totalBayarFIX*0.25;  
+        var potongans2ugm = totalBayarFIX*0.25;
+        hasilakahir_s2 = totalBayarFIX-potongans2ugm;
+        $('#hasilakahir').val(hasilakahir_s2);
+        $('#potongan').val(potongans2ugm);
+     }else if (categori == 6) {
+           hitungdiskons3ugm = totalBayarFIX*0.25;  
+        var potongans3ugm = totalBayarFIX*0.25;
+        hasilakahir_s3 = totalBayarFIX-potongans3ugm;
+        $('#hasilakahir').val(hasilakahir_s3);
+        $('#potongan').val(potongans3ugm);
+      }else if (categori == 2) {
+        
+        $('#hasilakahir').val(totalBayarFIX);
+        
+      }else if (categori == 3) {
+        
+        $('#hasilakahir').val(totalBayarFIX);
+        
+      }else if (categori == 4) {
+        
+        $('#hasilakahir').val(totalBayarFIX);
+        
+      }
     $('#totalpenyewaan').val(totalBayarFIX);
-    
+
 }
 
 function hitungTotalNIlai() {
+  
   var hitungsemuaData = document.getElementById('hitungsemua');
   hitungsemuaData.click();
+
+  
 }
 
 
