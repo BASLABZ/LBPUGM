@@ -10,7 +10,7 @@
  ?>
 	<form  method="post"class="form-horizontal" enctype="multipart/form-data" >
 		<div class="form-group">
-			<center><img src="../menejemen/image/<?php echo $gambar; ?>" class="dim_about img-responsive img-thumbnail" style="width: 50%;"></center>
+			<center><img src="menejemen/image/<?php echo $gambar; ?>" class="dim_about img-responsive img-thumbnail" style="width: 50%;"></center>
 		</div>
 		
 		<hr>

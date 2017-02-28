@@ -169,42 +169,13 @@ $(document).ready(function() {
 </script>
 
 <script type="text/javascript">
-  $(document).ready(function(){
-        $('#detail_peminjaman').on('show.bs.modal', function (e) {
-            var rowid = $(e.relatedTarget).data('id');
-            //menggunakan fungsi ajax untuk pengambilan data
-            $.ajax({
-                type : 'post',
-                url : 'members/peminjaman/detail_peminjaman.php',
-                data :  'id='+ rowid,
-                success : function(data){
-                $('.peminjaman-data').html(data);//menampilkan data ke dalam modal
-                }
-            });
-         });
-    });
-
-    $(document).ready(function(){
-        $('#slipPenagihan').on('show.bs.modal', function (e) {
-            var rowid = $(e.relatedTarget).data('id');
-            //menggunakan fungsi ajax untuk pengambilan data
-            $.ajax({
-                type : 'post',
-                url : 'members/peminjaman/slipPenagihan.php',
-                data :  'id='+ rowid,
-                success : function(data){
-                $('.slipPenagihan-data').html(data);//menampilkan data ke dalam modal
-                }
-            });
-         });
-    });
     $(document).ready(function(){
         $('#myModal').on('show.bs.modal', function (e) {
             var rowid = $(e.relatedTarget).data('id');
             //menggunakan fungsi ajax untuk pengambilan data
             $.ajax({
                 type : 'post',
-                url : 'members/peminjaman/detail.php',
+                url : 'member/detail_instrument.php',
                 data :  'id='+ rowid,
                 success : function(data){
                 $('.fetched-data').html(data);//menampilkan data ke dalam modal
@@ -213,34 +184,7 @@ $(document).ready(function() {
          });
     });
 </script>
-<script type="text/javascript">
-     $(document).ready(function(){
-        $('#pengembalian').on('show.bs.modal', function (e) {
-            var rowid = $(e.relatedTarget).data('id');
-            //menggunakan fungsi ajax untuk pengambilan data
-            $.ajax({
-                type : 'post',
-                url : 'members/pengembalian/proses_pengembalian.php',
-                data :  'id='+ rowid,
-                success : function(data){
-                $('.pengembalian-data').html(data);//menampilkan data ke dalam modal
-                }
-            });
-         });
-    });
-     // calculate keranjang
-$("#keranjang").on('input', '.txtCal', function () {
-       var calculated_total_sum = 0;
-       
-       $("#keranjang .txtCal").each(function () {
-           var get_textbox_value = $(this).val();
-           if ($.isNumeric(get_textbox_value)) {
-              calculated_total_sum += parseFloat(get_textbox_value);
-              }                  
-            });
-              $("#total_sum_value").html(calculated_total_sum);
-       });    
-</script>
+
 
     
 
