@@ -23,6 +23,7 @@
 				<td>
 					<form class="role" method="POST" action="">
 						<div class="form-group">
+							<input type="hidden" name="instrument_id" value="<?php echo $rowDetailPeminjaman['instrument_id']; ?>">
 							<input type="hidden" name="intrument_quantity_temp" value="<?php echo $rowDetailPeminjaman['intrument_quantity_temp']; ?>">
 							<input type="hidden" name="instrument_quantity" value="<?php echo $rowDetailPeminjaman['instrument_quantity']; ?>">
 							<button type="submit" class="btn btn-info"> <span class="fa fa-check"></span> Kembalikan</button>
