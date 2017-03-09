@@ -2,7 +2,6 @@
         // showing data
         $id = $_GET['id'];
         $row = mysql_fetch_array(mysql_query("SELECT * FROM ref_menu where menu_id = '".$id."'"));
-        $menu_parent = $row['menu_id'];
         // funtion for update data
         if (isset($_POST['update'])) {
             $updateMenu = mysql_query("UPDATE ref_menu SET menu_name = '".$_POST['menu_name']."',
@@ -63,7 +62,7 @@
                                                         $select = mysql_query("SELECT menu_id, menu_name, menu_url from ref_menu where menu_parent=0 order by menu_id ASC");
                                                         while ($rowmenuparent = mysql_fetch_array($select)) { ?>
                                                             <option value="<?php echo $rowmenuparent['menu_id']; ?>"
-                                                               <?php if($row['menu_id']==$rowmenuparent['menu_id']){echo "selected=selected";}?>>
+                                                               <?php if($rowmenuparent['menu_id']==$row['menu_parent']){echo "selected=selected";}?>>
                                                                <?php echo $rowmenuparent['menu_name']; ?>
                                                             </option>      
                                                     <?php } ?>

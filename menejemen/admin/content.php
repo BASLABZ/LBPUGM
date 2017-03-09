@@ -27,7 +27,7 @@
                                                 <div class="col-xs-8 text-right">
                                                     
                                                     <h5 class="font-bold">TARNSAKSI PENGAJUAN</h5>
-                                                    <a href="#" style="color: white;">Lihat Data <span class="fa fa-arrow-right"></span></a>
+                                                    <a href="index.php?hal=peminjaman/pengajuan/list" style="color: white;">Lihat Data <span class="fa fa-arrow-right"></span></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -40,7 +40,7 @@
                                                 </div>
                                                 <div class="col-xs-8 text-right">
                                                     <h5>TRANSAKSI PEMBAYARAN </h5>
-                                                    <a href="#" style="color: white;">Lihat Data <span class="fa fa-arrow-right"></span></a>
+                                                    <a href="index.php?hal=pembayaran/list" style="color: white;">Lihat Data <span class="fa fa-arrow-right"></span></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -53,7 +53,7 @@
                                                 </div>
                                                 <div class="col-xs-8 text-right">
                                                       <h5>TRANSAKSI PENGEMBALIAN </h5>
-                                                    <a href="#" style="color: white;">Lihat Data <span class="fa fa-arrow-right"></span></a>
+                                                    <a href="index.php?hal=pengembalian/list" style="color: white;">Lihat Data <span class="fa fa-arrow-right"></span></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -66,7 +66,7 @@
                                                 </div>
                                                <div class="col-xs-8 text-right">
                                                       <h5>INFORMASI DATA MEMBER </h5>
-                                                    <a href="#" style="color: white;">Lihat Data <span class="fa fa-arrow-right"></span></a>
+                                                    <a href="index.php?hal=member/list" style="color: white;">Lihat Data <span class="fa fa-arrow-right"></span></a>
                                                 </div>
                                             </div>
                                         </div>

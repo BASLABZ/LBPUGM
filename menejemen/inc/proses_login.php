@@ -7,6 +7,7 @@ $password = md5($password);
 
 $query = "SELECT operator_username, operator_password, operator_name, operator_id, ref_level.level_id, level_name FROM ref_operator left join ref_level on ref_level.level_id=ref_operator.level_id_fk
     WHERE operator_username='".$username."' AND operator_password='".$password."' ";
+    
 $hasil = mysql_query($query);
 $data = mysql_fetch_array($hasil);
 

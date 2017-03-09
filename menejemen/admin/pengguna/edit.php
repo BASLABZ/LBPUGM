@@ -1,25 +1,29 @@
 <?php 
-        $id  = $_GET['id'];
-        $row = mysql_fetch_array(mysql_query("SELECT * from ref_operator
-                                                  where operator_id ='".$id."' "));
-        if (isset($_POST['update'])) {
-        $queryupdate  = mysql_query("UPDATE ref_operator set 
-                                                    operator_name = '".$_POST['operator_name']."',
-                                                    operator_gender = '".$_POST['operator_gender']."',
-                                                    operator_username = '".$_POST['operator_username']."',
-                                                    operator_password = md5('".$_POST['operator_password']."'),
-                                                    operator_hint_question = '".$_POST['operator_hint_question']."',
-                                                    operator_answer_question = '".$_POST['operator_answer_question']."',
-                                                    level_id_fk = '".$_POST['level_id_fk']."' 
-                                                    WHERE operator_id = '".$id."'");
-            if ($queryupdate) {
-                echo "<script> alert('Data Berhasil Diubah'); location.href='index.php?hal=operator/list' </script>";exit; 
-            }else{
-                echo "<script> alert('Data Gagal Diubah'); location.href='index.php?hal=operator/edit&id=$id' </script>";exit; 
-            }
-        }
- ?>
- <div id="content">
+    $var_id = $_GET['id'];
+    $show = mysql_query("SELECT * from ref_operator where operator_id = '".$var_id."'");
+    $runshow = mysql_fetch_array($show);
+
+    // if (isset($_POST['update'])) {
+        // $nama = $_POST['operator_name'];
+        // print_r($nama);
+        // die();
+    // $update = mysql_query("UPDATE ref_operator set operator_name='".$_POST['operator_name']."',
+    //                                                 operator_gender='".$$_POST['operator_gender']."',
+    //                                                 operator_username='".$_POST['operator_username']."',
+    //                                                 operator_password= md5('".$_POST['operator_password']."'),
+    //                                                 operator_hint_question='".$_POST['operator_hint_question']."',
+    //                                                 operator_answer_question='".$_POST['operator_answer_question']."',
+    //                                                 level_id_fk='".$_POST['level_id_fk']."'
+    //                                                 where operator_id='".$var_id."'");
+    // if ($update) {
+    //     echo "<script>alert ('Data berhasil diubah'); location.href='index.php?hal=pengguna/list'</script>"; exit;
+    // } else {
+    //     echo "<script>alert ('Data gagal diubah'); location.href='index.php?hal=pengguna/edit&id=$var_id'</script>"; exit;
+    // }
+    }
+?>
+
+<div id="content">
             <div class="container" style="padding-top:30px; ">
             <div class="row">
                 <div class="col-md-12">
@@ -29,7 +33,7 @@
                         <span class="fa fa-home pull-right"> <i>
                             Home / <span class="fa fa-list"></span> Master / <span class="fa fa-users">
                             </span>Operator
-                             / <span class="fa fa-pencil"></span> <?php echo $row['operator_name']; ?></i>
+                             / <span class="fa fa-pencil"></span> <?php echo $runshow['operator_name']; ?></i>
                         </span>
 
                     </div>
@@ -47,24 +51,24 @@
                                     <div class="form-group row">
                                         <label class="col-md-4">NAMA OPERATOR</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" name="operator_name" value="<?php echo $row['operator_name']; ?>">
+                                            <input type="text" class="form-control" name="operator_name" value="<?php echo $runshow['operator_name']; ?>">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-4" >Jenis Kelamin</label>
                                         <div class="col-md-8">
                                             <label class="radio-inline">
-                                                <input type="radio" name="operator_gender" value="Laki-laki"; <?php if ($row['operator_gender']=='Laki-laki') {echo "checked=checked";} ?> required  />Laki-laki
+                                                <input type="radio" name="operator_gender" value="Laki-laki" required  />Laki-laki
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="operator_gender" value="Perempuan"; <?php if ($row['operator_gender']=='Perempuan') { echo "checked=checked";} ?> required />Perempuan
+                                                <input type="radio" name="operator_gender" value="Perempuan" required />Perempuan
                                             </label>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-md-4">Username</label>
                                         <div class="col-md-8">
-                                            <input type="text" name="operator_username" placeholder="Username" class="form-control" required value="<?php echo $row['operator_username']; ?>" />
+                                            <input type="text" name="operator_username" placeholder="Username" class="form-control" required value="<?php echo $runshow['operator_username']; ?>" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -73,7 +77,7 @@
                                         </label>
                                         <div class="col-md-8">
                                             <input class="form-control" type="password" name="operator_password" placeholder="Password"
-                                           data-original-title="Please use your secure password" data-placement="top" required value="<?php echo $row['operator_password']; ?>" />
+                                           data-original-title="Please use your secure password" data-placement="top" required value="<?php echo $runshow['operator_password']; ?>" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -81,18 +85,18 @@
                                         <div class="col-lg-8">
                                          <select class="form-control" name="operator_hint_question">
                                             <option value="Apa warna favorit anda?"
-                                                <?php if($row['operator_hint_question']=='Apa warna favorit anda?'){echo "selected=selected";}?>>Apa warna favorit anda?
+                                                <?php if($runshow['operator_hint_question']=='Apa warna favorit anda?'){echo "selected=selected";}?>>Apa warna favorit anda?
                                             </option>
                                             <option value="Apa makanan favorit anda?"
-                                                <?php if($row['operator_hint_question']=='Apa makanan favorit anda?'){echo "selected=selected";}?>>
+                                                <?php if($runshow['operator_hint_question']=='Apa makanan favorit anda?'){echo "selected=selected";}?>>
                                                 Apa makanan favorit anda?
                                             </option>
                                             <option value="Siapa nama ayah kandung anda?"
-                                                <?php if($row['operator_hint_question']=='Siapa nama ayah kandung anda?'){echo "selected=selected";}?>>
+                                                <?php if($runshow['operator_hint_question']=='Siapa nama ayah kandung anda?'){echo "selected=selected";}?>>
                                                 Siapa nama ayah kandung anda?
                                             </option>
                                             <option value="Siapa nama penyanyi kesukaan anda?"
-                                                <?php if($row['operator_hint_question']=='Siapa nama penyanyi kesukaan anda?'){echo "selected=selected";}?>>
+                                                <?php if($runshow['operator_hint_question']=='Siapa nama penyanyi kesukaan anda?'){echo "selected=selected";}?>>
                                                 Siapa nama penyanyi kesukaan anda?
                                             </option>
                                         </select>
@@ -101,7 +105,7 @@
                                     <div class="form-group row">
                                         <label class="col-md-4">Answer Question</label>
                                         <div class="col-md-8">
-                                             <input type="text" placeholder="Answer Question" class="form-control" name="operator_answer_question" required value="<?php echo $row['operator_answer_question']; ?>" />
+                                             <input type="text" placeholder="Answer Question" class="form-control" name="operator_answer_question" required value="<?php echo $runshow['operator_answer_question']; ?>" />
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -111,11 +115,7 @@
                                                     <?php
                                                         $tampil = mysql_query("SELECT level_id, level_name from ref_level");
                                                         while ($level = mysql_fetch_array($tampil)){ ?>
-                                                            <option value="<?php echo $level['level_id'] ?>" <?php 
-                                                             if ($level['level_id']==$row['level_id_fk']) { echo "selected=selected";}?>>
-                                                            <?php echo $level['level_name']; ?> 
-                                                                   
-                                                            </option>
+                                                            <option value="<?php echo $level['level_id'] ?>"><?php echo $level['level_name']; ?></option>
                                                     <?php } ?>
                                                 </select>
                                         </div>

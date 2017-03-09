@@ -73,6 +73,7 @@
                "scrollX": true
            });
             $('.table-pengajuan').dataTable();
+            $('#table-pengguna').dataTable();
 
       });
   </script>

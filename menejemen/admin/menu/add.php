@@ -33,7 +33,7 @@
                         <div class="panel-body dim_about">
 
                             <div class="col-md-12">
-                                <form  method="post"class="form-horizontal">
+                                <form  method="post" class="form-horizontal">
                                     <div class="form-group"> 
                                         <label class="control-label col-lg-4">Nama Menu</label>
                                         <div class="col-lg-8">
