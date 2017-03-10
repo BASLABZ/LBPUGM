@@ -32,7 +32,7 @@
                         </div>
                         <div class="panel-body dim_about">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <table class="table table-striped table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
                                             <th>NO</th>

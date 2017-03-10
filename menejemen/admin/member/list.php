@@ -35,7 +35,7 @@
                         </div>
                         <div class="panel-body dim_about">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <table class="table table-striped table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
                                             <th>NO</th>
@@ -64,8 +64,7 @@
                                                             <div class="col-md-6">
                                                                 <input type="hidden" value="<?php echo $row['member_id']; ?>" name='member_id'
                                                                 > 
-                                                                <!-- <?php //echo $row['member_status']; ?>                                                  -->
-                                                        </div>
+                                                            </div>
                                                         </div>                                               
                                                 </form>
                                                 <?php if ($row['member_status']=='Actived') {
