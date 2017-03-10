@@ -35,9 +35,11 @@
                   <label class="col-md-4" style="padding-top:12px; color: white;">Password</label>
                   <div class="col-md-8">
                     <input type="password" placeholder="Password" class="form-control dim_about" name="password" />
+                    <div class="col-md-12">
+                    <a href="#"><label class="col-md-10 pull-right" style="padding-top:12px; color: white;">Lupa Password?</label></a>
+                    </div>
                   </div>
-                </div>
-                         
+                </div>                       
           </div>
           <div class="panel-footer dim_about" style="background-color: #f8ac59; border-color: #f8ac59;">
             <div class="row">
