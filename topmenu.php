@@ -19,7 +19,7 @@
                         <li><a class="page-scroll" href="index.php#layanan" style="color:black; ">Layanan</a></li>
                          <?php 
                             if (isset($_SESSION['member_name'])) {
-                                echo "<li><a class='page-scroll' style='color:black; ' href='index.php?hal=members/list'>Userprofil</a></li>";
+                                echo "<li><a class='page-scroll' style='color:black; ' href='member/index.php?hal=akun/profil'>Userprofil</a></li>";
                                 echo "<li><a class='page-scroll' style='color:black; ' href='index.php?logout=1'>Keluar</a></li>";
                             }else{
                                 echo " <li><a class='page-scroll' style='color:black; ' href='index.php#daftar'>Daftar</a></li>";

@@ -193,3 +193,4 @@ $(document).ready(function() {
 
 <?php include 'modal-login.php'; ?>
 <?php include 'registrasi_member.php'; ?>
+<?php include 'modal-lupa-password.php'; ?>

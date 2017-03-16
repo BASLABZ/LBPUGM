@@ -39,5 +39,9 @@ mysql_select_db($database,$connect);
                         $tmp = $tmp."0";
                     }return $inisial.$tmp.$angka;
             }
+            // fungsi rupiah
+            function rupiah($nilai, $pecahan = 0) {
+                  return number_format($nilai, $pecahan, ',', '.');
+              }
 
 ?>

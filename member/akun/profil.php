@@ -45,7 +45,7 @@
           $member_institution         = $_POST['member_institution'];
           $member_faculty             = $_POST['member_faculty'];
           $member_email               =  $_POST['member_email'];
-          $category_id_fk             = $_POST['category_id_fk']; 
+          
           // ganti idcard : 
              if (!empty($_FILES) && $_FILES['member_idcard_photo']['size'] >0 && $_FILES['member_idcard_photo']['error'] == 0) {
                   $member_idcard_photo = $_FILES['member_idcard_photo']['name'];
@@ -60,8 +60,7 @@
                                                                 member_institution = '".$member_institution."',
                                                                 member_faculty = '".$member_faculty."',
                                                                 member_email = '".$member_email."',
-                                                                member_idcard_photo = '".$member_idcard_photo."',
-                                                                category_id_fk = '".$category_id_fk."'
+                                                                member_idcard_photo = '".$member_idcard_photo."'
                                                           WHERE 
                                                               member_id = '".$_SESSION['member_id']."'";
                                 
@@ -79,8 +78,7 @@
                                                   member_address          = '".$member_address."',
                                                   member_institution      = '".$member_institution."',
                                                   member_faculty          = '".$member_faculty."',
-                                                  member_email            = '".$member_email."',
-                                                  category_id_fk          = '".$category_id_fk."'
+                                                  member_email            = '".$member_email."'
                                             WHERE 
                                                 member_id                 = '".$_SESSION['member_id']."'";
                 $runUpdate = mysql_query($queryUpdate_Profil);
@@ -208,21 +206,6 @@
                                         <label class="col-md-4">Nama Lengkap</label>
                                         <div class="col-md-6">
                                           <input type="text" class="form-control" name="member_name" value="<?php echo $rowMember['member_name']; ?>" required >
-                                        </div>
-                                      </div>
-                                      <div class="form-group row">
-                                        <label class="col-md-4">KATEGORI MEMBER</label>
-                                        <div class="col-md-6">
-                                          <select class="form-control" required name="category_id_fk">
-                                             <?php  
-                                                  $queryKategori = mysql_query("SELECT * FROM ref_category order by category_id asc");
-                                                  while ($categori = mysql_fetch_array($queryKategori)) {
-                                              ?>
-                                             <option value="<?php echo $categori['category_id']; ?>"
-                                                <?php if($rowMember['category_id_fk']==$categori['category_id']){echo "selected=selected";}?>><?php  echo $categori['category_name']; ?>
-                                            </option>
-                                            <?php  } ?>
-                                         </select>
                                         </div>
                                       </div>
                                       <div class="form-group row">

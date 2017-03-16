@@ -39,7 +39,7 @@
 				<td><?php echo $no++; ?></td>
 				<td><?php echo $rowDetailPeminjaman['instrument_name']; ?></td>
 				<td><?php echo $rowDetailPeminjaman['loan_amount']; ?></td>
-				<td>Rp.<?php echo $rowDetailPeminjaman['loan_subtotal']; ?></td>
+				<td>Rp.<?php echo rupiah($rowDetailPeminjaman['loan_subtotal']); ?></td>
 			</tr>
 <?php } ?>
 		</tbody>
@@ -61,15 +61,15 @@
 			</tr>
 			<tr>
 				<td colspan="3"><label>TOTAL</label></td>
-				<td><label>Rp. <?php echo $totalBiaya; ?></label></td>	
+				<td><label>Rp. <?php echo rupiah($totalBiaya); ?></label></td>	
 			</tr>
 			<tr>
 				<td colspan="3"><label>TAGIHAN : </label></td>
-				<td><label>Rp. <?php echo $rowPenagihan['payment_bill']; ?></label></td>
+				<td><label>Rp. <?php echo rupiah($rowPenagihan['payment_bill']); ?></label></td>
 			</tr>
 			<tr>
 				<td colspan="3"><label>PEMBAYARAN</label></td>
-				<td><label>Rp. <?php echo $rowPenagihan['payment_temp_amount_transfer']; ?></label></td>
+				<td><label>Rp. <?php echo rupiah($rowPenagihan['payment_temp_amount_transfer']); ?></label></td>
 			</tr>
 			<tr>
 				<td colspan="3"><label>STATUS</label></td>

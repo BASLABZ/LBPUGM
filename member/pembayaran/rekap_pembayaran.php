@@ -34,7 +34,7 @@
                     <div class="row">
                         <div class="col-md-12">
                         <h2>PEMBAYARAN PEMINJAMAN</h2>
-                        <table class="table table-responsive table-bordered table-striped table-hover"id="instrument">    
+                        <table class="table table-responsive table-bordered table-striped table-hover">    
                         <thead>
                             <th>NO</th>
                             <th>INVOICE</th>
@@ -61,7 +61,7 @@
                                             <td><?php echo $rowRekap['payment_temp_confirm_date']; ?></td>
                                             <td><?php echo $rowRekap['bankname']; ?></td>
                                             <td><a href="../surat/<?php echo $rowRekap['payment_temp_photo']; ?>" class="label label-primary"><span class="fa fa-download"></span> BUKTI TRANSAFER</a></td>
-                                            <td>Rp. <?php echo $rowRekap['payment_temp_amount_transfer']; ?></td>
+                                            <td>Rp. <?php echo rupiah($rowRekap['payment_temp_amount_transfer']); ?></td>
                                             <td><?php echo $rowRekap['payment_temp_info']; ?></td>
                                             <td><?php echo $rowRekap['loan_status']; ?></td>
                                             <td><?php echo $rowRekap['payment_status']; ?></td>
@@ -118,7 +118,7 @@
                                             <td><?php echo $rowRekap['payment_temp_confirm_date']; ?></td>
                                             <td><?php echo $rowRekap['bankname']; ?></td>
                                             <td><a href="../surat/<?php echo $rowRekap['payment_temp_photo']; ?>" class="label label-primary"><span class="fa fa-download"></span> BUKTI TRANSAFER</a></td>
-                                            <td>Rp. <?php echo $rowRekap['payment_temp_amount_transfer']; ?></td>
+                                            <td>Rp. <?php echo rupiah($rowRekap['payment_temp_amount_transfer']); ?></td>
                                             <td><?php echo $rowRekap['payment_temp_info']; ?></td>
                                             <td><?php echo $rowRekap['loan_status']; ?></td>
                                             <td><?php echo $rowRekap['payment_status']; ?></td>
@@ -165,7 +165,7 @@
                                             <td><?php echo $rowRekap['payment_temp_confirm_date']; ?></td>
                                             <td><?php echo $rowRekap['bankname']; ?></td>
                                             <td><a href="../surat/<?php echo $rowRekap['payment_temp_photo']; ?>" class="label label-primary"><span class="fa fa-download"></span> BUKTI TRANSAFER</a></td>
-                                            <td>Rp. <?php echo $rowRekap['payment_temp_amount_transfer']; ?></td>
+                                            <td>Rp. <?php echo rupiah($rowRekap['payment_temp_amount_transfer']); ?></td>
                                             <td><?php echo $rowRekap['payment_temp_info']; ?></td>
                                             <td><?php echo $rowRekap['loan_status']; ?></td>
                                             <td><?php echo $rowRekap['payment_status']; ?></td>

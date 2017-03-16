@@ -29,7 +29,7 @@
 	      <div class="form-group">
 		    <label class="control-label col-sm-4" for="email">Biaya Sewa</label>
 		    <div class="col-sm-8">
-		      <input type="text" class="form-control" value="<?php echo $rowinstrument['instrument_fee']; ?>" readonly>
+		      <input type="text" class="form-control" value="Rp.<?php echo rupiah($rowinstrument['instrument_fee']); ?>" readonly>
 		    </div>
 		  </div>
         <div class="form-group row">

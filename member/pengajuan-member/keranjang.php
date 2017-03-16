@@ -1,3 +1,14 @@
+ <?php  
+    $query_profilmember= mysql_query("SELECT * from tbl_member where member_id = '".$_SESSION['member_id']."'");
+      $peringatan_lengkapi_identitas = mysql_fetch_array($query_profilmember);
+         $member_birth_date_cek          = $peringatan_lengkapi_identitas['member_birth_date'];
+         $member_gender_cek              = $peringatan_lengkapi_identitas['member_gender'];
+         $member_phone_number_cek        = $peringatan_lengkapi_identitas['member_phone_number'];
+         $member_address_cek             = $peringatan_lengkapi_identitas['member_address'];
+
+      if ($member_birth_date_cek  != '' AND $member_gender_cek  != '' AND 
+            $member_phone_number_cek !='' AND $member_address_cek  != '') {
+            ?>
 <?php 
         if (isset($_GET['hapusitem'])) {
             $queryhapusitem = mysql_query("DELETE FROM trx_loan_temp where member_id_fk = '".$_SESSION['member_id']."' and instrument_id_fk ='".$_GET['hapusitem']."'");
@@ -18,6 +29,7 @@
                 }
        
  ?>
+
 
 <!-- keranjang table -->
 
@@ -69,7 +81,7 @@
             <tbody>
                 <?php 
                             $no = 0;
-                            $query = mysql_query("SELECT instrument_id_fk, instrument_name, instrument_quantity, instrument_fee, count(instrument_id) AS jumlah FROM ref_instrument LEFT JOIN trx_loan_temp ON ref_instrument.instrument_id=trx_loan_temp.instrument_id_fk WHERE member_id_fk='".$_SESSION['member_id']."' GROUP BY instrument_id_fk");
+                            $query = mysql_query("SELECT instrument_id_fk, instrument_name, instrument_quantity,intrument_quantity_temp , instrument_fee, count(instrument_id) AS jumlah FROM ref_instrument LEFT JOIN trx_loan_temp ON ref_instrument.instrument_id=trx_loan_temp.instrument_id_fk WHERE member_id_fk='".$_SESSION['member_id']."' GROUP BY instrument_id_fk");
                                 $number = 1;
                             while ($row = mysql_fetch_array($query)) {
                                     $biaya = $row['instrument_fee'];
@@ -77,20 +89,24 @@
                                     $subtotal = $number*$biaya;
                                     $totaljumlah = $totaljumlah+$jumlah;
                                     $totalbayar = $totalbayar+($biaya*$jumlah);
+                                    $batasQuantity = $row['instrument_quantity']-$row['intrument_quantity_temp'];
+                                    echo "$batasQuantity";
+                                    echo $row['intrument_quantity_temp'];
                                     echo "<tr>
                                             <td >".++$no."</td>
                                             <td><input type='hidden' name='instrument_id_fk[]' value='".$row['instrument_id_fk']."' />".$row['instrument_name']."</td>
                                             <td><input type='number' id='jumlah".$no."' onchange='hitung(".$no.")' onkeyup='hitung(".$no.")' value='1' name='jumlah[]' min='1' class='jumlahotomatis'  />
-                                            <input type='hidden' id='stokTersedia".$no."' value='".$row['instrument_quantity']."'>
+                                            <input type='hidden' id='stokTersedia".$no."' value='".$batasQuantity."'>
+                                           
                                             </td>
                                             <td>
                                                 <input type='hidden' id='biaya".$no."' value='".$row['instrument_fee']."'/>
-                                                <label>".$row['instrument_fee']."</label>
+                                                <label>".rupiah($row['instrument_fee'])."</label>
                                             </td>
                                             <td>
                                                 <input type='hidden' name='subtotal[]' id='subtotal".$no."' 
                                                     value='".$subtotal."' class='subtotalz'/>
-                                                <label id='subtotalf".$no."'>".$subtotal."</label>
+                                                <label id='subtotalf".$no."'>".rupiah($subtotal)."</label>
                                             </td>
                                             <td><a href='index.php?hal=pengajuan-member/keranjang&hapusitem=".$row['instrument_id_fk']."' class='btn btn-sm btn-danger dim_about'><span class='fa fa-trash'></span></a></td>
                                             
@@ -383,12 +399,10 @@ function hitungFIX() {
 function hitungTotalNIlai() {
   
   var hitungsemuaData = document.getElementById('hitungsemua');
-  hitungsemuaData.click();
-
-  
+  hitungsemuaData.click(); 
 }
-
-
-
-
 </script>
+<?php }else{
+              echo "<script> alert('Lengkapi Data Anda Terlebih Dahulu'); location.href='index.php?hal=akun/profil';</script>  ";exit;
+              } ?>
+ 

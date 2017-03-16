@@ -3,7 +3,8 @@
             $invoice = $_GET['id'];
             $rowPenagihan = mysql_fetch_array(mysql_query("SELECT * FROM trx_loan_application a JOIN tbl_member m on a.member_id_fk = m.member_id where loan_invoice = '".$invoice."'"));
             $kodePeminjaman = $rowPenagihan['loan_app_id'];
-          
+            
+
  ?>
  <?php 
         if (isset($_POST['simpanPembayaranAlat'])) {
@@ -65,7 +66,7 @@
         <h2>KONFIRMASI PEMBAYARAN</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="index-2.html">Home</a>
+                <a href="index.php">Home</a>
             </li>
             <li>
                 <a>Pembayaran</a>
@@ -127,7 +128,7 @@
                                         <td><?php echo $no++; ?></td>
                                         <td><?php echo $rowDetailPeminjaman['instrument_name']; ?></td>
                                         <td><?php echo $rowDetailPeminjaman['loan_amount']; ?></td>
-                                        <td><?php echo $rowDetailPeminjaman['loan_subtotal']; ?></td>
+                                        <td>Rp.<?php echo rupiah($rowDetailPeminjaman['loan_subtotal']); ?></td>
                                       </tr>
                                 <?php } ?>
                                     </tbody>
@@ -153,11 +154,11 @@
                                         <tr>
                                             <td colspan="2"> Jumlah Subtotal : </td>
                                             <td></td>
-                                            <td>Rp.<?php echo $sub; ?></td>
+                                            <td>Rp.<?php echo rupiah($sub); ?></td>
                                         </tr>
                                         <tr>
                                             <td colspan="3">Total = Lama Pinjam x Jumlah Subtotal</td>
-                                            <td>Rp.<?php echo $roTotal['loan_total_fee']; ?></td>
+                                            <td>Rp.<?php echo rupiah($roTotal['loan_total_fee']); ?></td>
                                         </tr>
                                     </tfoot>
                                     <?php } ?>
@@ -175,9 +176,9 @@
                                         $querySaldo = mysql_query("SELECT sum(saldo_nominal) as total_saldo FROM tbl_saldo where member_id_fk='".$_SESSION['member_id']."'");
                                         $total_saldo = mysql_fetch_array($querySaldo);
                                         if ($total_saldo['total_saldo']=='') {
-                                          echo "Rp.0";
+                                          echo "Rp.";
                                         }
-                                        echo "".$total_saldo['total_saldo']."</h2>";
+                                        echo "".rupiah($total_saldo['total_saldo'])."</h2>";
                                      ?>
 
                                     </h2>
@@ -209,7 +210,7 @@
                                         <div class="form-group row">
                                           <label class="col-md-4">TOTAL TAGIHAN</label>
                                           <div class="col-md-6">
-                                            <input type="text" name="totalTagihan"  class="form-control" value="<?php echo $rowPenagihan['loan_total_fee']; ?>" readonly  />
+                                            <input type="text" name="totalTagihan"  class="form-control" value="<?php echo rupiah($rowPenagihan['loan_total_fee']); ?>" readonly  />
                                             <input type="hidden" id="tagihan" name="payment_bill" value="<?php echo $rowPenagihan['loan_total_fee']; ?>">
                                           </div>
                                         </div>
@@ -220,11 +221,21 @@
                                           </div>
                                         </div>
                                         <div class="form-group row">
+                                        <?php 
+                                               $querySaldo = mysql_query("SELECT sum(saldo_nominal) as total_saldo FROM tbl_saldo where member_id_fk='".$_SESSION['member_id']."'");
+                                             ?>
                                           <label class="col-md-4">MENGGUNAKAN SALDO</label>
                                           <div class="col-md-6">
                                             <div class="input-group">
                                             <span class="input-group-addon">
-                                              <input type="checkbox" onclick="disabledSaldo(this)"   id="cek">
+                                              <?php 
+                                                  $cekNominalsaldo = mysql_fetch_array($querySaldo);
+                                                  if ($cekNominalsaldo['total_saldo']=='' OR $cekNominalsaldo['total_saldo']=='0' ) {
+                                               ?>
+                                               <input type="hidden" onclick="disabledSaldo(this)"   id="cek">
+                                               <?php }else{ ?>
+                                               <input type="checkbox" onclick="disabledSaldo(this)"   id="cek">
+                                               <?php } ?>
                                             </span>
                                             <input type="text" class="form-control"  id="txtSaldo" disabled="disabled">
                                             <input type="hidden" name="cekSaldos" value="0">
@@ -233,25 +244,24 @@
                                           <!-- INFROMASI SALDO MEMBER -->
                                            <label id="saldosementara" hidden>
                                             <?php 
-                                               $querySaldo = mysql_query("SELECT sum(saldo_nominal) as total_saldo FROM tbl_saldo where member_id_fk='".$_SESSION['member_id']."'");
-                                                                      $total_saldo = mysql_fetch_array($querySaldo);
-                                                                      if ($total_saldo['total_saldo']=='') {
-                                                                        echo "Rp.0";
-                                                                      }else{
-                                                                         echo "".$total_saldo['total_saldo']."";
-                                                                      }
+                                               $total_saldo = mysql_fetch_array($querySaldo);
+                                                if ($total_saldo['total_saldo']=='') {
+                                                  echo "Rp.0";
+                                                }else{
+                                                   echo "".$total_saldo['total_saldo']."";
+                                                }
                                              ?>
                                           </label>
                                           </div>
                                         </div>
                                         <div class="form-group row">
-                                          <label class="col-md-4">TRANSFER</label>
+                                          <label class="col-md-4"> JUMLAH TRANSFER</label>
                                           <div class="col-md-6">
                                             <input type="text" class="form-control" name="payment_temp_amount_transfer"  id="nominaltransfer"  required/>
                                           </div>
                                         </div>
                                         <div class="form-group row">
-                                        <label class="control-label col-lg-4">Upload File</label>
+                                        <label class="control-label col-lg-4">UPLOAD FILE</label>
                                             <div class="col-md-8">
                                                 <input type="file" name="frm_file" id="ifile" onchange="cekberkas()">
                                              </div>

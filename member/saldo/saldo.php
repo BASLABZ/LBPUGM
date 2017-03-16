@@ -28,7 +28,7 @@
 			    if ($total_saldo['total_saldo']=='') {
 			      echo "Rp.0";
 			    }
-			    echo "<h1>Rp.".$total_saldo['total_saldo']."</h1>";
+			    echo "<h1>Rp.".rupiah($total_saldo['total_saldo'])."</h1>";
 			 ?></center>
 					</div>
 				</div>
@@ -70,12 +70,25 @@
 								<label class="col-md-4"></label>
 								<div class="col-md-6">
 									<?php 
+									 $query_profilmember= mysql_query("SELECT * from tbl_member where member_id = '".$_SESSION['member_id']."'");
+						                  $peringatan_lengkapi_identitas = mysql_fetch_array($query_profilmember);
+						                      $member_birth_date_cek          = $peringatan_lengkapi_identitas['member_birth_date'];
+						                      $member_gender_cek              = $peringatan_lengkapi_identitas['member_gender'];
+						                      $member_phone_number_cek        = $peringatan_lengkapi_identitas['member_phone_number'];
+						                      $member_address_cek             = $peringatan_lengkapi_identitas['member_address'];
+						               
+						                  if ($member_birth_date_cek  != '0000-00-00' OR $member_gender_cek  != '' OR 
+						                        $member_phone_number_cek !='' OR $member_address_cek  != '') {
 											if ($total_saldo['total_saldo'] < 50000) {
 												echo "<button type='button' disabled class='btn btn-primary dim_about'>AJUKAN PENCAIRAN</button>";
-												echo "<p>Maaf Saldo Anda Tidak Dapat Dicairkan Dikarenakan Nominal Kurang Dari Rp. 50.000,<br> SALDO ANDA SEKARANG SENILAI : <b> Rp. ".$total_saldo['total_saldo']."</b></p>";
+												echo "<p>Maaf Saldo Anda Tidak Dapat Dicairkan Dikarenakan Nominal Kurang Dari Rp. 50.000,<br> SALDO ANDA SEKARANG SENILAI : <b> Rp. ".rupiah($total_saldo['total_saldo'])."</b></p>";
 											}else{
 												echo "<button type='submit' class='btn btn-primary dim_about'>AJUKAN PENCAIRAN</button>";
 											}
+										}else{
+											echo "<a href='index.php?hal=akun/profil' class='btn btn-danger'><span class='fa fa-check'></span> Lengkapi Data Diri Anda </a>";
+											
+										}
 									 ?>
 								</div>
 							</div>

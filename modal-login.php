@@ -4,7 +4,7 @@
             $username   = $_POST['username'];
             $password   = md5($_POST['password']);
             $no = 0;
-            $sqllogin = " SELECT * FROM tbl_member where member_username = '".$username."' and member_password= '".$password."' and member_status !='Pending' and member_status != 'Ignore' and member_status != 'Confirmed'";
+            $sqllogin = " SELECT * FROM tbl_member where member_username = '".$username."' and member_password= '".$password."' and member_status !='Pending' and member_status != 'Ignore' and member_status != 'Confirmed' AND member_login ='N' ";
             $hasil = mysql_query($sqllogin);
             while ($login=mysql_fetch_array($hasil)) {
                 $member_id       = $login['member_id'];
@@ -64,7 +64,7 @@
             <div class="col-md-4"></div>
             <div class="col-md-4">
               <div class="input-group">
-                <a href="#">  Lupa Password ?</a>
+                <a href="#" data-toggle="modal" data-target="#lupapassword"><span class="fa fa-user-plus"></span> Lupa Password</a>
               </div>
             </div>
             <div class="col-md-2">

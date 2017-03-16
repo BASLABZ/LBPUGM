@@ -9,9 +9,20 @@
             if ($query) { echo "<script>location.href='index.php?hal=pengajuan-member/keranjang';</script>  ";exit;   }
         }
         include 'style-bas-table.php';
- ?>
 
- <div class="row wrapper border-bottom white-bg page-heading">
+ ?>
+ <?php  
+    $query_profilmember= mysql_query("SELECT * from tbl_member where member_id = '".$_SESSION['member_id']."'");
+      $peringatan_lengkapi_identitas = mysql_fetch_array($query_profilmember);
+         $member_birth_date_cek          = $peringatan_lengkapi_identitas['member_birth_date'];
+         $member_gender_cek              = $peringatan_lengkapi_identitas['member_gender'];
+         $member_phone_number_cek        = $peringatan_lengkapi_identitas['member_phone_number'];
+         $member_address_cek             = $peringatan_lengkapi_identitas['member_address'];
+
+      if ($member_birth_date_cek  != '' AND $member_gender_cek  != '' AND 
+            $member_phone_number_cek !='' AND $member_address_cek  != '') {
+            ?>
+<div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
                     <h2>INSTRUMENT</h2>
                     <ol class="breadcrumb">
@@ -161,7 +172,7 @@
                                                         }
                                                  ?>
                                             </td>
-                                            <td width="10%"><?php echo $rowI['instrument_fee']; ?></td>
+                                            <td width="10%">Rp.<?php echo rupiah($rowI['instrument_fee']); ?></td>
                                             <td width="10%">
                                                 <a href='#myModal' class='btn btn-info btn-sm dim_about' id='custId' data-toggle='modal' data-id="<?php echo $rowI['instrument_id']; ?>"><span class='fa fa-eye'></span> Detail</a>
                                             </td> 
@@ -204,4 +215,11 @@
                 </div>
             </div>
     </div>
-    
+          
+
+            <?php
+           }else{
+              echo "<script> alert('Lengkapi Data Anda Terlebih Dahulu'); location.href='index.php?hal=akun/profil';</script>  ";exit;
+              }
+?>
+ 

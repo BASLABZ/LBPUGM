@@ -13,12 +13,18 @@
 		$member_faculty = $_POST['member_faculty'];
 		$member_hint_question = $_POST['member_hint_question'];
 		$member_answer_question = $_POST['member_answer_question'];
-		// $member_idcard_photo = $_POST['member_idcard_photo'];
 		$category_id_fk = $_POST['category_id_fk'];
 		$member_institution_peneliti = $_POST['member_institution_peneliti'];
 		$member_faculty_peneliti = $_POST['member_faculty_peneliti'];
-		     $member_idcard_photo = $_FILES['member_idcard_photo']['name'];
-                          $move = move_uploaded_file($_FILES['member_idcard_photo']['tmp_name'], '../img/'.$member_idcard_photo);
+		$member_idcard_photo = $_FILES['member_idcard_photo']['name'];
+		$queryEmail  = mysql_query("SELECT * FROM tbl_member where member_email ='".$member_email."' ");
+		$cekEMail = mysql_num_rows($queryEmail);
+		var_dump($cekEMail);
+		if ($cekEMail != 0) {
+			 	 echo "<script> alert('Email Sudah Digunakan'); location.href='../index.php' </script>";exit;
+		}else{
+			// echo "exe_query";
+				      $move = move_uploaded_file($_FILES['member_idcard_photo']['tmp_name'], '../img/'.$member_idcard_photo);
 		if ($category_id_fk==1) {
 			// S1 - UGM
 			// query insert to tbl member
@@ -36,6 +42,7 @@
 										VALUES ('".$member_name."', '', '', '', '', 
 												'".$username."', MD5('".$password."'),
 												'".$member_hint_question."', '".$member_answer_question."', 'UGM', 'Mahasiswa Kedokteran  S1 UGM', '".$member_email."','".$member_idcard_photo."','' ,'PENDING', 'N',NOW(),'', '".$category_id_fk."')";
+
 			$register = mysql_query($queryTES);
 			
 			if ($register) {
@@ -113,7 +120,29 @@
                   if ($queryTES) {
                   	 echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='../index.php' </script>";exit;
                   }
+			}else if ($category_id_fk==6 or $category_id_fk==5) {
+				$queryTES = "INSERT INTO tbl_member 
+												(
+														member_name, member_birth_date, member_gender,
+														member_phone_number, member_address, member_username,
+														member_password, member_hint_question,
+														member_answer_question, member_institution,
+														member_faculty, member_email, member_idcard_photo,
+														member_photo, member_status, member_login,
+														member_register_date, member_confirm_date,
+														category_id_fk
+												) 
+										VALUES ('".$member_name."', '', '', '', '', 
+												'".$username."', MD5('".$password."'),
+												'".$member_hint_question."', '".$member_answer_question."', '".$_POST['member_s2']."', '".$_POST['member_jurusan']."', '".$member_email."','".$member_idcard_photo."', '','PENDING','N',NOW(),'','".$category_id_fk."')";
+											
+                  $register = mysql_query($queryTES);
+                  if ($queryTES) {
+                  	 echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='../index.php' </script>";exit;
+                  }
 			}
+		}
+  
 		}
 	}
  ?>

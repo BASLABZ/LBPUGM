@@ -11,9 +11,14 @@
                     <h2 style="font-size: 28px;">Laboratorium Bioantropologi <br/>
                         Paleantropologi LBP<br/>
                         Universitas Gajah Mada [LBP-UGM]</h2>
+                        <?php 
+                            if (isset($_SESSION['member_name'])) {
+                         ?>
+                    <?php }else{ ?>
                     <p>
                         <a class="btn btn-lg btn-primary dim_about" href="#" data-toggle="modal" data-target="#registrasi" role="button"><span class="fa fa-user-plus"></span> Daftar</a>
                     </p>
+                    <?php } ?>
                 </div>
             </div>
             <!-- Set background for slide in css -->
@@ -26,7 +31,12 @@
                     <h2 style="font-size: 28px;">Laboratorium Bioantropologi <br/>
                         Paleantropologi LBP<br/>
                         Universitas Gajah Mada [LBP-UGM]</h2>
+                         <?php 
+                            if (isset($_SESSION['member_name'])) {
+                         ?>
+                    <?php }else{ ?>
                     <p><a class="btn btn-lg btn-primary dim_about" href="#" data-toggle="modal" data-target="#login" role="button"><span class="fa fa-sign-in"></span> Login</a></p>
+                    <?php } ?>
                 </div>
             </div>
             <!-- Set background for slide in css -->

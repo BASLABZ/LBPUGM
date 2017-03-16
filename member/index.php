@@ -48,7 +48,8 @@
               }
               if(file_exists( $_GET['hal'].".php")){
                 include  $_GET['hal'].".php";
-              }else {
+              }
+              else {
                 include"content-memberarea.php";
               }
          ?>
@@ -156,8 +157,7 @@
                         diffDays = Math.round(Math.abs((a - b)/(c)));
                     if (diffDays < 0) {
                       alert('data tidak valid');
-                      $('#totaldays').val(0);
-                       $('#Minggu').val(0);
+
                     }else{
                       $("#totaldays").val(diffDays)
                        var bagi = diffDays/5;
@@ -178,8 +178,12 @@
                     }
                    if (diff<0) {
                     alert('data tidak valid');
-                    $('#totaldays').val(0);
-                    $('#Minggu').val(0);
+                    
+                    $('#tgl_pinjams').val("");
+                    $('#tgl_kembalis').val("");
+                    
+                    $('#totaldays').value("");
+                    $('#Minggu').value("");
                    }else{
                     var bagi = diff/5;
                     var hasilconversi = bagi.toFixed();

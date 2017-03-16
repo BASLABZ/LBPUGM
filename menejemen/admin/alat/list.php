@@ -57,7 +57,7 @@
                                             <td><img style="width:130px; height:150px;" src="<?php echo $var_gambar; ?>"></td>
                                             <td><?php echo $row['instrument_name']; ?></td>
                                             <td><?php echo $row['instrument_brand']; ?></td>
-                                            <td><?php echo $row['instrument_fee']; ?></td>
+                                            <td>Rp.<?php echo rupiah($row['instrument_fee']); ?></td>
                                             <td><?php echo $row['instrument_quantity']; ?></td>
                                             <td>
                                             <?php 
