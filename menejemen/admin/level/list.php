@@ -32,7 +32,7 @@
                             <span class="fa fa-list"></span> Master Level <a href="index.php?hal=level/add" class="btn btn-sm btn-success dim_about"><span class="fa fa-plus"></span> Tambah Data</a>
                         </div>
                         <div class="panel-body dim_about">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <table class="table table-striped table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
                                             <th width="2%">NO</th>
