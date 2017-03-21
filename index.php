@@ -175,7 +175,7 @@ $(document).ready(function() {
             //menggunakan fungsi ajax untuk pengambilan data
             $.ajax({
                 type : 'post',
-                url : 'member/detail_instrument.php',
+                url : 'detail_alat.php',
                 data :  'id='+ rowid,
                 success : function(data){
                 $('.fetched-data').html(data);//menampilkan data ke dalam modal

@@ -1,4 +1,5 @@
 <?php 
+
 	include '../menejemen/inc/inc-db.php';
 	session_start();
 	if (isset($_POST['simpanregistrasi'])) {
@@ -19,7 +20,8 @@
 		$member_idcard_photo = $_FILES['member_idcard_photo']['name'];
 		$queryEmail  = mysql_query("SELECT * FROM tbl_member where member_email ='".$member_email."' ");
 		$cekEMail = mysql_num_rows($queryEmail);
-		var_dump($cekEMail);
+		$kode = 'b4ss4y4ngm4nd4';
+            $ency = base64_encode($kode);
 		if ($cekEMail != 0) {
 			 	 echo "<script> alert('Email Sudah Digunakan'); location.href='../index.php' </script>";exit;
 		}else{
@@ -28,6 +30,7 @@
 		if ($category_id_fk==1) {
 			// S1 - UGM
 			// query insert to tbl member
+
 			$queryTES = "INSERT INTO tbl_member 
 												(
 														member_name, member_birth_date, member_gender,
@@ -37,16 +40,16 @@
 														member_faculty, member_email, member_idcard_photo,
 														member_photo, member_status, member_login,
 														member_register_date, member_confirm_date,
-														category_id_fk
+														category_id_fk,kode
 												) 
 										VALUES ('".$member_name."', '', '', '', '', 
 												'".$username."', MD5('".$password."'),
-												'".$member_hint_question."', '".$member_answer_question."', 'UGM', 'Mahasiswa Kedokteran  S1 UGM', '".$member_email."','".$member_idcard_photo."','' ,'PENDING', 'N',NOW(),'', '".$category_id_fk."')";
+												'".$member_hint_question."', '".$member_answer_question."', 'UGM', 'Mahasiswa Kedokteran  S1 UGM', '".$member_email."','".$member_idcard_photo."','' ,'PENDING', 'N',NOW(),'', '".$category_id_fk."','".$ency."')";
 
 			$register = mysql_query($queryTES);
 			
 			if ($register) {
-				  echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='../index.php' </script>";exit;
+				  echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='SENDEMAIL/sendEmailDebug.php?id=".$ency."&email=".$member_email."' </script>";exit;
 			}
 			
 		}elseif ($category_id_fk==2) {
@@ -61,7 +64,7 @@
 														member_faculty, member_email, member_idcard_photo,
 														member_photo, member_status, member_login,
 														member_register_date, member_confirm_date,
-														category_id_fk
+														category_id_fk,kode
 												) 
 										VALUES ('".$member_name."', '', '', '', '', 
 												'".$username."', MD5('".$password."'),
@@ -69,12 +72,12 @@
 												'".$member_email."',
 												'".$member_idcard_photo."', 
 												'','PENDING','N',NOW(),'',
-												'".$category_id_fk."')";
+												'".$category_id_fk."','".$ency."')";
                   
                   $register = mysql_query($queryTES);
-                  if ($queryTES) {
-                  	 echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='../index.php' </script>";exit;
-                  }
+                 	if ($register) {
+				  echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='SENDEMAIL/sendEmailDebug.php?id=".$ency."&email=".$member_email."' </script>";exit;
+			}
 		}elseif ($category_id_fk == 3) {
 			// peneliti
 			// nama instansi & nama bidang
@@ -88,16 +91,16 @@
 														member_faculty, member_email, member_idcard_photo,
 														member_photo, member_status, member_login,
 														member_register_date, member_confirm_date,
-														category_id_fk
+														category_id_fk,kode
 												) 
 										VALUES ('".$member_name."', '', '', '', '', 
 												'".$username."', MD5('".$password."'),
-												'".$member_hint_question."', '".$member_answer_question."', '".$member_institution_peneliti."','".$member_faculty_peneliti."', '".$member_email."','".$member_idcard_photo."','', 'PENDING','N',NOW(),'','".$category_id_fk."')";
+												'".$member_hint_question."', '".$member_answer_question."', '".$member_institution_peneliti."','".$member_faculty_peneliti."', '".$member_email."','".$member_idcard_photo."','', 'PENDING','N',NOW(),'','".$category_id_fk."','".$ency."')";
 
                   $register = mysql_query($queryTES);
-                  if ($queryTES) {
-                  	 echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='../index.php' </script>";exit;
-                  }
+                 	if ($register) {
+				  echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='SENDEMAIL/sendEmailDebug.php?id=".$ency."&email=".$member_email."' </script>";exit;
+			}
 		}elseif ($category_id_fk==4) {
 			// umum
 			// nama instansi & nama bidang
@@ -110,16 +113,16 @@
 														member_faculty, member_email, member_idcard_photo,
 														member_photo, member_status, member_login,
 														member_register_date, member_confirm_date,
-														category_id_fk
+														category_id_fk,kode
 												) 
 										VALUES ('".$member_name."', '', '', '', '', 
 												'".$username."', MD5('".$password."'),
-												'".$member_hint_question."', '".$member_answer_question."', '".$member_institution_peneliti."', '".$member_faculty_peneliti."', '".$member_email."','".$member_idcard_photo."', '','PENDING','N',NOW(),'','".$category_id_fk."')";
+												'".$member_hint_question."', '".$member_answer_question."', '".$member_institution_peneliti."', '".$member_faculty_peneliti."', '".$member_email."','".$member_idcard_photo."', '','PENDING','N',NOW(),'','".$category_id_fk."','".$ency."')";
 											
                   $register = mysql_query($queryTES);
-                  if ($queryTES) {
-                  	 echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='../index.php' </script>";exit;
-                  }
+                 	if ($register) {
+				  echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='SENDEMAIL/sendEmailDebug.php?id=".$ency."&email=".$member_email."' </script>";exit;
+			}
 			}else if ($category_id_fk==6 or $category_id_fk==5) {
 				$queryTES = "INSERT INTO tbl_member 
 												(
@@ -130,16 +133,16 @@
 														member_faculty, member_email, member_idcard_photo,
 														member_photo, member_status, member_login,
 														member_register_date, member_confirm_date,
-														category_id_fk
+														category_id_fk,kode
 												) 
 										VALUES ('".$member_name."', '', '', '', '', 
 												'".$username."', MD5('".$password."'),
-												'".$member_hint_question."', '".$member_answer_question."', '".$_POST['member_s2']."', '".$_POST['member_jurusan']."', '".$member_email."','".$member_idcard_photo."', '','PENDING','N',NOW(),'','".$category_id_fk."')";
+												'".$member_hint_question."', '".$member_answer_question."', '".$_POST['member_s2']."', '".$_POST['member_jurusan']."', '".$member_email."','".$member_idcard_photo."', '','PENDING','N',NOW(),'','".$category_id_fk."','".$ency."')";
 											
                   $register = mysql_query($queryTES);
-                  if ($queryTES) {
-                  	 echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='../index.php' </script>";exit;
-                  }
+                 	if ($register) {
+				  echo "<script> alert('Terimakasih Data Berhasil Disimpan'); location.href='SENDEMAIL/sendEmailDebug.php?id=".$ency."&email=".$member_email."' </script>";exit;
+			}
 			}
 		}
   

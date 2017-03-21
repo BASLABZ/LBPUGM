@@ -7,7 +7,13 @@
       </div>
       <div class="modal-body">
         <center><h1 style="color:#1ab394; "><span class="fa fa-key fa-2x"></span></h1></center>
-        <form class="role" method="POST">
+        <form class="role" method="POST" action="member/forgot_password.php">
+          <div class="form-group row">
+            <label class="col-md-2">Email</label>
+             <div class="col-md-10">
+              <input type="email" class="form-control" name="email" required>
+             </div>
+          </div>
           <div class="form-group row">
                 <label class="col-md-2">Hint Questions</label>
                 <div class="col-md-10">
