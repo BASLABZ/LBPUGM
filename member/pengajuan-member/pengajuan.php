@@ -1,12 +1,16 @@
 <?php 
         if (isset($_POST['pinjam'])) {
             $cek = $_POST['cek'];
-            foreach ($cek as $key => $value) {
+            if ($cek != '' ) {
+                foreach ($cek as $key => $value) {
                 if (!empty($value)) {
                     $query  = mysql_query("INSERT into trx_loan_temp(instrument_id_fk, member_id_fk) values ('".$value."','".$_SESSION['member_id']."')");
                 }
             }
             if ($query) { echo "<script>location.href='index.php?hal=pengajuan-member/keranjang';</script>  ";exit;   }
+            }else{
+                echo "<script>alert('Silahkan Pilih Alat Terlebih Dahulu'); location.href='index.php?hal=pengajuan-member/pengajuan';</script>  ";exit;
+            }
         }
         include 'style-bas-table.php';
 

@@ -79,7 +79,7 @@
                             <td><?php echo $no++; ?></td>
                             <td><?php echo $rowDetailPeminjaman['instrument_name']; ?></td>
                             <td class="text-right"><?php echo $rowDetailPeminjaman['loan_amount']; ?></td>
-                            <td class="text-right">Rp.<?php echo $rowDetailPeminjaman['loan_subtotal']; ?></td>
+                            <td class="text-right">Rp.<?php echo rupiah($rowDetailPeminjaman['loan_subtotal']); ?></td>
                         </tr>
             <?php } ?>
         </tbody>
@@ -112,13 +112,13 @@
             </tr>
             <tr>
                 <td colspan="2"> Lama Pinjam</td>
-                <td><?php echo $roTotal['long_loan']; ?>/Minggu  </td>
+                <td><?php echo rupiah($roTotal['long_loan']); ?>/Minggu  </td>
                 
             </tr>
             <tr>
                 <td colspan="2"> Jumlah Subtotal : </td>
                 
-                <td>Rp.<?php echo $sub; ?></td>
+                <td>Rp.<?php echo rupiah($sub); ?></td>
             </tr>
             <?php 
                     if ($roTotal['category_id_fk']==1) {
@@ -128,15 +128,15 @@
             
             <tr>
                 <td colspan="2">Total </td>
-                <td>Rp.<?php echo $hasil_akhirs1; ?></td>
+                <td>Rp.<?php echo rupiah($hasil_akhirs1); ?></td>
             </tr>
             <tr>
                 <td colspan="2">Potongan (50%)</td>
-                <td>Rp.<?php echo $potongan;  ?></td>
+                <td>Rp.<?php echo rupiah($potongan);  ?></td>
             </tr>
             <tr>
                 <td colspan="2">Total Bayar = (Lama Pinjam x Jumlah Subtotal)x 50 %</td>
-                <td>Rp.<?php echo $roTotal['loan_total_fee']; ?></td>
+                <td>Rp.<?php echo rupiah($roTotal['loan_total_fee']); ?></td>
             </tr>
             <?php } else if ($roTotal['category_id_fk']==5) {
                 
@@ -144,38 +144,38 @@
             
             <tr>
                 <td colspan="2">Total </td>
-                <td>Rp.<?php echo $totals2; ?></td>
+                <td>Rp.<?php echo rupiah($totals2); ?></td>
             </tr>
             <tr>
                 <td colspan="2">Potongan (25%)</td>
-                <td>Rp.<?php echo $diskons2;  ?></td>
+                <td>Rp.<?php echo rupiah($diskons2);  ?></td>
             </tr>
             <tr>
                 <td colspan="2">Total Bayar </td>
                 <td>Rp.<?php 
-                echo $roTotal['loan_total_fee']; ?></td>
+                echo rupiah($roTotal['loan_total_fee']); ?></td>
             </tr>
             <?php }elseif ($roTotal['category_id_fk']==6) {
                 
              ?>
             <tr>
                 <td colspan="2">Total </td>
-                <td>Rp.<?php echo $totals3; ?></td>
+                <td>Rp.<?php echo rupiah($totals3); ?></td>
             </tr>
             <tr>
                 <td colspan="3">Potongan (25%)</td>
-                <td>Rp.<?php echo $diskons3;  ?></td>
+                <td>Rp.<?php echo rupiah($diskons3);  ?></td>
             </tr>
             
             <tr>
                 <td colspan="2">Total Bayar </td>
-                <td>Rp.<?php echo $hasil_akhirs3; ?></td>
+                <td>Rp.<?php echo rupiah($hasil_akhirs3); ?></td>
             </tr> 
              <?php }else {
                 ?>
                 <tr>
                 <td colspan="2">Total </td>
-                <td>Rp.<?php echo $roTotal['loan_total_fee']; ?></td>
+                <td>Rp.<?php echo rupiah($roTotal['loan_total_fee']); ?></td>
             </tr>
                 <?php
              } ?>
