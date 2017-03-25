@@ -17,9 +17,14 @@
 			echo "<script>  location.href='index.php?hal=peminjaman/pengajuan/pengajuan_detail&invoice=".$invoice."' </script>";exit;
 			
 		}else if ($status == 'MENUNGGU') {
-			echo $iddetail_instrumen;
-			echo "MENUGGU";
-			echo "<script>  location.href='index.php?hal=peminjaman/pengajuan/pengajuan_detail&invoice=$invoice' </script>";exit;
+			$querymenunggu = "UPDATE trx_loan_application_detail INNER JOIN ref_instrument 
+							ON trx_loan_application_detail.instrument_id_fk = ref_instrument.instrument_id 
+								SET trx_loan_application_detail.loan_status_detail = '".$status."',
+									ref_instrument.intrument_quantity_temp = '".$_POST['selisih']."' 
+										where trx_loan_application_detail.loan_app_detail_id = '".$_POST['loan_app_detail_id']."' and ref_instrument.instrument_id = '".$_POST['instrument_id_fk']."'";
+			
+			$queryUpdateStatusmenunggu = mysql_query($querymenunggu);	
+			echo "<script>  location.href='index.php?hal=peminjaman/pengajuan/pengajuan_detail&invoice=".$invoice."' </script>";exit;
 		}else if ($status == 'DITOLAK') {
 			 	 $cek = $_POST['cek'];
 			 	 $idDetail_loan = $_POST['loan_app_detail_id'];

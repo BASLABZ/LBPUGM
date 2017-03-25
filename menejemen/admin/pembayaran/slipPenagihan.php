@@ -1,7 +1,7 @@
 <?php 
 		include '../../inc/inc-db.php';
 		$invoice = $_POST['id'];
-		$rowPenagihan = mysql_fetch_array(mysql_query("SELECT * FROM trx_payment_temp a join tbl_member m ON a.member_id_fk = m.member_id join trx_loan_application p ON p.loan_app_id = a.loan_app_id_fk where p.loan_invoice = '".$invoice."' "));
+		$rowPenagihan = mysql_fetch_array(mysql_query("SELECT * FROM trx_payment a join tbl_member m ON a.member_id_fk = m.member_id join trx_loan_application p ON p.loan_app_id = a.loan_app_id_fk where p.loan_invoice = '".$invoice."' "));
 		
 		
  ?>
@@ -10,7 +10,7 @@
 	<div class="form-group">
 		<label>NO INVOICE : <?php echo $invoice; ?></label><br>
 		<label>NAMA MEMBER : <?php echo $rowPenagihan['member_name']; ?></label><br>
-		<label>TANGGAL PINJAM : <?php echo $rowPenagihan['payment_temp_date']; ?></label>
+		<label>TANGGAL PINJAM : <?php echo $rowPenagihan['payment_date']; ?></label>
 	</div> 
 
 </div> 
@@ -69,7 +69,7 @@
 			</tr>
 			<tr>
 				<td colspan="3"><label>PEMBAYARAN</label></td>
-				<td><label>Rp. <?php echo rupiah($rowPenagihan['payment_temp_amount_transfer']); ?></label></td>
+				<td><label>Rp. <?php echo rupiah($rowPenagihan['payment_amount_transfer']); ?></label></td>
 			</tr>
 			<tr>
 				<td colspan="3"><label>STATUS</label></td>
@@ -78,7 +78,7 @@
 						<?php 
 								
 								$tagihan  = $rowPenagihan['payment_bill'];
-								$bayar  =$rowPenagihan['payment_temp_amount_transfer'];
+								$bayar  =$rowPenagihan['payment_amount_transfer'];
 								$cekPembayaran = $bayar-$tagihan;
 								if ($cekPembayaran == 0) {
 									echo "VALID";
@@ -96,22 +96,35 @@
 	</table>
 	<div class="row well">
 		<form class="role" method="POST" action="index.php?hal=pembayaran/verifikasi_status_pembayaran">
-						<div class="col-md-6">
-							<input type="hidden" name="idpayment" value="<?php echo $rowPenagihan['payment_temp_id']; ?>" >
-							<select class="form-control" name="payment_notif" required>
+						<div class="col-md-12">
+							<input type="hidden" name="idpayment" value="<?php echo $rowPenagihan['payment_id']; ?>" >
+							<select class="form-control" name="payment_valid" required id="konfirmasivalidasi">
 								<option value=""
-                                                <?php if($rowPenagihan['payment_notif']==''){echo "selected=selected";}?>>UBAH STATUS
+                                                <?php if($rowPenagihan['payment_valid']=='MENUNGGU KONFIRMASI'){echo "selected=selected";}?>>MENUNGGU KONFIRMASI
                                             </option>
 								<option value="VALID"
-                                                <?php if($rowPenagihan['payment_notif']=='VALID'){echo "selected=selected";}?>>VALID
+                                                <?php if($rowPenagihan['payment_valid']=='VALID'){echo "selected=selected";}?>>VALID
                                             </option>
                                             <option value="TIDAK VALID"
-                                                <?php if($rowPenagihan['payment_notif']=='TIDAK VALID'){echo "selected=selected";}?>>TIDAK VALID
+                                                <?php if($rowPenagihan['payment_valid']=='TIDAK VALID'){echo "selected=selected";}?>>TIDAK VALID
                                             </option>
 								
 							</select>
+
 						</div>
-						<div class="col-md-3" style="padding-top: 3px;">
+						<div class="col-md-12" id="keterangan" hidden>
+						<br>
+							<label>Isi Alasan Tidak Valid</label>
+							<textarea class="form-control" name="payment_notif">
+								
+							</textarea>
+							
+						<br>
+						</div>
+						<p>
+								<?php echo $rowPenagihan['payment_notif']; ?>
+							</p>
+						<div class="col-md-3 pull-right" style="padding-top: 3px;">
 							<button type="submit" class="btn btn-info btn-sm"><span class="fa fa-check
 							"></span> VERIFIKASI</button>
 						</div>
@@ -119,4 +132,14 @@
 					</form>
 	</div>
 	
-	
+	<script type="text/javascript">
+		  $('#konfirmasivalidasi').on('change',function () {
+		  	if(this.value == "MENUNGGU KONFIRMASI") {
+	          $('#keterangan').hide();
+       		 }else if (this.value == 'VALID') {
+       		 	 $('#keterangan').hide();
+       		 	}else if (this.value == 'TIDAK VALID') {
+       		 		$('#keterangan').show();
+       		 	}
+		  });
+	</script>

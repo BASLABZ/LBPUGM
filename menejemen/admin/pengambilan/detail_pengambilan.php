@@ -14,6 +14,7 @@
 		$no =1;
 		while ($rowDetailPeminjaman = mysql_fetch_array($sqldetail)) {
 			$status = $rowDetailPeminjaman['loan_status_detail'];
+			$status_loan = $rowDetailPeminjaman['loan_status'];
  ?>
 			<tr>
 				<td><?php echo $no++; ?></td>
@@ -28,7 +29,13 @@
 			<form class="role" method="POST" action="index.php?hal=pengambilan/proses_ambil_alat">
 				<div class="form-group">
 					<input type="hidden" name="invoice" value="<?php echo $invoice; ?>">
-					<button type="submit" class="btn btn-block btn-info dim_about"> <span class="fa fa-check"></span> KONFIRMASI PEMBERIAN ALAT</button>
+					<?php if ($status_loan == 'DIKEMBALIKAN' ) {
+						echo "ALAT TELAH DIKEMBALIKAN";
+					}else if ($status_loan == 'DIPINJAM') {
+						echo "ALAT TELAH DI BERIKAN KEPADA MEMBER";
+					} else{
+						echo "<button type='submit' class='btn btn-block btn-info dim_about'> <span class='fa fa-check'></span> KONFIRMASI PEMBERIAN ALAT</button>";
+						} ?>
 				</div>
 			</form>
 		</div>

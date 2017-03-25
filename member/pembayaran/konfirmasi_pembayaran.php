@@ -3,38 +3,55 @@
             $invoice = $_GET['id'];
             $rowPenagihan = mysql_fetch_array(mysql_query("SELECT * FROM trx_loan_application a JOIN tbl_member m on a.member_id_fk = m.member_id where loan_invoice = '".$invoice."'"));
             $kodePeminjaman = $rowPenagihan['loan_app_id'];
-            
-
  ?>
  <?php 
         if (isset($_POST['simpanPembayaranAlat'])) {
                   $fileName = $_FILES['frm_file']['name'];
                   $paymentBill = $_POST['payment_bill'];
                   $Ceksaldo = $_POST['cekSaldos'];  
-                  $transfer = $_POST['payment_temp_amount_transfer'];
+                  $transfer = $_POST['payment_amount_transfer'];
                   $penguranganSaldo = $transfer-$paymentBill;
-                  $saldoawal = $_POST['payment_temp_amount_saldo'];
-                  $tanggal_konfirmasi_pembayaran_member = date('Y-m-d',strtotime($_POST['payment_temp_confirm_date']));
+                  $saldoawal = $_POST['payment_amount_saldo'];
+                  $tanggal_konfirmasi_pembayaran_member = date('Y-m-d',strtotime($_POST['payment_confirm_date']));
              $move = move_uploaded_file($_FILES['frm_file']['tmp_name'], '../surat/'.$fileName);
              if ($move) {
                 if ($Ceksaldo <= 0) {
-                  $querySimpanPayment = mysql_query("INSERT INTO trx_payment_temp 
-                                                    (bankname,payment_bill,payment_temp_amount_transfer,
-                                                    payment_temp_amount_saldo,payment_temp_date,
-                                                    payment_temp_confirm_date,payment_temp_photo,
-                                                    payment_temp_info,loan_app_id_fk,member_id_fk,payment_status
-                                                    ) 
-                                                VALUES ('".$_POST['bankname']."','".$_POST['payment_bill']."',
-                                                        '".$_POST['payment_temp_amount_transfer']."','".$penguranganSaldo."',NOW(),
-                                                        '".$tanggal_konfirmasi_pembayaran_member."','".$fileName."','".$_POST['payment_temp_info']."',
-                                                        '".$_POST['loan_app_id_fk']."','".$_SESSION['member_id']."','TANPA SALDO')");
+                  $querySimpanPayment = "INSERT INTO trx_payment (payment_bankname,payment_bill,
+                                                                  payment_amount_transfer,
+                                                                  payment_amount_saldo,payment_date,
+                                                                  payment_confirm_date,payment_photo,
+                                                                  payment_info,loan_app_id_fk,
+                                                                  member_id_fk,payment_notif,payment_status,
+                                                                  payment_category,payment_verification_date,
+                                                                  payment_valid)
+                                                 VALUES
+                                                        ('".$_POST['payment_bankname']."',
+                                                        '".$_POST['payment_bill']."',
+                                                        '".$_POST['payment_amount_transfer']."',
+                                                        '".$penguranganSaldo."',
+                                                        NOW(),NOW(),
+                                                        '".$fileName."',
+                                                        '".$_POST['payment_info']."',
+                                                        '".$_POST['loan_app_id_fk']."',
+                                                        '".$_SESSION['member_id']."',
+                                                        '',
+                                                        'TANPA SALDO',
+                                                        '".$_POST['payment_category']."',
+                                                        '','MENUNGGU KONFIRMASI')";
+                                                        
+                             $runQueryPayment = mysql_query($querySimpanPayment);
                              $saldobertambah = $penguranganSaldo+$saldoAwal;
-                                                  $querySimpanSaldo = mysql_query("INSERT INTO tbl_saldo 
-                                                                                    (loan_app_id_fk,saldo_nominal,member_id_fk) 
-                                                                                    VALUES ('".$_POST['loan_app_id_fk']."','".$saldobertambah."','".$_SESSION['member_id']."') ");
 
-                                $updateStatusPeminjaman = mysql_query("UPDATE trx_loan_application set loan_status = 'MEMBAYAR TAGIHAN' where loan_app_id='".$_POST['loan_app_id_fk']."'");
-
+                             $querySimpanSaldo = "INSERT INTO trx_saldo (saldo_total,saldo_cashout_amount,saldo_cashout_date,saldo_photo,saldo_status,loan_app_id_fk,member_id_fk) VALUES
+                             ('".$saldobertambah."','','','','DEBIT','".$_POST['loan_app_id_fk']."','".$_SESSION['member_id']."')
+                             ";
+                             $runquerysimpansaldo = mysql_query($querySimpanSaldo);
+                             $updateStatusPeminjaman = "UPDATE trx_loan_application set loan_status = 'MEMBAYAR TAGIHAN' where loan_app_id='".$_POST['loan_app_id_fk']."'";
+                             $runqueryupdatestatuspengajuan = mysql_query($updateStatusPeminjaman);
+                                
+                    if ($runqueryupdatestatuspengajuan) {
+                    echo "<script> alert('Terimakasih Data Konfirmasi Pembayaran Berhasil Disimpan'); location.href='index.php?hal=pengajuan-member/pengajuan-alat' </script>";exit;
+                 }
                 }elseif ($Ceksaldo >  0) {
 
                                                   $saldobertambah = $penguranganSaldo+$saldoAwal;
@@ -55,7 +72,7 @@
                             $updateStatusPeminjaman = mysql_query("UPDATE trx_loan_application set loan_status = 'MEMBAYAR TAGIHAN' where loan_app_id='".$_POST['loan_app_id_fk']."'");
                            } 
                 if ($updateStatusPeminjaman) {
-                             echo "<script> alert('Terimakasih Data Konfirmasi Pembayaran Berhasil Disimpan'); location.href='index.php?hal=pengajuan-member/pengajuan-alat' </script>";exit;
+                              echo "<script> alert('Terimakasih Data Konfirmasi Pembayaran Berhasil Disimpan'); location.href='index.php?hal=pengajuan-member/pengajuan-alat' </script>";exit;
                            }
              }
              
@@ -202,9 +219,11 @@
                                         <div class="form-group row">
                                           <label class="col-md-4">TANGGAL PEMBAYARAN</label>
                                           <div class="col-md-6">
-                                            <!-- <input type="date" class="form-control" name="payment_temp_confirm_date" id="tanggal_konfirmasi_pembayaran_member" required /> -->
-                                            <input type="date" class="form-control" name="payment_temp_confirm_date" required />
-                                            
+                                            <select class="form-control" name="payment_category">
+                                              <option value="">PILIH JENIS PEMBAYARAN</option>
+                                              <option value="PEMINJAMAN">PEMINJAMAN ALAT</option>
+                                              <option value="PERPANJANGAN">PERPANJANGAN ALAT</option>
+                                            </select>
                                           </div>
                                         </div>
                                         <div class="form-group row">
@@ -217,7 +236,7 @@
                                         <div class="form-group row">
                                           <label class="col-md-4">BANK</label>
                                           <div class="col-md-6">
-                                            <input type="text" class="form-control" name="bankname"  required />
+                                            <input type="text" class="form-control" name="payment_bankname"  required />
                                           </div>
                                         </div>
                                         <div class="form-group row">
@@ -239,7 +258,7 @@
                                             </span>
                                             <input type="text" class="form-control"  id="txtSaldo" disabled="disabled">
                                             <input type="hidden" name="cekSaldos" value="0">
-                                            <input type="hidden" class="form-control"   name="payment_temp_amount_saldo" value="0">
+                                            <input type="hidden" class="form-control"   name="payment_amount_saldo" value="0">
                                           </div>
                                           <!-- INFROMASI SALDO MEMBER -->
                                            <label id="saldosementara" hidden>
@@ -257,7 +276,7 @@
                                         <div class="form-group row">
                                           <label class="col-md-4"> JUMLAH TRANSFER</label>
                                           <div class="col-md-6">
-                                            <input type="text" class="form-control" name="payment_temp_amount_transfer"  id="nominaltransfer"  required/>
+                                            <input type="text" class="form-control" name="payment_amount_transfer"  id="nominaltransfer"  required />
                                           </div>
                                         </div>
                                         <div class="form-group row">
@@ -269,7 +288,7 @@
                                         <div class="form-group row">
                                           <label class="col-md-4">KETERANGAN</label>
                                           <div class="col-md-6">
-                                            <textarea class="form-control" name="payment_temp_info" required></textarea>
+                                            <textarea class="form-control" name="payment_info" required></textarea>
                                           </div>
                                         </div>
                                         <div class="form-group row">
@@ -310,5 +329,6 @@
                 $('#saldosementara').hide();
             }
         }
-    
+
+
 </script>

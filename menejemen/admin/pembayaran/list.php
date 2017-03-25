@@ -40,10 +40,10 @@
                                                 <?php 
                                                     $no =1;
                                                     $queryPembayaran = 
-                                                        mysql_query("SELECT * FROM trx_payment_temp p JOIN trx_loan_application pe on p.loan_app_id_fk = pe.loan_app_id 
+                                                        mysql_query("SELECT * FROM trx_payment p JOIN trx_loan_application pe on p.loan_app_id_fk = pe.loan_app_id 
                                                         JOIN tbl_member m on pe.member_id_fk = m.member_id 
                                                         WHERE p.payment_status != 'TANPA SALDO & MEMBAYAR DENDA' AND p.payment_status != 'SALDO & MEMBAYAR DENDA' 
-                                                        ORDER by p.payment_temp_id DESC
+                                                        ORDER by p.payment_id DESC
                                                         ");
                                                         
                                                     while ($roWPembayaran = mysql_fetch_array($queryPembayaran)) { ?>
@@ -51,11 +51,11 @@
                                                         <td><?php echo $no++; ?></td>
                                                         <td><?php echo $roWPembayaran['loan_invoice']; ?></td>
                                                         <td><?php echo $roWPembayaran['member_name']; ?></td>
-                                                        <td><?php echo $roWPembayaran['payment_temp_date']; ?></td>
-                                                        <td><?php echo $roWPembayaran['payment_temp_confirm_date']; ?></td>
-                                                        <td><?php echo $roWPembayaran['bankname']; ?></td>
-                                                         <td><?php echo $roWPembayaran['payment_status']; ?></td>
-                                                        <td><a href="../../surat/<?php echo $roWPembayaran['payment_temp_photo']; ?>"><img width="100" src="../../surat/<?php echo $roWPembayaran['payment_temp_photo']; ?>" class="img-thumbnail img-responsive"></a></td>
+                                                        <td><?php echo $roWPembayaran['payment_date']; ?></td>
+                                                        <td><?php echo $roWPembayaran['payment_confirm_date']; ?></td>
+                                                        <td><?php echo $roWPembayaran['payment_bankname']; ?></td>
+                                                         <td><?php echo $roWPembayaran['payment_valid']; ?></td>
+                                                        <td><a href="../../surat/<?php echo $roWPembayaran['payment_photo']; ?>"><img width="100" src="../../surat/<?php echo $roWPembayaran['payment_photo']; ?>" class="img-thumbnail img-responsive"></a></td>
                                                         <td><a href="#detail_peminjaman_yangdibayar" data-toggle='modal' data-id='<?php echo $roWPembayaran['loan_invoice']; ?>' class="btn btn-info dim_about"> <span class="fa fa-eye"></span> LIHAT DATA</a></td>
                                                     </tr>
                                                  <?php } ?>

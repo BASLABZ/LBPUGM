@@ -1,9 +1,13 @@
  <?php 
       $invoice = $_GET['invoice'];
-        $rowStatusLoan = mysql_fetch_array(mysql_query("SELECT loan_app_id,loan_status FROM trx_loan_application where loan_invoice = '".$invoice."'"));
+        $rowStatusLoan = mysql_fetch_array(mysql_query("SELECT loan_app_id,loan_status,member_id_fk,loan_invoice FROM trx_loan_application where loan_invoice = '".$invoice."'"));
+        $idmember = $rowStatusLoan['member_id_fk'];
         if (isset($_POST['ubah'])) {
+            $selectQuery = mysql_query("SELECT * FROM tbl_member where member_id = '".$idmember."'");
+            $runq = mysql_fetch_array($selectQuery);
+            $email = $runq['member_email'];
             $queryUpdateStatusLoanAPP = mysql_query("UPDATE trx_loan_application set loan_status = '".$_POST['loan_status']."' where loan_app_id = '".$_POST['loan_app_id']."'");
-                 echo "<script>  location.href='index.php?hal=peminjaman/pengajuan/pengajuan_detail&invoice=$invoice' </script>";exit;
+                 echo "<script>  location.href='peminjaman/pengajuan/SENDEMAIL/sendEmailDebug.php?invoice=".$invoice."&email=".$email."' </script>";exit;
         }
         
        ?>
