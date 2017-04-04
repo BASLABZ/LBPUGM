@@ -113,9 +113,9 @@
                                 <div class="row">
                                 <div class="col-md-12">
                                   <div class="form-group">
-                                    <label>NO INVOICE : <?php echo $invoice; ?></label><br>
-                                    <label>NAMA MEMBER : <?php echo $rowPenagihan['member_name']; ?></label><br>
-                                    <label>TANGGAL PINJAM : <?php echo jin_date_str($rowPenagihan['loan_date_start']); ?></label>
+                                    <label>NO INVOICE     : <?php echo $invoice; ?></label><br>
+                                    <label>NAMA MEMBER    : <?php echo $rowPenagihan['member_name']; ?></label><br>
+                                    <label>TANGGAL PINJAM : <?php echo jin_date_str($rowPenagihan['loan_date_start']);?></label>
                                   </div> 
                                 </div> 
                                   </div>

@@ -2,10 +2,10 @@
 <table class="table table-responsive table-hover table-bordered">
 		<thead>
 			<th>NO</th>
-			<th>NAMA INSTRUMENT</th>
-			<th>STATUS PEMINJAMAN</th>
+			<th>NAMA ALAT</th>
+			<th>STATUS ALAT</th>
 			<th>JUMLAH</th>
-			<th>SUBTOTAL</th>
+			<th>HARGA SEWA</th>
 			<th>AKSI</th>
 		</thead>
 		<tbody>
@@ -30,7 +30,7 @@
 				<td><?php echo $no++; ?></td>
 				<td><?php echo $rowDetailPeminjaman['instrument_name']; ?></td>
 				<td>
-					<button class="btn btn-warning dim_about"><span class="fa fa-exclamation-triangle"></span> <?php echo $rowDetailPeminjaman['loan_status_detail']; ?></button>
+					<label class="label label-warning dim_about"><span class=""></span> <?php echo $rowDetailPeminjaman['loan_status_detail']; ?></label>
 				</td>
 				<td class="text-right"><?php echo $rowDetailPeminjaman['loan_amount']; ?></td>
 				<td class="text-right">Rp.<?php echo rupiah($rowDetailPeminjaman['loan_subtotal']); ?></td>
@@ -68,22 +68,23 @@
 					$diskons3= $totals3*0.25;
 					$hasil_akhirs3 = $totals3-$diskons3;
 		 ?>
-		<tfoot>
+	</table>
+		<tfoot> 
 			<tr>
-				<td colspan="3">Jumlah Item</td>
+				<td colspan="3" class="pull-right"><b>Jumlah Item</b></td>
 				<td><?php echo $roTotal['loan_total_item']; ?> /Buah</td>
 				<td></td>
-			</tr>
+			</tr> </br>
 			<tr>
-				<td colspan="3"> Lama Pinjam</td>
+				<td colspan="3"><b>Lama Pinjam</b></td>
 				<td><?php echo $roTotal['long_loan']; ?>/Minggu  </td>
-				<td></td>
+				<td></td> <br/>
 			</tr>
 			<tr>
-				<td colspan="3"> Jumlah Subtotal : </td>
+				<td colspan="3"><b>Jumlah Subtotal : </b></td>
 				<td></td>
 				<td>Rp.<?php echo rupiah($sub); ?></td>
-			</tr>
+			</tr> <br/>
 			<?php 
 					if ($roTotal['category_id_fk']==1) {
 						
@@ -91,17 +92,17 @@
 			 ?>
 			
 			<tr>
-				<td colspan="3">Total </td>
+				<td colspan="3"><b>Total</b> </td>
 				<td>Rp.<?php echo rupiah($hasil_akhirs1); ?></td>
-			</tr>
+			</tr> <br/>
 			<tr>
-				<td colspan="3">Potongan (50%)</td>
+				<td colspan="3"><b>Potongan (50%)</b></td>
 				<td>Rp.<?php echo rupiah($potongan);  ?></td>
-			</tr>
+			</tr> <br/>
 			<tr>
-				<td colspan="3">Total Bayar = (Lama Pinjam x Jumlah Subtotal)x 50 %</td>
+				<td colspan="3"><b>Total Bayar = (Lama Pinjam x Jumlah Subtotal)x 50 %</b></td>
 				<td>Rp.<?php echo rupiah($roTotal['loan_total_fee']); ?></td>
-			</tr>
+			</tr> <br/>
 			<?php } else if ($roTotal['category_id_fk']==5) {
 				
 			?>
@@ -145,7 +146,7 @@
 			 } ?>
 		</tfoot>
 		<?php } ?>
-	</table>
+	
 	<div class="row">
 		<div class="col-md-12">
 			<p align="right">
@@ -157,9 +158,9 @@
                                      echo "<a class='btn btn-info dim_about' href='index.php?hal=pembayaran/preview_rekappembayaran_perinvoice&id=".$invoice."'> <span class='fa fa-print'></span> Cetak<a>";
                                   
                                    }else if ($statusKonfirmasi == 'ACC') {
-                                   	echo "<div class='well'><i>Silahkan Melakukan Pembayaran Waktu Tempo Pembayaran : 3 JAM 30 MENIT, Jika Anda Tidak Melakukan Pembayaran Maka Pengajuan Anda Akan otomatis Dibatalkan</i></div>";
-                                     echo " <a href='index.php?hal=pembayaran/konfirmasi_pembayaran&id=".$ubahstatus['loan_invoice']."' class='btn btn-info btn-xs pull-right dim_about'
-                                    ><span class='fa fa-check'></span> KONFIRMASI <br>PEMBAYARAN</a>";
+                                   	echo "<div class='well'><b>KETERANGAN : <br/>Silahkan klik button Konfirmasi Pembayaran untuk dapat melanjutkan proses selanjutnya. Waktu yang diberikan untuk Konfirmasi Pembayaran adalah 3 Jam setelah pengajuan Anda dinyatakan di ACC. Apabila dalam waktu 3 jam Anda tidak melakukan konfirmasi pembayaran maka pengajuan peminjaman alat akan dibatalkan secara otomatis. </b></div>";
+                                     echo " <a href='index.php?hal=pembayaran/konfirmasi_pembayaran&id=".$ubahstatus['loan_invoice']."' class='btn btn-info btn-xl pull-right dim_about'
+                                    ><span class=''></span> KONFIRMASI PEMBAYARAN</a>";
                                    }else if ($statusKonfirmasi == 'DIBATALKAN') {
                                         echo "<a href='index.php?hal=pengajuan-member/pengajuan-alat&batalkan=".$ubahstatus['loan_invoice']."' class='btn btn-success dim_about'> <span class='fa fa-share'> </span>
                                          KIRIM PENGAJUAN</a>";                            

@@ -52,12 +52,11 @@
                         <thead>
                             <th>NO</th>
                             <th>INVOICE</th>
-                            <th>TANGGAL INPUT</th>
+                            <th>TANGGAL PENGAJUAN</th>
                             <th>TANGGAL PINJAM</th>
                             <th>TANGGAL KEMBALI</th>
-                            <th>FILE AJUAN</th>
                             <th>STATUS</th>
-                            <th>CEK STATUS ALAT</th>
+                            <th>DETAIL PENGAJUAN</th>
                         </thead>
                         <tbody>
                            <?php 
@@ -71,11 +70,10 @@
                                         <td><?php echo $rowPeminjaman['loan_date_input']; ?></td>
                                         <td><?php echo $rowPeminjaman['loan_date_start']; ?></td>
                                         <td><?php echo $rowPeminjaman['loan_date_return']; ?></td>
-                                        <td><?php echo $rowPeminjaman['loan_file']; ?></td>
                                         <td>
                                           <button class='btn btn-info btn-sm dim_about'><span class="fa fa-check"></span> <?php echo $rowPeminjaman['loan_status']; ?></button>
                                         </td>  
-                                        <?php echo "<td><a href='#detail_peminjaman'  class='btn btn-warning btn-sm dim_about' id='custId' data-toggle='modal' data-id='".$rowPeminjaman['loan_invoice']."'><span class='fa fa-exclamation-triangle'></span> Detail Pengajuan</a></td>"; ?>
+                                        <?php echo "<td><a href='#detail_peminjaman'  class='btn btn-warning btn-sm dim_about' id='custId' data-toggle='modal' data-id='".$rowPeminjaman['loan_invoice']."'><span class=''></span> Detail Pengajuan</a></td>"; ?>
                                 </tr>
                           <?php } ?> 
                         </tbody>
@@ -88,7 +86,7 @@
     </div>
 </div>
    <div class="modal fade" id="detail_peminjaman" role="dialog" >
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog" style="width: 800px"  role="document">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1ab394; color:white;">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>

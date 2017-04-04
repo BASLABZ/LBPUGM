@@ -4,6 +4,45 @@
                     
         $identitasMember = mysql_fetch_array(mysql_query($query));
  ?>
+      <br/>
+        <div class="row">
+          <div class="col-md-12">
+       <?php 
+              $queryPeringatan = mysql_query("SELECT loan_status, loan_invoice, member_name from trx_loan_application join tbl_member on trx_loan_application.member_id_fk=tbl_member.member_id where member_id_fk='".$_SESSION['member_id']."' order by loan_app_id DESC  limit 1");
+            while ($rowPeringatan = mysql_fetch_array($queryPeringatan)) {
+                 $statusKonfirmasi = $rowPeringatan['loan_status'];
+        ?>
+            <?php 
+                 if($statusKonfirmasi=='ACC') {
+                        echo " <div class='alert alert-success alert-dismissable dim_about yellow-bg' style='border-color: #f8ac59; color: white;'>
+                              <button aria-hidden='true' data-dismiss='alert' class='close' type='button' style='color: white;'>×</button>
+                                <span class='fa fa-check'></span> <b>STATUS PENGAJUAN ALAT:</b></br>
+                                Hi ".$rowPeringatan['member_name'].", pengajuan peminjaman alat penelitian dengan NO INVOICE ".$rowPeringatan['loan_invoice']."  telah kami setujui. Silahkan melakukan pembayaran dan konfirmasi pembayaran dalam waktu 3 jam setelah pengajuan Anda kami setujui. Apabila dalam waktu tempo yang diberikan Anda belum melakukan konfirmasi pembayaran maka pengajuan peminjaman alat Anda dibatalkan secara otomatis. </br>
+                             </div>";
+                    }elseif ($statusKonfirmasi == 'DITOLAK') {
+                        echo "<div class='alert alert-success alert-dismissable dim_about red-bg' style='border-color: #f8ac59; color: white;'>
+                          <button aria-hidden='true' data-dismiss='alert' class='close' type='button' style='color: white;'>×</button>
+                            <span class='fa fa-check'></span> <b>STATUS PENGAJUAN ALAT :</b></br> 
+                            Hi ".$rowPeringatan['member_name'].", mohon maaf pengajuan peminjaman alat penelitian dengan  NO INVOICE ".$rowPeringatan['loan_invoice']." untuk saat ini tidak dapat kami setujui karena adanya kendala teknis pada alat di Laboratorium. 
+                         </div>";
+                      
+                    }elseif($statusKonfirmasi == 'MENUNGGU'){
+                      echo "<div class='alert alert-success alert-dismissable dim_about navy-bg' style='border-color: #f8ac59; color: white;'>
+              <button aria-hidden='true' data-dismiss='alert' class='close' type='button' style='color: white;'>×</button>
+                <span class='fa fa-check'></span> <b>STATUS PENGAJUAN ALAT :</b></br>
+                 Menunggu Persetujuan Dari Admin
+             </div> ";
+                    }
+                    else if($statusKonfirmasi != 'ACC' && $statusKonfirmasi != 'DITOLAK'){
+                        echo "<div class='alert alert-success alert-dismissable dim_about lazur-bg' style='border-color: #f8ac59; color: white;'>
+                          <button aria-hidden='true' data-dismiss='alert' class='close' type='button' style='color: white;'>×</button>
+                            <span class='fa fa-check'></span> Selamat Datang Di LPB - UGM / PEMINJAMAN ALAT LAB.
+                         </div> ";
+                    }
+             ?>
+        <?php } ?> 
+       </div>
+        </div>
 <div class="row  border-bottom navy-bg dashboard-header">
            <div class="col-md-6">
                 <div class="profile-image">
@@ -157,42 +196,6 @@
 
                 
         ?>
-       <div class="row">
-          <div class="col-md-12">
-       <?php 
 
-              $queryPeringatan = mysql_query("SELECT loan_status,loan_invoice from trx_loan_application where member_id_fk='".$_SESSION['member_id']."' order by loan_app_id DESC  limit 1");
-            while ($rowPeringatan = mysql_fetch_array($queryPeringatan)) {
-                 $statusKonfirmasi = $rowPeringatan['loan_status'];
-        ?>
-            <?php 
-                 if($statusKonfirmasi=='ACC') {
-                        echo " <div class='alert alert-success alert-dismissable dim_about yellow-bg' style='border-color: #f8ac59; color: white;'>
-                              <button aria-hidden='true' data-dismiss='alert' class='close' type='button' style='color: white;'>×</button>
-                                <span class='fa fa-check'></span>
-                                PERINGATAN : PENGAJUAN PEMINJAMAN DENGAN NO INVOICE ".$rowPeringatan['loan_invoice']." ANDA TELAH DI ACC & SILAHKAN MELAKUKAN PEMBAYARAN , WAKTU TEMPO PEMBAYAAN 3 JAM 60 MENIT.<hr><b>JIKA SELAMA WAKTU TEMPO ANDA TIDAK MELAKUKAN PEMBAYARAN MAKA PENGAJUAN PEMINJAMAN ANDA AKAN DIBATALKAN OTOMATIS</b>
-                             </div>";
-                    }elseif ($statusKonfirmasi == 'DITOLAK') {
-                        echo "<div class='alert alert-success alert-dismissable dim_about red-bg' style='border-color: #f8ac59; color: white;'>
-                          <button aria-hidden='true' data-dismiss='alert' class='close' type='button' style='color: white;'>×</button>
-                            <span class='fa fa-check'></span> PERINGATAN : PENGAJUAN PEMINJAMAN DENGAN NO INVOICE ".$rowPeringatan['loan_invoice']." ANDA TELAH DI DITOLAK DAN LIHAT DETAIL PEMINJAMAN
-                         </div>";
-                      
-                    }elseif($statusKonfirmasi == 'MENUNGGU'){
-                      echo "<div class='alert alert-success alert-dismissable dim_about navy-bg' style='border-color: #f8ac59; color: white;'>
-              <button aria-hidden='true' data-dismiss='alert' class='close' type='button' style='color: white;'>×</button>
-                <span class='fa fa-check'></span> Menunggu Persetujuan Dari Admin
-             </div> ";
-                    }
-                    else if($statusKonfirmasi != 'ACC' && $statusKonfirmasi != 'DITOLAK'){
-                        echo "<div class='alert alert-success alert-dismissable dim_about lazur-bg' style='border-color: #f8ac59; color: white;'>
-                          <button aria-hidden='true' data-dismiss='alert' class='close' type='button' style='color: white;'>×</button>
-                            <span class='fa fa-check'></span> Selamat Datang Di LPB - UGM / PEMINJAMAN ALAT LAB.
-                         </div> ";
-                    }
-             ?>
-        <?php } ?> 
-       </div>
-        </div>
     </div>
 </div>
