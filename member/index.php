@@ -173,10 +173,13 @@
                     var d1 = $('#tgl_pinjams').datepicker('getDate');
                     var d2 = $('#tgl_kembalis').datepicker('getDate');
                     var diff = 0;
+                    var totalhari = 0;
                     if (d1 && d2) {
                         diff = Math.floor((d2.getTime() - d1.getTime()) / 86400000); // ms per day
+
+                        totalhari = diff+1;
                     }
-                   if (diff<0) {
+                   if (totalhari<0) {
                     alert('data tidak valid');
                     
                     $('#tgl_pinjams').val("");
@@ -185,9 +188,12 @@
                     $('#totaldays').value("");
                     $('#Minggu').value("");
                    }else{
-                    var bagi = diff/5;
+                    var bagi = totalhari/7;
+
                     var hasilconversi = bagi.toFixed();
-                     $('#totaldays').val(diff);
+                    
+
+                     $('#totaldays').val(totalhari);
                      $("#Minggu").val(hasilconversi);
                    }
                 }

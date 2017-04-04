@@ -47,7 +47,7 @@ $email = $_GET['email'];
                                                         <td>
                                                         	<?php 
                                             		if ($roPeminjaman['loan_status']=='ACC') {
-                                            			echo "SILAHKAN MELAKUKAN PEMBAYARAN , WAKTU PEMBAYARAN HANYA 3 JAM 60 MENIT DARI DITERIMANYA EMAIL INI. JIKA TIDAK MELAKUKAN PEMBAYARAN MAKA TRANSAKSI PEMINJAMAN ANDA AKAN KAMI BATALKAN SECARA OTOMATIS";
+                                            			echo "SILAHKAN MELAKUKAN PEMBAYARAN , WAKTU PEMBAYARAN HANYA 3 JAM  DARI DITERIMANYA EMAIL INI. JIKA TIDAK MELAKUKAN PEMBAYARAN MAKA TRANSAKSI PEMINJAMAN ANDA AKAN KAMI BATALKAN SECARA OTOMATIS";
                                             		} 
                                             		?>
                                                         </td>
