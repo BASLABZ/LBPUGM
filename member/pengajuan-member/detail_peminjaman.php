@@ -160,6 +160,7 @@
 				$queryUbahstatus = "SELECT loan_invoice,loan_status,loan_date_return,member_id_fk,loan_total_fee FROM trx_loan_application where loan_invoice  = '".$invoice."' ";
 				$ubahstatus = mysql_fetch_array(mysql_query($queryUbahstatus));
 					$statusKonfirmasi = $ubahstatus['loan_status'];
+					
                                    if ($statusKonfirmasi == 'MEMBAYAR TAGIHAN') {
                                      echo "<a class='btn btn-info dim_about' href='index.php?hal=pembayaran/preview_rekappembayaran_perinvoice&id=".$invoice."'> <span class='fa fa-print'></span> Cetak<a>";
                                   

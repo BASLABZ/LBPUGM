@@ -13,7 +13,7 @@
 										where trx_loan_application_detail.loan_app_detail_id = '".$_POST['loan_app_detail_id']."' and ref_instrument.instrument_id = '".$_POST['instrument_id_fk']."'";
 			
 			$queryUpdateStatus = mysql_query($query);	
-			
+		
 			echo "<script>  location.href='index.php?hal=peminjaman/pengajuan/pengajuan_detail&invoice=".$invoice."' </script>";exit;
 			
 		}else if ($status == 'MENUNGGU') {
