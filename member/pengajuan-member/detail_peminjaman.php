@@ -69,7 +69,11 @@
 					$hasil_akhirs3 = $totals3-$diskons3;
 		 ?>
 	</table>
-		<tfoot> 
+		<tfoot>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-6 pull-right">
+				 
 			<tr>
 				<td colspan="3" class="pull-right"><b>Jumlah Item</b></td>
 				<td><?php echo $roTotal['loan_total_item']; ?> /Buah</td>
@@ -144,6 +148,8 @@
 			</tr>
 			 	<?php
 			 } ?>
+			</div>
+		</div>
 		</tfoot>
 		<?php } ?>
 	

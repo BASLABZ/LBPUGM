@@ -182,26 +182,7 @@
                                   </table>
                                   
                                   </div>
-                            </div>
-                            <!-- saldo anda -->
-                            <div class="panel panel-primary">
-                                <div class="panel-heading"><span class="fa fa-list"></span> SALDO ANDA</div>
-                                <div class="panel-body">
-                                    <p>Sisa Saldo Anda Adalah : </p>
-                                    <h2 class='btn btn-block btn-warning btn-lg'>
-                                        <?php 
-                                        $querySaldo = mysql_query("SELECT sum(saldo_nominal) as total_saldo FROM tbl_saldo where member_id_fk='".$_SESSION['member_id']."'");
-                                        $total_saldo = mysql_fetch_array($querySaldo);
-                                        if ($total_saldo['total_saldo']=='') {
-                                          echo "Rp.";
-                                        }
-                                        echo "".rupiah($total_saldo['total_saldo'])."</h2>";
-                                     ?>
-
-                                    </h2>
-                                    <p><i>*Anda Dapat Melakukan Pembayaran Dengan Menggunakan Saldo.</i></p>
-                                </div>
-                            </div>
+                            </div>             
                         </div>
                         <div class="col-md-6">
                             <div class="panel panel-primary">
@@ -248,15 +229,23 @@
                                             <div class="input-group">
                                             <span class="input-group-addon">
                                               <?php 
+                                                $querySaldo = mysql_query("SELECT sum(saldo_nominal) as total_saldo FROM tbl_saldo where member_id_fk='".$_SESSION['member_id']."'");
                                                   $cekNominalsaldo = mysql_fetch_array($querySaldo);
                                                   if ($cekNominalsaldo['total_saldo']=='' OR $cekNominalsaldo['total_saldo']=='0' ) {
                                                ?>
                                                <input type="hidden" onclick="disabledSaldo(this)"   id="cek">
                                                <?php }else{ ?>
                                                <input type="checkbox" onclick="disabledSaldo(this)"   id="cek">
-                                               <?php } ?>
-                                            </span>
+                                               <?php } ?> 
+                                            </span> 
                                             <input type="text" class="form-control"  id="txtSaldo" disabled="disabled">
+                                            <?php  
+                                            $total_saldo = mysql_fetch_array($querySaldo);
+                                        if ($total_saldo['total_saldo']=='') {
+                                          echo "Rp.";
+                                        }
+                                        echo "".rupiah($total_saldo['total_saldo'])."</h2>";
+                                     ?>
                                             <input type="hidden" name="cekSaldos" value="0">
                                             <input type="hidden" class="form-control"   name="payment_amount_saldo" value="0">
                                           </div>
@@ -278,7 +267,8 @@
                                           <div class="col-md-6">
                                             <input type="text" class="form-control" name="payment_amount_transfer"  id="nominaltransfer"  required />
                                           </div>
-                                        </div>
+                                        </div>  
+                                          Inputlah sesuai dengan jumlah uang yang Anda transfer.
                                         <div class="form-group row">
                                         <label class="control-label col-lg-4">UPLOAD FILE</label>
                                             <div class="col-md-8">
@@ -288,7 +278,7 @@
                                         <div class="form-group row">
                                           <label class="col-md-4">KETERANGAN</label>
                                           <div class="col-md-6">
-                                            <textarea class="form-control" name="payment_info" required></textarea>
+                                            <textarea class="form-control" name="payment_info"></textarea>
                                           </div>
                                         </div>
                                         <div class="form-group row">
