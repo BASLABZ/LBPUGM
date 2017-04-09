@@ -47,49 +47,61 @@
  			<div class="col-md-12">
  				<br>
  				<div id="hiddenStatusTolak" hidden>
- 					<table class="table table-bordered table-hover table-striped" id="tablePenawaran">
- 					<thead>
- 						<th>Pilih</th>
- 						<th>No</th>
- 						<th>Nama Instrument</th>
- 						<th>Jumlah Stok</th>
- 						<th>Ketersediaan</th>
- 						<th>Gambar</th>
- 						<th>Keterangan</th>
- 					</thead>
- 					<tbody>
- 					<?php 
- 						$no = 0;
- 						$queryAlat = mysql_query("SELECT * FROM ref_instrument order by instrument_id ASC");
- 						while ($rowAlat = mysql_fetch_array($queryAlat)) {
- 					 ?>
- 						<tr>
- 							<?php echo "<td><input type='checkbox' value='".$rowAlat['instrument_id']."' name='cek[]'></td>"; ?>
- 							<!-- hidden id loan_app -->
+ 					<label>Alasan Penolakan</label>
+ 					<textarea class="form-control" style="height: 200px;" placeholder="Isi Dengan Keterangan Penolakan" name="reject_note"></textarea>
+ 					<br>
+ 					<div class="panel-group">
+					  <div class="panel panel-primary">
+					    <div class="panel-heading">
+					      <h4 class="panel-title">
+					        <a data-toggle="collapse" href="#collapse1"><span class="fa fa-list"></span> Pilih Penawaran Alat</a>
+					      </h4>
+					    </div>
+					    <div id="collapse1" class="panel-collapse collapse">
+					      <div class="panel-body">
+					      	<table class="table table-bordered table-hover table-striped" id="tablePenawaran">
+	 					<thead>
+	 						<th>Pilih</th>
+	 						<th>No</th>
+	 						<th>Nama Instrument</th>
+	 						<th>Jumlah Stok</th>
+	 						<th>Ketersediaan</th>
+	 						<th>Gambar</th>
+	 						
+	 					</thead>
+	 					<tbody>
+	 					<?php 
+	 						$no = 0;
+	 						$queryAlat = mysql_query("SELECT * FROM ref_instrument where instrument_id != '".$rowsatus['instrument_id_fk']."' order by instrument_id ASC");
+	 						while ($rowAlat = mysql_fetch_array($queryAlat)) {
+	 					 ?>
+	 						<tr>
+	 							<?php echo "<td><input type='radio' onchange='radio($no)'  value='".$rowAlat['instrument_id']."' name='cek' id='cekEd".$no."'></td>"; ?>
+	 							<!-- hidden id loan_app -->
 
- 							<td><?php echo ++$no; ?></td>
- 							<td><?php echo $rowAlat['instrument_name']; ?></td>
- 							<td><?php echo $rowAlat['instrument_quantity']; ?></td>
- 							<td>
- 								<?php $jumlah_sementara = $rowAlat['instrument_quantity'];
-                                                            $jumlah_temp = $rowAlat['intrument_quantity_temp'];
-                                                            $ketersediaan = $jumlah_sementara-$jumlah_temp;
-                                                            echo $ketersediaan;
-                                                 ?>
- 							</td>
- 							<td><img src="../image/<?php echo $rowAlat['instrument_picture']; ?>" class='img-responsive' width='100px'></td>
- 							<td>
- 								<?php echo "<textarea class='form-control' name='keterangan' id='keterangan_penawaran".$no."' ></textarea>"; ?>
- 							</td>
- 						</tr>
- 						<?php } ?>
- 					</tbody>
- 				</table>
- 				
+	 							<td><?php echo ++$no; ?></td>
+	 							<td><?php echo $rowAlat['instrument_name']; ?></td>
+	 							<td><?php echo $rowAlat['instrument_quantity']; ?><input type="hidden" name="instrument_fee" value="<?php echo $rowAlat['instrument_fee']; ?>"></td>
+	 							<td>
+	 								<?php $jumlah_sementara = $rowAlat['instrument_quantity'];
+	                                                            $jumlah_temp = $rowAlat['intrument_quantity_temp'];
+	                                                            $ketersediaan = $jumlah_sementara-$jumlah_temp;
+	                                                            echo $ketersediaan;   ?>
+	 							</td>
+	 							<td><img src="../image/<?php echo $rowAlat['instrument_picture']; ?>" class='img-responsive' width='200px'></td>
+	 						</tr>
+	 						<?php } ?>
+	 					</tbody>
+ 					</table>
+					      </div>
+					      	<button class="btn btn-sm btn-primary dim_about pull-right" name="ubahstatus"><span class="fa fa-check"></span> SIMPAN</button>
+					      
+					    </div>
+					  </div>
+					</div>
  				</div>
  			</div>
  		</div>
- 		<button class="btn btn-sm btn-primary dim_about pull-right" name="ubahstatus"><span class="fa fa-check"></span> SIMPAN</button>
  	</form>
  </div>
  <script type="text/javascript">
@@ -101,13 +113,9 @@
 				$('#hiddenStatusTolak').hide();
  		   }
  	}
- 	function cek(no) {
- 			var cekEd = document.getElementById('cekEd'+no);
- 		   	var keterangan_penawaran = document.getElementById('keterangan_penawaran'+no);
- 		   	if (cekEd.checked) {
- 		   		// keterangan_penawaran.focus();
- 		   		alert(keterangan_penawaran);
- 		   	}
- 	}
+ 	
+ 	
+
+ 	
  	
  </script>

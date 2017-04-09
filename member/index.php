@@ -134,7 +134,7 @@
     function nationalDays(date) {
       var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
       //console.log('Checking (raw): ' + m + '-' + d + '-' + y);
-      for (i = 0; i < disabledDays.length; i++) {
+      for (i = 1; i < disabledDays.length; i++) {
         if($.inArray((m+1) + '-' + d + '-' + y,disabledDays) != -1 || new Date() > date) {
           return [false];
         }
@@ -160,7 +160,7 @@
 
                     }else{
                       $("#totaldays").val(diffDays)
-                       var bagi = diffDays/5;
+                       var bagi = diffDays/7;
                        var hasilconversi = bagi.toFixed();
                       $("#Minggu").val(hasilconversi)
                     }
@@ -188,13 +188,20 @@
                     $('#totaldays').value("");
                     $('#Minggu').value("");
                    }else{
-                    var bagi = totalhari/7;
-
-                    var hasilconversi = bagi.toFixed();
                     
+                    var bagi = totalhari/7;
+                    var hasilconversi = bagi.toFixed();
+                    // minggu pertama
+                    if (bagi < 1) {
+                      $("#Minggu").val(1);
+                    }else if(bagi > 1){
+                      var hasiljumlah = bagi+1;
+                      var hasilakhir = Math.floor(hasiljumlah);
+                      $("#Minggu").val(hasilakhir);
+                    }
 
                      $('#totaldays').val(totalhari);
-                     $("#Minggu").val(hasilconversi);
+                     // $("#Minggu").val(hasilconversi);
                    }
                 }
         $('#tgl_pinjams').datepicker({
