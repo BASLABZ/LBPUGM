@@ -94,12 +94,13 @@
 	 					</tbody>
  					</table>
 					      </div>
-					      	<button class="btn btn-sm btn-primary dim_about pull-right" name="ubahstatus"><span class="fa fa-check"></span> SIMPAN</button>
+					      	
 					      
 					    </div>
 					  </div>
 					</div>
  				</div>
+ 				<button class="btn btn-sm btn-primary dim_about pull-right" name="ubahstatus"><span class="fa fa-check"></span> SIMPAN</button>
  			</div>
  		</div>
  	</form>
