@@ -21,10 +21,8 @@ echo "<script> alert('Login Sukses');</script>";
     $_SESSION['operator_username']   = $data['operator_username'];
     // $_SESSION['login_time'] = date('Y-m-d');
     //Penggunaan Meta Header HTTP
-    if ($data['level_id']=='1'){
+    if ($data['level_id']){
         echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../admin/index.php">';    
-    }else if($data['level']=='ppat'){
-        echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../ppat/index.php">';    
     }
     exit;
 }

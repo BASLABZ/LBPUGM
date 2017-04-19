@@ -39,7 +39,7 @@ while($datamenu1=mysql_fetch_array($resultmenu1)){
     </a>
         <?php
         //--tonton menu_id berdasarkan levelnya apa
-        $sqlmenu2="select menu_id from ref_level_menu where level_id=1";
+        $sqlmenu2="select menu_id from ref_level_menu where level_id='".$_SESSION['level_id']."'";
         
         $resultmenu2=mysql_query($sqlmenu2);
         ?>

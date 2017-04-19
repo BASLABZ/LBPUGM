@@ -46,7 +46,13 @@
  		<div class="row">
  			<div class="col-md-12">
  				<br>
- 				<div id="hiddenStatusTolak" hidden>
+ 				<?php 
+ 					if ($status == 'DITOLAK') {
+ 						echo "<div id='hiddenStatusTolak'>";
+ 					}else if ($status != 'DITOAL') {
+ 						echo "<div id='hiddenStatusTolak' hidden>";
+ 					}
+ 				 ?>
  					<label>Alasan Penolakan</label>
  					<textarea class="form-control" style="height: 200px;" placeholder="Isi Dengan Keterangan Penolakan" name="reject_note"></textarea>
  					<br>
