@@ -5,12 +5,12 @@
                     <div class="panel-heading">
                        <div class="row">
                             <div class="col-md-4">
-                             <span class="fa fa-wrench"></span> Transaksi Pengajuan
+                             <span class=""></span> 
                         </div>
                         <div class="col-md-8">
-                            <div class="text-right"><b><i>  Home / <span class="fa fa-list"></span> Transaksi / <span class="fa fa-pencil">
+                            <div class="text-right"><b><i>  Home / <span class="fa fa-list"></span> Konfirmasi / <span class="fa fa-pencil">
                             </span>
-                            Pengajuan</i></b></div>
+                            Pengajuan Pinjaman</i></b></div>
                         </div>
                        </div>
                     </div>
@@ -20,16 +20,15 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-primary" style="border-color: white;">
-                        <div class="panel-heading"><span class="fa fa-list"></span> Transaksi Pengajuan</div>
+                        <div class="panel-heading"><span class="fa fa-list"></span> Data Pengajuan</div>
                         <div class="panel-body dim_about">
-                             <table class="table table-striped table-bordered table-hover"  id="dataTables-example">
+                             <table class="table table-striped table-hover"  id="dataTables-example">
                                                 <thead>
                                                     <th>NO</th>
                                                     <th>Tanggal Pengajuan</th>
-                                                    <th>No Nota / INVOICE</th>
-                                                    <th>Nama</th>
-                                                    <th>Tanggal Pinjam</th>
-                                                    <th>Tanggal Kembali</th>
+                                                    <th>No Invoice</th>
+                                                    <th>Nama Member</th>
+                                                    <th>File Pengajuan</th>
                                                     <th>Status</th>
                                                     <th>Aksi</th>
                                                 </thead>
@@ -44,15 +43,12 @@
                                                         <td><?php echo $roPeminjaman['loan_date_input']; ?></td>
                                                         <td><?php echo $roPeminjaman['loan_invoice']; ?></td>
                                                         <td><?php echo $roPeminjaman['member_name']; ?></td>
-                                                        <td><?php echo $roPeminjaman['loan_date_start']; ?></td>
-                                                        <td><?php echo $roPeminjaman['loan_date_return']; ?></td>
+                                                        <td><a target="_BLANK" href="../../surat/<?php echo $roPeminjaman['loan_file']; ?>" class="btn btn-primary btn-sm dim_about"> <span class="fa fa-download"></span> 
+                                                        Download File Pengajuan
+                                                        </a></td>
                                                         <td><button class="btn btn-warning btn-xs dim_about"><?php echo $roPeminjaman['loan_status']; ?></button></td>
                                                         <td>
-                                                        <a target="_BLANK" href="../../surat/<?php echo $roPeminjaman['loan_file']; ?>" class="btn btn-primary btn-sm dim_about"> <span class="fa fa-file"></span> 
-                                                        DOWNLOAD FILE PENGAJUAN
-                                                        </a>
-                                                        <br><br>
-                                                        <a href="index.php?hal=peminjaman/pengajuan/pengajuan_detail&invoice=<?php echo $roPeminjaman['loan_invoice']; ?>" class='btn btn-info btn-sm dim_about'><span class="fa fa-eye"></span> Detail Pangajuan & Penawaran</a>
+                                                        <a href="index.php?hal=peminjaman/pengajuan/pengajuan_detail&invoice=<?php echo $roPeminjaman['loan_invoice']; ?>" class='btn btn-info btn-sm dim_about'><span class="fa fa-eye"></span> Detail Pangajuan</a>
                                                         </td>
                                                     </tr>
                                                     <?php } ?>

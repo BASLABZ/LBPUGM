@@ -2,7 +2,7 @@
 // include 'inc-db.php';
 // session_start();
 //--tampilkan menu 
-$sqlmenu1="select menu_id, menu_name, menu_parent from ref_menu where menu_parent = 0";
+$sqlmenu1="select menu_id, menu_name, menu_parent from ref_menu where menu_parent = 0"; 
 
 $resultmenu1=mysql_query($sqlmenu1);
 //$run=mysql_query($sqlmenu1);

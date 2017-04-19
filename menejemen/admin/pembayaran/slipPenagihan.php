@@ -8,19 +8,28 @@
 <div class="row">
 <div class="col-md-12">
 	<div class="form-group">
-		<label>NO INVOICE : <?php echo $invoice; ?></label><br>
-		<label>NAMA MEMBER : <?php echo $rowPenagihan['member_name']; ?></label><br>
-		<label>TANGGAL PINJAM : <?php echo $rowPenagihan['payment_date']; ?></label>
-	</div> 
+		<table>
+			<tr>
+				<td><b>No Invoice</b></td>
+				<td>:</td>
+				<td><?php echo $invoice; ?></td>
+			</tr>
+			<tr>
+				<td><b>Nama Member</b></td>
+				<td>:</td>
+				<td><?php echo $rowPenagihan['member_name']; ?></td>
+			</tr>
+	</table>
+</div> 
 
 </div> 
   </div>
 <table class="table table-responsive table-hover table-bordered">
 		<thead>
-			<th>NO</th>
-			<th>NAMA INSTRUMENT</th>
-			<th>JUMLAH</th>
-			<th>SUBTOTAL</th>
+			<th>No</th>
+			<th>Nama Alat</th>
+			<th>Jumlah</th>
+			<th>Subtotal</th>
 		</thead>
 		<tbody>
 		<?php 
@@ -55,21 +64,38 @@
 				$biaya = mysql_fetch_array($queryTotalBayar);
 				$totalBiaya = $biaya['totalBiaya'];
 			 ?>
+
 			<tr>
-				<td colspan="3"><label>JUMLAH</label></td>
+				<td colspan="3"><label>Jumlah</label></td>
 				<td><label><?php echo $totalItem; ?> / Buah</label></td> 
 			</tr>
 			<tr>
-				<td colspan="3"><label>TOTAL</label></td>
+				<td colspan="3"><label>Total </label></td>
 				<td><label>Rp. <?php echo rupiah($totalBiaya); ?></label></td>	
 			</tr>
 			<tr>
-				<td colspan="3"><label>TAGIHAN : </label></td>
+				<td colspan="3"><label>Tagihan : </label></td>
 				<td><label>Rp. <?php echo rupiah($rowPenagihan['payment_bill']); ?></label></td>
 			</tr>
 			<tr>
-				<td colspan="3"><label>PEMBAYARAN</label></td>
+				<td colspan="3"><label>Jumlah Pembayaran</label></td>
 				<td><label>Rp. <?php echo rupiah($rowPenagihan['payment_amount_transfer']); ?></label></td>
+			</tr>
+			<tr>
+				<td colspan="3"><label>Kelebihan Pembayaran</label></td>
+				<td><?php echo $rowPenagihan['payment_amount_saldo']; ?> * Sisa pembayaran akan dimasukkan ke dalam saldo member</td>
+			</tr>
+			<tr>
+				<td colspan="3"><label>Kategori Pembayaran</label></td>
+				<td><?php echo $rowPenagihan['payment_category']; ?></td>
+			</tr>
+			<tr>
+				<td colspan="3"><label>Tanggal Konfirmasi</label></td>
+				<td><?php echo $rowPenagihan['payment_date']; ?></td>
+			</tr>
+			<tr>
+				<td colspan="3"><label>Dari Bank</label></td>
+				<td><?php echo $rowPenagihan['payment_bankname']; ?></td>
 			</tr>
 			<tr>
 				<td colspan="3"><label>STATUS</label></td>
