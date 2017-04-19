@@ -90,6 +90,10 @@
 				<td><?php echo $rowPenagihan['payment_category']; ?></td>
 			</tr>
 			<tr>
+				<td colspan="3"><label>Keterangan Pembayaran</label></td>
+				<td><?php echo $rowPenagihan['payment_status']; ?></td>
+			</tr>
+			<tr>
 				<td colspan="3"><label>Tanggal Konfirmasi</label></td>
 				<td><?php echo $rowPenagihan['payment_date']; ?></td>
 			</tr>
