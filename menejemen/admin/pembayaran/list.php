@@ -81,7 +81,7 @@
         </div>
 </div>
 <div class="modal fade" id="detail_peminjaman_yangdibayar" role="dialog" >
-        <div class="modal-dialog" style="width: 1000px" role="document">
+        <div class="modal-dialog" style="width: 900px" role="document">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1ab394; color:white;">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>

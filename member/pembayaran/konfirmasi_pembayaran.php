@@ -198,12 +198,13 @@
                                           </div>
                                         </div>
                                         <div class="form-group row">
-                                          <label class="col-md-4">TANGGAL PEMBAYARAN</label>
+                                          <label class="col-md-4">JENIS PEMBAYARAN</label>
                                           <div class="col-md-6">
-                                            <select class="form-control" name="payment_category">
-                                              <option value="">PILIH JENIS PEMBAYARAN</option>
+                                            <select class="form-control" name="payment_category" required>
+                                              <option value="">Pilih</option>
                                               <option value="PEMINJAMAN">PEMINJAMAN ALAT</option>
                                               <option value="PERPANJANGAN">PERPANJANGAN ALAT</option>
+                                              <option value="PERPANJANGAN">DENDA ALAT</option>
                                             </select>
                                           </div>
                                         </div>
@@ -267,10 +268,11 @@
                                           <div class="col-md-6">
                                             <input type="text" class="form-control" name="payment_amount_transfer"  id="nominaltransfer"  required />
                                           </div>
-                                        </div>  
-                                          Inputlah sesuai dengan jumlah uang yang Anda transfer.
+                                          <div class="col-md-8">Inputlah sesuai dengan jumlah uang yang Anda transfer.</div>
+                                        </div> 
+                                         
                                         <div class="form-group row">
-                                        <label class="control-label col-lg-4">UPLOAD FILE</label>
+                                        <label class="control-label col-lg-4">UPLOAD BUKTI PEMBAYARAN</label>
                                             <div class="col-md-8">
                                                 <input type="file" name="frm_file" id="ifile" onchange="cekberkas()">
                                              </div>
