@@ -23,8 +23,10 @@ echo "<script> alert('Login Sukses');</script>";
     //Penggunaan Meta Header HTTP
     if ($data['level_id']=='1'){
         echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../admin/index.php">';    
-    }else if($data['level']=='ppat'){
-        echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../ppat/index.php">';    
+    }else if($data['level']=='2'){
+        echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../koordinator-penelitian/index.php">';    
+    }else if($data['level']=='3'){
+        echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../kepala-laboratorium/index.php">';    
     }
     exit;
 }

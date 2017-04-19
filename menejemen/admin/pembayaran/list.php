@@ -5,12 +5,12 @@
                     <div class="panel-heading">
                        <div class="row">
                             <div class="col-md-4">
-                             <span class="fa fa-pencil"></span> Transaksi Konfirmasi Pembayaran
+                             <span class=""></span> 
                         </div>
                         <div class="col-md-8">
                         <span class="fa fa-home pull-right"> 
-                        <i>Home / <span class="fa fa-list"></span> Transaksi / <span class="fa fa-pencil"> </span>
-                            Konfirmasi Pembayaran
+                        <i>Home / <span class="fa fa-list"></span> Konfirmasi / <span class="fa fa-pencil"> </span>
+                            Pembayaran
                         </i></span> 
                         </div>
                        </div>
@@ -21,19 +21,18 @@
                 <div class="col-lg-12">
                     <div class="panel panel-primary" style="border-color: white;">
                         <div class="panel-heading">
-                            <span class="fa fa-list"></span> Transaksi Konfirmasi Pembayaran
+                            <span class="fa fa-list"></span> Data Pembayaran
                         </div>
                         <div class="panel-body dim_about">
                             <table class="table table-striped table-hover"  id="dataTables-example">
                                                 <thead>
-                                                    <th>NO</th>
-                                                    <th>INVOIVCE</th>
-                                                    <th>NAMA</th>
-                                                    <th>TANGGAL KONFIRMASI</th>
-                                                    <th>NAMA BANK</th>
-                                                    <th>STATUS</th>
-                                                    <th>FOTO BUKTI BAYAR</th>
-                                                    <th>AKSI</th>
+                                                    <th>No</th>
+                                                    <th>No Invoice</th>
+                                                    <th>Nama</th>
+                                                    <th>Tanggal Konfirmasi</th>
+                                                    <th>Keterangan</th>
+                                                    <th>Bukti Pembayaran</th>
+                                                    <th>Aksi</th>
                                                 </thead>
                                                 <tbody>
                                                 <?php 
@@ -51,7 +50,6 @@
                                                         <td><?php echo $roWPembayaran['loan_invoice']; ?></td>
                                                         <td><?php echo $roWPembayaran['member_name']; ?></td>
                                                         <td><?php echo $roWPembayaran['payment_confirm_date']; ?></td>
-                                                        <td><?php echo $roWPembayaran['payment_bankname']; ?></td>
                                                          <td><span class="label label-success"><?php echo $roWPembayaran['payment_valid']; ?></span></td>
                                                         <td><a href="../../surat/<?php echo $roWPembayaran['payment_photo']; ?>"><img width="100" src="../../surat/<?php echo $roWPembayaran['payment_photo']; ?>" class="img-thumbnail img-responsive"></a></td>
                                                         <td><a href="#detail_peminjaman_yangdibayar" data-toggle='modal' data-id='<?php echo $roWPembayaran['loan_invoice']; ?>' class="btn btn-info dim_about"> <span class="fa fa-eye"></span> Lihat Detail</a></td>
@@ -66,8 +64,8 @@
         
     </div>
 </div>
-<div class="modal fade modal-lg" id="detail_pengajuan" role="dialog" >
-        <div class="modal-dialog" role="document" style="width:900px; ">
+<div class="modal fade" id="detail_pengajuan" role="dialog" >
+        <div class="modal-dialog modal-lg" role="document" style="width:800px; ">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1ab394; color:white;">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -83,11 +81,11 @@
         </div>
 </div>
 <div class="modal fade" id="detail_peminjaman_yangdibayar" role="dialog" >
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog" style="width: 1000px" role="document">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1ab394; color:white;">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><span class="fa fa-flask"></span> DETAIL PEMINJAMAN & KONFIRMASI PEMINJAMAN</h4>
+                    <h4 class="modal-title"><span class="fa fa-flask"></span> Detail Pembayaran</h4>
                 </div>
                 <div class="modal-body">
                     <div class="slipPenagihan-data"></div>
