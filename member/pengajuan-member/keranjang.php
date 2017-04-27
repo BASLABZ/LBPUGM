@@ -146,7 +146,7 @@
                               </div>
                               <div class="form-group row">
                                  <div class="col-md-6">
-                                     <label>Lama Pinjma (Hari)</label>
+                                     <label>Lama Pinjam (Hari)</label>
                                   </div>
                                    <div class="col-md-6">
                                      <input type="text" id="totaldays" class="form-control" disabled>

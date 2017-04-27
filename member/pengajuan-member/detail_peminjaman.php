@@ -90,9 +90,7 @@
 				<td>Rp.<?php echo rupiah($sub); ?></td>
 			</tr> <br/>
 			<?php 
-					if ($roTotal['category_id_fk']==1) {
-						
-					
+					if ($roTotal['category_id_fk']==1) {		
 			 ?>
 			
 			<tr>
@@ -161,7 +159,7 @@
 				$ubahstatus = mysql_fetch_array(mysql_query($queryUbahstatus));
 					$statusKonfirmasi = $ubahstatus['loan_status'];
 					
-                                   if ($statusKonfirmasi == 'MEMBAYAR TAGIHAN') {
+                                   if ($statusKonfirmasi == 'VALID') {
                                      echo "<a class='btn btn-info dim_about' href='index.php?hal=pembayaran/preview_rekappembayaran_perinvoice&id=".$invoice."'> <span class='fa fa-print'></span> Cetak<a>";
                                   
                                    }else if ($statusKonfirmasi == 'ACC') {

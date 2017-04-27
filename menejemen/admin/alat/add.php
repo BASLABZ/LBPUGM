@@ -1,4 +1,4 @@
-<?php 
+t<?php 
         if (isset($_POST['simpan'])) {
             if (!empty($_FILES) && $_FILES['gambar']['size'] >0 && $_FILES['gambar']['error'] == 0) {
 

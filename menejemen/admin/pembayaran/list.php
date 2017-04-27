@@ -30,7 +30,7 @@
                                                     <th>No Invoice</th>
                                                     <th>Nama</th>
                                                     <th>Tanggal Konfirmasi</th>
-                                                    <th>Keterangan</th>
+                                                    <th>Status</th>
                                                     <th>Bukti Pembayaran</th>
                                                     <th>Aksi</th>
                                                 </thead>
@@ -85,7 +85,7 @@
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #1ab394; color:white;">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><span class="fa fa-flask"></span> Detail Pembayaran</h4>
+                    <h4 class="modal-title"><span class=""></span> Detail Pembayaran</h4>
                 </div>
                 <div class="modal-body">
                     <div class="slipPenagihan-data"></div>

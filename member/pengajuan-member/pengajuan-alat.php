@@ -50,13 +50,13 @@
                         <div class="col-md-12">
                         <table class="table table-responsive table-bordered table-striped table-hover"id="instrument">    
                         <thead>
-                            <th>NO</th>
-                            <th>INVOICE</th>
-                            <th>TANGGAL PENGAJUAN</th>
-                            <th>TANGGAL PINJAM</th>
-                            <th>TANGGAL KEMBALI</th>
-                            <th>STATUS</th>
-                            <th>DETAIL PENGAJUAN</th>
+                            <th>No</th>
+                            <th>No Invoice</th>
+                            <th>Tanggal Pengajuan</th>
+                            <th>Tanggal Pinjam</th>
+                            <th>Tanggal Kembali</th>
+                            <th>Status</th>
+                            <th>Detail Pengajuan</th>
                         </thead>
                         <tbody>
                            <?php 

@@ -89,7 +89,7 @@
                 <a>Pembayaran</a>
             </li>
             <li class="active">
-                <strong>Konfirmasi Transaksi Pembayaran</strong>
+                <strong>Transaksi Pembayaran</strong>
             </li>
         </ol>
     </div>
@@ -98,12 +98,12 @@
     <div class="row animated fadeInRight">
         <div class="col-md-12">
             <div class="ibox">
-                <div class="ibox-title dim_about" style="background-color: #1ab394; border-color: #1ab394; color: white;"><span class="fa fa-list"></span> Konfirmasi Transaksi Pembayaran</div>
+                <div class="ibox-title dim_about" style="background-color: #1ab394; border-color: #1ab394; color: white;"><span class=""></span></div>
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="panel panel-primary">
-                                <div class="panel-heading"><span class="fa fa-file"></span> Tagihan Transaksi Peminjaman Alat</div>
+                                <div class="panel-heading"><span class=""></span> Tagihan Transaksi Peminjaman Alat</div>
                                 <div class="panel panel-body">
                                  <?php 
                                     $invoice = $_GET['id'];
@@ -113,18 +113,33 @@
                                 <div class="row">
                                 <div class="col-md-12">
                                   <div class="form-group">
-                                    <label>NO INVOICE     : <?php echo $invoice; ?></label><br>
-                                    <label>NAMA MEMBER    : <?php echo $rowPenagihan['member_name']; ?></label><br>
-                                    <label>TANGGAL PINJAM : <?php echo jin_date_str($rowPenagihan['loan_date_start']);?></label>
+                                  <table>
+                                  <tr>
+                                    <td><b>No Invoice</b></td>
+                                    <td><b>:</b></td>
+                                    <td><b><?php echo $invoice; ?></b></td>
+                                  </tr>
+                                  <tr>
+                                    <td><b>Nama Member</b></td>
+                                    <td><b>:</b></td>
+                                    <td><b><?php echo $rowPenagihan['member_name']; ?></b></td>
+                                  </tr> 
+                                  <tr>
+                                    <td><b>Tanggal Pengajuan</b></td>
+                                    <td><b>:</b></td>
+                                    <td><b><?php echo jin_date_str($rowPenagihan['loan_date_start']);?></b></td>
+                                  </tr>
+                                    
+                                    </table>
                                   </div> 
                                 </div> 
                                   </div>
                                 <table class="table table-responsive table-hover table-bordered">
                                     <thead>
-                                      <th>NO</th>
-                                      <th>NAMA INSTRUMENT</th>
-                                      <th>JUMLAH</th>
-                                      <th>SUBTOTAL</th>
+                                      <th>No</th>
+                                      <th>Nama Alat</th>
+                                      <th>Jumlah</th>
+                                      <th>Subtotal</th>
                                     </thead>
                                     <tbody>
                                     <?php 
@@ -144,7 +159,7 @@
                                       <tr>
                                         <td><?php echo $no++; ?></td>
                                         <td><?php echo $rowDetailPeminjaman['instrument_name']; ?></td>
-                                        <td><?php echo $rowDetailPeminjaman['loan_amount']; ?></td>
+                                        <td><center><?php echo $rowDetailPeminjaman['loan_amount']; ?></center></td>
                                         <td>Rp.<?php echo rupiah($rowDetailPeminjaman['loan_subtotal']); ?></td>
                                       </tr>
                                 <?php } ?>
@@ -154,43 +169,101 @@
                                                   on d.loan_app_id_fk = x.loan_app_id  where x.loan_invoice ='".$invoice."' ");
                                             $xs = mysql_fetch_array($rowjumlahsubtotal);
                                             $sub = $xs['sub'];
-                                            $queryTotal = mysql_query("SELECT loan_total_item,loan_total_fee, long_loan FROM trx_loan_application where loan_invoice ='".$invoice."'");
-                                            while ($roTotal = mysql_fetch_array($queryTotal)){  
+                                            $queryTotal = mysql_query("SELECT a.loan_total_item, a.loan_total_fee, a.long_loan, b.category_id_fk FROM trx_loan_application a JOIN tbl_member b on a.member_id_fk = b.member_id where loan_invoice ='".$invoice."'");
+                                            while ($roTotal = mysql_fetch_array($queryTotal)){
+                                                 $potongan = $roTotal['loan_total_fee'];
+                    $hasil_akhirs1 = $potongan+$potongan;
+                    // hitung potongan/diskon s2 
+                    $lama =  $roTotal['long_loan'];
+                    $totals2 = $sub *  $lama;
+                    $diskons2 = $totals2*0.25;
+                    $hasil_akhirs2 = $potongan-$diskons2;
+                    // hasil akhir s3
+                    $totals3 = $sub *  $lama;
+                    $diskons3= $totals3*0.25;
+                    $hasil_akhirs3 = $totals3-$diskons3;
                                      ?>
                                     <tfoot>
                                         <tr>
                                             <td colspan="2">Jumlah Item</td>
-                                            <td><?php echo $roTotal['loan_total_item']; ?> /Buah</td>
+                                            <td><center><?php echo $roTotal['loan_total_item']; ?></center></td>
                                             <td></td>
                                         </tr>
                                         <tr>
                                             <td colspan="2"> Lama Pinjam</td>
-                                            <td><?php echo $roTotal['long_loan']; ?>/Minggu  </td>
+                                            <td><center><?php echo $roTotal['long_loan']; ?> Minggu  </center></td>
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2"> Jumlah Subtotal : </td>
-                                            <td></td>
+                                            <td colspan="3"> Subtotal </td>
                                             <td>Rp.<?php echo rupiah($sub); ?></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3">Total = Lama Pinjam x Jumlah Subtotal</td>
-                                            <td>Rp.<?php echo rupiah($roTotal['loan_total_fee']); ?></td>
+                                          <td colspan="3"> Total = ( Lama Pinjam x Subtotal )</td>
+                                          <td>Rp. <?php echo rupiah ($total = $lama*$sub); ?></td>
+                                        </tr>
+                                        <tr>
+                                          <td colspan="3"> Potongan</td>
+                                          <td>
+                                            <?php if ($roTotal['category_id_fk']==1) {
+                                              echo "Rp.";
+                                              echo $potongan50 = rupiah($sub*0.5);
+                                                                                        
+                                                  } elseif ($roTotal['category_id_fk']==5 OR $roTotal['category_id_fk']==6) {
+                                                    echo "Rp.";
+                                                    echo $potongan25 = rupiah($sub*0.25);
+                                                  } ?>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">Total Bayar = ( Total - Potongan )</td>
+                                            <td>
+                                               <?php 
+                                                  echo "Rp. ";
+                                                  echo rupiah($roTotal['loan_total_fee'] - $potongan25) ;
+                                               //if ($roTotal['category_id_fk']==1) {
+                                              //   echo "Rp.";
+                                              //   echo $totalbayar50 = rupiah($total - $potongan50);
+                                              // } elseif ($roTotal['category_id_fk']==5 OR $roTotal['category_id_fk']==6) {
+                                              //   echo "Rp.";
+                                              //   echo $totalbayar25 = rupiah($total - $potongan25);
+                                              // } 
+                                              ?>
+                                            </td>
                                         </tr>
                                     </tfoot>
                                     <?php } ?>
                                   </table>
                                   
                                   </div>
-                            </div>             
+                            </div>  
+                            <!-- saldo anda -->
+                            <div class="panel panel-primary">
+                                <div class="panel-heading"><span class=""></span> Saldo</div>
+                                <div class="panel-body">
+                                    <p>Sisa Saldo Anda Adalah : </p>
+                                    <h2 class='btn btn-block btn-warning btn-lg'>
+                                        <?php 
+                                        $querySaldo = mysql_query("SELECT sum(saldo_nominal) as total_saldo FROM tbl_saldo where member_id_fk='".$_SESSION['member_id']."'");
+                                        $total_saldo = mysql_fetch_array($querySaldo);
+                                        if ($total_saldo['total_saldo']=='') {
+                                          echo "Rp.";
+                                        }
+                                        echo "".rupiah($total_saldo['total_saldo'])."</h2>";
+                                     ?>
+
+                                    </h2>
+                                    <p><i>*Anda Dapat Melakukan Pembayaran Dengan Menggunakan Saldo.</i></p>
+                                </div>
+                            </div>           
                         </div>
                         <div class="col-md-6">
                             <div class="panel panel-primary">
-                                <div class="panel-heading"><span class="fa fa-check"></span> Konfirmasi Pembayaran</div>
+                                <div class="panel-heading"><span class=""></span> Konfirmasi Pembayaran</div>
                                 <div class="panel-body">
                                      <form class="role" method="POST" enctype="multipart/form-data">
                                         <div class="form-group row">
-                                          <label class="col-md-4">INVOICE</label>
+                                          <label class="col-md-4">No Invoice</label>
                                           <div class="col-md-6">
                                             <input type="text" class="form-control" name="invoice" value="<?php echo $invoice; ?>" readonly />
                                             <input type="hidden" class="form-control" name="loan_app_id_fk" value="<?php echo $kodePeminjaman; ?>" />
@@ -198,24 +271,25 @@
                                           </div>
                                         </div>
                                         <div class="form-group row">
-                                          <label class="col-md-4">TANGGAL PEMBAYARAN</label>
+                                          <label class="col-md-4">Jenis Pembayaran</label>
                                           <div class="col-md-6">
-                                            <select class="form-control" name="payment_category">
-                                              <option value="">PILIH JENIS PEMBAYARAN</option>
-                                              <option value="PEMINJAMAN">PEMINJAMAN ALAT</option>
-                                              <option value="PERPANJANGAN">PERPANJANGAN ALAT</option>
+                                            <select class="form-control" name="payment_category" required>
+                                              <option value="">Pilih</option>
+                                              <option value="Pembayaran Peminjaman">Peminjaman Alat</option>
+                                              <option value="Pembayaran Perpanjangan">Perpanjangan Alat</option>
+                                              <option value="Pembayaran Denda">Denda Alat</option>
                                             </select>
                                           </div>
                                         </div>
                                         <div class="form-group row">
-                                          <label class="col-md-4">TOTAL TAGIHAN</label>
+                                          <label class="col-md-4">Jumlah Tagihan</label>
                                           <div class="col-md-6">
                                             <input type="text" name="totalTagihan"  class="form-control" value="<?php echo rupiah($rowPenagihan['loan_total_fee']); ?>" readonly  />
                                             <input type="hidden" id="tagihan" name="payment_bill" value="<?php echo $rowPenagihan['loan_total_fee']; ?>">
                                           </div>
                                         </div>
                                         <div class="form-group row">
-                                          <label class="col-md-4">BANK</label>
+                                          <label class="col-md-4">Dari Bank</label>
                                           <div class="col-md-6">
                                             <input type="text" class="form-control" name="payment_bankname"  required />
                                           </div>
@@ -224,7 +298,7 @@
                                         <?php 
                                                $querySaldo = mysql_query("SELECT sum(saldo_nominal) as total_saldo FROM tbl_saldo where member_id_fk='".$_SESSION['member_id']."'");
                                              ?>
-                                          <label class="col-md-4">MENGGUNAKAN SALDO</label>
+                                          <label class="col-md-4">Menggunakan Saldo</label>
                                           <div class="col-md-6">
                                             <div class="input-group">
                                             <span class="input-group-addon">
@@ -263,26 +337,33 @@
                                           </div>
                                         </div>
                                         <div class="form-group row">
-                                          <label class="col-md-4"> JUMLAH TRANSFER</label>
+                                          <label class="col-md-4"> Jumlah Transfer</label>
                                           <div class="col-md-6">
                                             <input type="text" class="form-control" name="payment_amount_transfer"  id="nominaltransfer"  required />
                                           </div>
-                                        </div>  
-                                          Inputlah sesuai dengan jumlah uang yang Anda transfer.
+                                             </div>  
+                                          <div class="form-group row">
+                                          <div class="col-md-4"></div>
+                                          <div class="col-md-6">
+                                            Inputlah sesuai dengan jumlah uang yang Anda transfer.
+                                          </div>
+                                          </div>
+                                       
+                                          
                                         <div class="form-group row">
-                                        <label class="control-label col-lg-4">UPLOAD FILE</label>
+                                        <label class="control-label col-lg-4">Upload Bukti</label>
                                             <div class="col-md-8">
                                                 <input type="file" name="frm_file" id="ifile" onchange="cekberkas()">
                                              </div>
                                         </div>
                                         <div class="form-group row">
-                                          <label class="col-md-4">KETERANGAN</label>
+                                          <label class="col-md-4">Keterangan</label>
                                           <div class="col-md-6">
                                             <textarea class="form-control" name="payment_info"></textarea>
                                           </div>
                                         </div>
                                         <div class="form-group row">
-                                          <div class="col-md-12">
+                                          <div class="col-md-10">
                                             <button type="submit" id="simpanPembayaran"  class="btn btn-primary dim_about pull-right" name="simpanPembayaranAlat" disabled>
                                             <span class="fa fa-save"> SIMPAN</span>
                                           </button>
