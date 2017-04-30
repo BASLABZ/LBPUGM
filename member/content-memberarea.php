@@ -14,11 +14,17 @@
                  $statusKonfirmasi = $rowPeringatan['loan_status'];
         ?>
             <?php 
-                 if($statusKonfirmasi=='ACC') {
-                        echo " <div class='alert alert-success alert-dismissable dim_about yellow-bg' style='border-color: #f8ac59; color: white;'>
+                 if($statusKonfirmasi=='ACC FINAL') {
+                        echo " <div class='alert alert-success alert-dismissable dim_about navy-bg' style='border-color: #f8ac59; color: white;'>
                               <button aria-hidden='true' data-dismiss='alert' class='close' type='button' style='color: white;'>×</button>
                                 <span class='fa fa-check'></span> <b>STATUS PENGAJUAN ALAT:</b></br>
                                 Hi ".$rowPeringatan['member_name'].", pengajuan peminjaman alat penelitian dengan NO INVOICE ".$rowPeringatan['loan_invoice']."  telah kami setujui. Silahkan melakukan pembayaran dan konfirmasi pembayaran dalam waktu 3 jam setelah pengajuan Anda kami setujui. Apabila dalam waktu tempo yang diberikan Anda belum melakukan konfirmasi pembayaran maka pengajuan peminjaman alat Anda dibatalkan secara otomatis. <b><a href='index.php?hal=pengajuan-member/pengajuan-alat'>Lihat Data Pengajuan -->></a></b> 
+                             </div>";
+                    }else if ($statusKonfirmasi == 'MENUNGGU ACC FINAL') {
+                      echo " <div class='alert alert-success alert-dismissable dim_about yellow-bg' style='border-color: #f8ac59; color: white;'>
+                              <button aria-hidden='true' data-dismiss='alert' class='close' type='button' style='color: white;'>×</button>
+                                <span class='fa fa-check'></span> <b>STATUS PENGAJUAN ALAT:</b></br>
+                                Hi ".$rowPeringatan['member_name'].", pengajuan peminjaman alat penelitian dengan NO INVOICE ".$rowPeringatan['loan_invoice']." Telah mendapatkan persetujuan dari koordinator penelitian , untuk proses berikut selanjutnya pengajuanan alat anda akan di verfikasi oleh Kepala Lab. <b><a href='index.php?hal=pengajuan-member/pengajuan-alat'>Lihat Data Pengajuan -->></a></b> 
                              </div>";
                     }elseif ($statusKonfirmasi == 'DITOLAK') {
                         echo "<div class='alert alert-success alert-dismissable dim_about red-bg' style='border-color: #f8ac59; color: white;'>

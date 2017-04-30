@@ -10,7 +10,6 @@ $query = "SELECT operator_username, operator_password, operator_name, operator_i
     
 $hasil = mysql_query($query);
 $data = mysql_fetch_array($hasil);
-
 if ($password == $data['operator_password'])
 {
 echo "<script> alert('Login Sukses');</script>";
@@ -19,19 +18,7 @@ echo "<script> alert('Login Sukses');</script>";
     $_SESSION['level_id']    = $data['level_id'];
     $_SESSION['level_name']  = $data['level_name'];
     $_SESSION['operator_username']   = $data['operator_username'];
-    // $_SESSION['login_time'] = date('Y-m-d');
-    //Penggunaan Meta Header HTTP
-    if ($data['level_id']){
-        echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../admin/index.php">';    
-<<<<<<< HEAD
-=======
-    }else if($data['level']=='2'){
-        echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../koordinator-penelitian/index.php">';    
-    }else if($data['level']=='3'){
-        echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../kepala-laboratorium/index.php">';    
->>>>>>> a56b73413bd08fc276379ce43e92fac5d3e97c0f
-    }
-    exit;
+    echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../admin/index.php">'; exit;
 }
 else 
 echo "<script> alert('Proses Login Gagal Silahkan Melakukan Login Lagi');</script>"; 

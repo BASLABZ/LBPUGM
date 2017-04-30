@@ -7,6 +7,7 @@
             $runq = mysql_fetch_array($selectQuery);
             $email = $runq['member_email'];
             $queryUpdateStatusLoanAPP = mysql_query("UPDATE trx_loan_application set loan_status = '".$_POST['loan_status']."' where loan_app_id = '".$_POST['loan_app_id']."'");
+                 // echo "<script>  location.href='index.php?hal=peminjaman/pengajuan/list' </script>";exit;
                  echo "<script>  location.href='peminjaman/pengajuan/SENDEMAIL/sendEmailDebug.php?invoice=".$invoice."&email=".$email."' </script>";exit;
         }
         
@@ -18,7 +19,7 @@
                 <div class="col-md-12">
                 <div class="panel panel-primary" style="border-color:white; ">
                     <div class="panel-heading dim_about">
-                        <span class="fa fa-pencil"></span> Transaksi Pengajuan
+                        <span class="fa fa-pencil"></span> Transaksi Pengajuan 
                         <span class="fa fa-home pull-right"> <i>
                             Home / <span class="fa fa-list"></span> Konfirmasi / <span class="fa fa-pencil">
                             </span>
@@ -83,31 +84,42 @@
                                 </div>
 
                                     <div class="row">
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-8">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-10">
                                             <div class="row well dim_about">
                                             <form class="role" method="POST">
-                                                <div class="col-md-4" style="padding-top: 5px; margin-right: 5px;" ><b>STATUS PENGAJUAN </b></div> 
+                                                <div class="col-md-3" style="padding-top: 5px; margin-right: 5px;" ><b>STATUS PENGAJUAN </b></div> 
                                                 <input type="hidden" value="<?php echo $rowStatusLoan['loan_app_id']; ?>" name='loan_app_id'>
                                                 <input type="hidden" value="<?php echo $invoice; ?>" name='loan_invoice'>
-                                                <div class="col-md-6">
+                                                <div class="col-md-7">
                                                         <select class="form-control" name="loan_status">
-                                                    <option value="MENUNGGU"
+                                                            <?php 
+                                                                if ($_SESSION['level_name'] != 'kepala laboratorium'){ 
+                                                             ?>
+                                                            <option value="MENUNGGU"
                                                                 <?php if($rowStatusLoan['loan_status']=='MENUNGGU'){echo "selected=selected";}?>>
                                                                     MENUNGGU
                                                             </option>
-                                                            <option value="ACC"
-                                                                <?php if($rowStatusLoan['loan_status']=='ACC'){echo "selected=selected";}?>>
-                                                                    ACC
+                                                            <option value="MENUNGGU ACC FINAL"
+                                                                <?php if($rowStatusLoan['loan_status']=='MENUNGGU ACC FINAL'){echo "selected=selected";}?>>
+                                                                    MENUNGGU ACC FINAL
                                                             </option>
                                                             <option value="DIKONFORMASI"
                                                                 <?php if($rowStatusLoan['loan_status']=='DIKONFORMASI'){echo "selected=selected";}?>>
-                                                                    DIKONFORMASI DAN ADA INSTRUMEN YANG DI TOLAK
+                                                                    DIKONFORMASI & ADA INSTRUMEN YANG DI TOLAK
                                                             </option>
+                                                            <?php }else{ ?>
+                                                            <!-- bu ketua lab -->
+                                                            <option value="ACC FINAL"
+                                                                <?php if($rowStatusLoan['loan_status']=='ACC FINAL'){echo "selected=selected";}?>>
+                                                                    ACC FINAL
+                                                            </option>
+                                                            <!-- end bu ketu -->
+                                                            <?php } ?>
                                                 </select>
                                                 </div>
                                                 <div class="col-md-1">
-                                                    <button type="submit" name="ubah" class="btn btn-info btn-md dim_about"> <span class="fa fa-save"></span> Ubah</button>
+                                                    <button type="submit" name="ubah" class="btn btn-info btn-md dim_about"> <span class="fa fa-save"></span> Konfirmasi <br>Pengajuan</button>
                                                     
                                                 </div>
                                                 </form>
@@ -125,7 +137,11 @@
                                             <th>Jumlah Alat Tersedia</th>
                                             <th>Jumlah Pinjam</th>
                                             <th>Subtotal</th>
-                                            <th>Aksi</th>
+                                            <?php 
+                                                if ($_SESSION['level_name'] != 'kepala laboratorium') {
+                                                    echo "<th>Aksi</th>";
+                                                }
+                                             ?>
                                         </thead>
                                         <tbody>
                                         <?php $sqldetail = mysql_query("SELECT * FROM trx_loan_application_detail d join ref_instrument i on d.instrument_id_fk = i.instrument_id join trx_loan_application a on d.loan_app_id_fk = a.loan_app_id where a.loan_invoice = '".$invoice."'");
@@ -147,10 +163,16 @@
                                                 <td><center><?php echo "".$rowDetailPeminjaman['loan_amount'].""; ?></center></td>
                                                 
                                                 <td>Rp.<?php echo rupiah($rowDetailPeminjaman['loan_subtotal']); ?></td>
-                                                <td>
-                                                    <a href='#ubahstatuspengajuan' class='btn btn-info dim_about' id='custId' data-toggle='modal' 
+                                              
+                                                    <?php 
+                                                        if ($_SESSION['level_name'] != 'kepala laboratorium') {
+                                                     ?>
+                                                    <td>
+                                                     <a href='#ubahstatuspengajuan' class='btn btn-info dim_about' id='custId' data-toggle='modal' 
                                                         data-id='<?php echo $rowDetailPeminjaman['loan_app_detail_id']; ?>'><span class="fa fa-eye"></span> Ubah Status </a> 
-                                                </td>
+                                                    </td>
+                                                     <?php } ?>
+                                                
                                             </tr>
                                             <?php } ?>
                                         </tbody>

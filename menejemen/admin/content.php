@@ -11,7 +11,7 @@
             				<p style="color:white;" align="center"> <b>Sistem Informasi Penyewaan Alat Laboratorium 
             					Bioantropologi dan Paleantropologi 
 								Fakultas Kedokteran 
-								Universitas Gadjah Mada</b></p>
+								Universitas Gadjah Mada <?php echo $_SESSION['level_name']; ?></b></p>
             			</div>
             		</div>            
                         

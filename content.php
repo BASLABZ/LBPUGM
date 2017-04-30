@@ -8,7 +8,7 @@
         <div class="item active">
             <div class="container">
                 <div class="carousel-caption">
-                    <h2 style="font-size: 28px;">Laboratorium Bioantropologi <br/>
+                    <h2 style="font-size: 28px;">Laboratorium Bioantropologi  <br/>
                         Paleantropologi LBP<br/>
                         Universitas Gajah Mada [LBP-UGM]</h2>
                         <?php 

@@ -164,7 +164,7 @@
                                    if ($statusKonfirmasi == 'MEMBAYAR TAGIHAN') {
                                      echo "<a class='btn btn-info dim_about' href='index.php?hal=pembayaran/preview_rekappembayaran_perinvoice&id=".$invoice."'> <span class='fa fa-print'></span> Cetak<a>";
                                   
-                                   }else if ($statusKonfirmasi == 'ACC') {
+                                   }else if ($statusKonfirmasi == 'ACC FINAL') {
                                    	echo "<div class='well'><b>KETERANGAN : <br/>Silahkan klik button Konfirmasi Pembayaran untuk dapat melanjutkan proses selanjutnya. Waktu yang diberikan untuk Konfirmasi Pembayaran adalah 3 Jam setelah pengajuan Anda dinyatakan di ACC. Apabila dalam waktu 3 jam Anda tidak melakukan konfirmasi pembayaran maka pengajuan peminjaman alat akan dibatalkan secara otomatis. </b></div>";
                                      echo " <a href='index.php?hal=pembayaran/konfirmasi_pembayaran&id=".$ubahstatus['loan_invoice']."' class='btn btn-info btn-xl pull-right dim_about'
                                     ><span class=''></span> KONFIRMASI PEMBAYARAN</a>";

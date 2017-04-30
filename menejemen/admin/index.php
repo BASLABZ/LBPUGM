@@ -1,12 +1,16 @@
 <?php  
     session_start();
     include '../inc/inc-db.php';
-    if (isset($_GET['logout'])) {
+    if (isset($_GET['logout'])) 
+      {
         session_destroy();
-        echo "<script> alert('Anda Berhasil Keluar Aplikasi'); location.href='index.php' </script>";exit;}
-    if (isset($_SESSION['level_name']))
-            { if ($_SESSION['level_name'] == "admin" OR $_SESSION['level_name']=='koordinator penelitian' OR $_SESSION['level_name']=='kepala laboratorium')
-               { 
+        echo "<script> alert('Anda Berhasil Keluar Aplikasi'); location.href='../index.php' </script>";exit;
+      }
+
+
+
+     // if ($_SESSION['level_name'] == "admin" OR $_SESSION['level_name']=='koordinator penelitian' OR $_SESSION['level_name']=='kepala laboratorium' OR $_SESSION['level_name']=='superadmin'){ 
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,6 +53,7 @@
     <script src="assets/plugins/dataTables/dataTables.bootstrap.js"></script>
 </head>
         
+
         <?php include 'topmenu.php'; ?>
         <?php include 'sidebar.php'; ?>
          <?php 
@@ -82,6 +87,8 @@
 </html>
 
 <?php
-    }}
-    if (!isset($_SESSION['level_name'])){header('location:../index.php');}
+    
+//   }if (!isset($_SESSION['level_name'])){
+//       header('location:../index.php');
+// }
 ?>
