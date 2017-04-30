@@ -25,33 +25,33 @@
 </div> 
   </div>
 <table class="table table-responsive table-hover table-bordered">
-		<thead>
+		<!-- <thead>
 			<th>No</th>
 			<th>Nama Alat</th>
 			<th>Jumlah</th>
 			<th>Subtotal</th>
 		</thead>
-		<tbody>
-		<?php 
+		<tbody> -->
+		<!-- <?php 
 					
-				$sqldetail = mysql_query("SELECT * FROM trx_loan_application_detail d 
-											JOIN trx_loan_application p
-											 ON d.loan_app_id_fk = p.loan_app_id
-											  JOIN ref_instrument i
-											   ON d.instrument_id_fk = i.instrument_id
-											   JOIN tbl_member m
-											    where p.loan_invoice='".$invoice."' group by instrument_id");
-				$no =1;
-				while ($rowDetailPeminjaman = mysql_fetch_array($sqldetail)) {
+				//$sqldetail = mysql_query("SELECT * FROM trx_loan_application_detail d 
+											//JOIN trx_loan_application p
+											 //ON d.loan_app_id_fk = p.loan_app_id
+											  //JOIN ref_instrument i
+											   //ON d.instrument_id_fk = i.instrument_id
+											   //JOIN tbl_member m
+											    //where p.loan_invoice='".$invoice."' group by instrument_id");
+				//$no =1;
+				//while ($rowDetailPeminjaman = mysql_fetch_array($sqldetail)) {
 		 ?>
 			<tr>
-				<td><?php echo $no++; ?></td>
-				<td><?php echo $rowDetailPeminjaman['instrument_name']; ?></td>
-				<td><?php echo $rowDetailPeminjaman['loan_amount']; ?></td>
-				<td>Rp.<?php echo rupiah($rowDetailPeminjaman['loan_subtotal']); ?></td>
+				<td><?php //echo $no++; ?></td>
+				<td><?php //echo $rowDetailPeminjaman['instrument_name']; ?></td>
+				<td><?php //echo $rowDetailPeminjaman['loan_amount']; ?></td>
+				<td>Rp.<?php //echo rupiah($rowDetailPeminjaman['loan_subtotal']); ?></td>
 			</tr>
-<?php } ?>
-		</tbody>
+
+		</tbody> -->
 		<tfoot>
 			<?php 
 				// total item
@@ -65,16 +65,16 @@
 				$totalBiaya = $biaya['totalBiaya'];
 			 ?>
 
-			<tr>
-				<td colspan="3"><label>Jumlah</label></td>
-				<td><label><?php echo $totalItem; ?> / Buah</label></td> 
-			</tr>
-			<tr>
+			<!-- <tr>
+				<td colspan="2"><label>Jumlah</label></td>
+				<td><label><?php //echo $totalItem; ?></label></td> 
+			</tr> -->
+			<!-- <tr>
 				<td colspan="3"><label>Total </label></td>
-				<td><label>Rp. <?php echo rupiah($totalBiaya); ?></label></td>	
-			</tr>
+				<td><label>Rp. <?php //echo rupiah($totalBiaya); ?></label></td>	
+			</tr> -->
 			<tr>
-				<td colspan="3"><label>Tagihan : </label></td>
+				<td colspan="3"><label>Tagihan  </label></td>
 				<td><label>Rp. <?php echo rupiah($rowPenagihan['payment_bill']); ?></label></td>
 			</tr>
 			<tr>
@@ -83,11 +83,16 @@
 			</tr>
 			<tr>
 				<td colspan="3"><label>Kelebihan Pembayaran</label></td>
-				<td><?php echo $rowPenagihan['payment_amount_saldo']; ?> * Sisa pembayaran akan dimasukkan ke dalam saldo member</td>
+
+				<td><label>Rp. <?php echo rupiah ($rowPenagihan['payment_amount_saldo']); ?></label> * Sisa pembayaran akan dimasukkan ke dalam saldo member</td>
 			</tr>
 			<tr>
 				<td colspan="3"><label>Kategori Pembayaran</label></td>
 				<td><?php echo $rowPenagihan['payment_category']; ?></td>
+			</tr>
+			<tr>
+				<td colspan="3"><label>Keterangan Pembayaran</label></td>
+				<td><?php echo $rowPenagihan['payment_status']; ?></td>
 			</tr>
 			<tr>
 				<td colspan="3"><label>Tanggal Konfirmasi</label></td>
@@ -98,9 +103,9 @@
 				<td><?php echo $rowPenagihan['payment_bankname']; ?></td>
 			</tr>
 			<tr>
-				<td colspan="3"><label>STATUS</label></td>
+				<td colspan="3"><label>Status Pembayaran</label></td>
 				<td>
-					<label>
+					
 						<?php 
 								
 								$tagihan  = $rowPenagihan['payment_bill'];
@@ -115,14 +120,19 @@
 									echo "PEMBAYARAN TIDAK SESUAI : $cekPembayaran ";
 								}
 						 ?>
-					</label>
+					
 				</td>
+			</tr>
+			<tr>
+				<td colspan="3"><label>Keterangan</label></td>
+				<td><?php echo $rowPenagihan['payment_notif']; ?></td>
 			</tr>
 		</tfoot>
 	</table>
+	<div class="col-md-12">
 	<div class="row well">
 		<form class="role" method="POST" action="index.php?hal=pembayaran/verifikasi_status_pembayaran">
-						<div class="col-md-12">
+						<div class="col-md-6">
 							<input type="hidden" name="idpayment" value="<?php echo $rowPenagihan['payment_id']; ?>" >
 							<select class="form-control" name="payment_valid" required id="konfirmasivalidasi">
 								<option value=""
@@ -139,25 +149,22 @@
 
 						</div>
 						<div class="col-md-12" id="keterangan" hidden>
-						<br>
+							<br>
 							<label>Isi Alasan Tidak Valid</label>
 							<textarea class="form-control" name="payment_notif">
 								
 							</textarea>
 							
-						<br>
+							<br>
 						</div>
-						<p>
-								<?php echo $rowPenagihan['payment_notif']; ?>
-							</p>
-						<div class="col-md-3 pull-right" style="padding-top: 3px;">
-							<button type="submit" class="btn btn-info btn-sm"><span class="fa fa-check
-							"></span> VERIFIKASI</button>
+						<div class="col-md-3" style="padding-top: 3px;">
+							<button type="submit" class="btn btn-info btn-sm"><span class="
+							"></span> VERIFIKASI PEMBAYARAN</button>
 						</div>
 
 					</form>
 	</div>
-	
+	</div>
 	<script type="text/javascript">
 		  $('#konfirmasivalidasi').on('change',function () {
 		  	if(this.value == "MENUNGGU KONFIRMASI") {

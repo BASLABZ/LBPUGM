@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 include 'inc-db.php';
@@ -18,7 +19,22 @@ echo "<script> alert('Login Sukses');</script>";
     $_SESSION['level_id']    = $data['level_id'];
     $_SESSION['level_name']  = $data['level_name'];
     $_SESSION['operator_username']   = $data['operator_username'];
+<<<<<<< HEAD
     echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../admin/index.php">'; exit;
+=======
+    // $_SESSION['login_time'] = date('Y-m-d');
+    //Penggunaan Meta Header HTTP
+    if ($data['level_id']){
+        echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../admin/index.php">';    
+
+    }else if($data['level']=='2'){
+        echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../koordinator-penelitian/index.php">';    
+    }else if($data['level']=='3'){
+        echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../kepala-laboratorium/index.php">';    
+ 
+    }
+    exit;
+>>>>>>> d15e8b6ead176c3d5eb34de08855c4b32ebc3634
 }
 else 
 echo "<script> alert('Proses Login Gagal Silahkan Melakukan Login Lagi');</script>"; 

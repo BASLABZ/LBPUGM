@@ -8,9 +8,15 @@
         <div class="item active">
             <div class="container">
                 <div class="carousel-caption">
+<<<<<<< HEAD
                     <h2 style="font-size: 28px;">Laboratorium Bioantropologi  <br/>
                         Paleantropologi LBP<br/>
                         Universitas Gajah Mada [LBP-UGM]</h2>
+=======
+                    <h2 style="font-size: 28px;">Laboratorium Bioantropologi & <br/>
+                    Paleoantropologi <br/>
+                        Universitas Gadjah Mada [LBP-UGM]</h2>
+>>>>>>> d15e8b6ead176c3d5eb34de08855c4b32ebc3634
                         <?php 
                             if (isset($_SESSION['member_name'])) {
                          ?>
@@ -28,9 +34,9 @@
         <div class="item">
             <div class="container">
                 <div class="carousel-caption blank">
-                    <h2 style="font-size: 28px;">Laboratorium Bioantropologi <br/>
-                        Paleantropologi LBP<br/>
-                        Universitas Gajah Mada [LBP-UGM]</h2>
+                    <h2 style="font-size: 28px;">Laboratorium Bioantropologi & <br/>
+                        Paleantropologi<br/>
+                        Universitas Gadjah Mada [LBP-UGM]</h2>
                          <?php 
                             if (isset($_SESSION['member_name'])) {
                          ?>
@@ -147,8 +153,8 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="navy-line"></div>
-                <h1>PROSEDUR PENYEWAAN ALAT PENELITIAN</h1>
-                <p>Berikut Prosedur Penyewaan Peralatan Lab. Bio-Paleoantropologi UGM </p>
+                <h1>PROSEDUR PEMINJAMAN</P></h1>
+                <p>Berikut Prosedur Peminjaman Alat Penelitian Antropometri Pada Lab. Bio-Paleoantropologi UGM </p>
             </div>
         </div>
         <div class="row features-block">
@@ -344,7 +350,7 @@
     <div class="row">
         <div class="col-lg-12 text-center">
             <div class="navy-line"></div>
-            <h1>Laboratorium Bioantropologi dan Paleantropologi LBP<br/> <span class="navy"> Universitas Gajah Mada</span> </h1>
+            <h1> Profil Laboratorium Bioantropologi dan Paleantropologi<br/><span class="navy"> Universitas Gajah Mada</span> </h1>
         </div>
     </div>
     <div class="row">
@@ -352,31 +358,40 @@
             <div>
                 <center><div class="icon"><i style="color:white; padding-top:18px; " class="fa fa-user-plus features-icon"></i></div></center>
                 
-                <h2>Registrasi Member</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-            </div>
-            <div class="m-t-lg">
-                <center><div class="icon"><i style="color:white; padding-top:18px; " class="fa fa-shopping-cart features-icon"></i></div></center>
-                <h2>Penyewaan</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
+                
+                <p align="justify">Laboratorium Bioantropologi dan Paleoantropologi beralamat di di Jl. Medika, Sekip, Yogyakarta 55281, Indonesia. Laboratorium Bioantropologi dan Paleoantropologi dirintis oleh almarhum Prof. Dr. T. Jacob atas dasar semangat membangun identitas bangsa melalui warisan budaya fosil manusia purba dan artefaknya, meliputi bidang antropologi, arkeologi dan geologi. Konstelasi tiga bidang ini berada di Jakarta, Bandung dan Yogyakarta. Antropologi berpusat di Universitas Gadjah Mada di bawah Fakultas Kedokteran. Arkeologi di Jakarta berkembang menjadi pusat Arkeologi Nasional langsung di bawah Kementrian Pendidikan dan Kebudayaan. Bidang Geologi dipusatkan di Institut Teknologi Bandung di Meseum Geologi langsung di bawah Kementrian Riset dan Teknologi.</p>
             </div>
         </div>
+        <br/><br/><br/></br>
         <div class="col-md-6 text-center  wow zoomIn">
-            <img src="img/landing/perspective.png" alt="dashboard" class="img-responsive">
+            <img src="img/landing/DSC_0010.jpg" alt="dashboard" class="img-responsive">
         </div>
+
         <div class="col-md-3 text-center wow fadeInRight">
             <div>
-<center id='layanan'>
-    <div class="icon"><i style="color:white; padding-top:18px; " class="fa fa-gear features-icon"></i></div>
-</center>
-                <h2>Fasilitas LBP - UGM</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-</div>
-    <div class="m-t-lg">
+                <center id='layanan'>
+                    <div class="icon"><i style="color:white; padding-top:18px; " class="fa fa-gear features-icon"></i></div>
+                </center>
+                
+                <p align="justify">Pada 5 Maret 2008, oleh Rektor UGM, Gedung Laboratorium Bioantropologi dan Paleoantropologi diberi nama GEDUNG T.JACOB. Gedung sayap belakang yang dahulunya “dipinjam” oleh Keperawatan, dipakai oleh Bioetika. Ketika istri almarhum Prof. Jacob meninggal dunia, semua buku almarhum disumbangkan ke ruang dimana almarhum dahulu berkantor, dilantai satu. Secara swadaya kami bertahap dalam 3 bulan mengangkut 2000 buku beserta 6 lemari buku milik Dekan dan Rektor. Bidang yang langka dan kering ini (paleoantropologi) tidak mendapat perhatian cukup dari lembaga yang menaunginya. Jumlah ahli paleoantropologi di Indonesia juga hanya kurang dari separoh jari tangan. Cabang antropolgi lain yang menjadi keahlian kami di LBP adalah Antropologi Forensik dan Antropometri. Gedung T. Jacob dipakai untuk praktikum blok 2.3, 2.4 dan 4.2 S1 FK UGM dan kunjungan rutin siswa dari seluruh Indonesia . Selain itu juga kuliah cabang-cabang Ilmu Antropologi bagi mahasiswa Fakultas Ilmu Budaya dan Fakultas Biologi.</p>
+            </div>
+        </div>
+        <div class="col-md-12 text-center">
+            <div class="m-t-lg">
+                <center><div class="icon"><i style="color:white; padding-top:18px; " class="fa fa-shopping-cart features-icon"></i></div></center>
+                
+                <p align="justify">Antropologi ragawi di UGM di bawah FK berubah-ubah struktur organisasinya dari seksi, lab, subseksi, lab lagi didalam dan diluar Anatomi. 
+                Semasa menjabat menjadi Rektor, Prof. Dr. T. Jacob (almarhum) semua hasil penelitian fosil manusia purba disimpan di rak-rak di Rektorat di Gedung Pusat UGM. Baru pada tahun 1986, Pusat Arkeologi Nasional membangun gedung Laboratorium Bioantropologi dan Paleoantropologi untuk menampung hasil penelitian fosil manusia purba dan artefak serta Museum Paleoantropologi didalamnya, untuk pembelajaran warisan budaya bangsa Indonesia. Rencana Prof. Jacob, Antropologi di UGM Yogyakarta menjadi Pusat Penelitian Paleoantropologi terbesar di Asia Tenggara.
+                Pada tahun 1988 selesai dibangun dan disahkan oleh Mendikbud Bp.Fuad Hasan, dan biaya pemeliharaan gedung ditanggung Balai  Arkelologi Yogyakarta sebagai Unit Pelaksana Teknis Daerah Yogyakarta yang menjadi bagian dari Pusat Arkeologi Nasional. Pada 17 Oktober 2007 Prof Jacob wafat. Sebelum wafat, Prof Jacob mengupayakan HIBAH GEDUNG Laboratorium Bioantropologi dan Paleoantropologi ke Universitas Gadjah Mada. Baik bangunan  fisik maupun seluruh isinya dihibahkan oleh Pemerintah Pusat ke Universitas Gadjah Mada. Hibah staf, sarana fisik dan fosil manusia purba asset budaya bangsa termaktub dalam surat Kepala Balai Arkeologi Nomor 769/UM.01/BLR/DKP/VII.07 tertanggal 13 Agustus 2007; hal Mutasi Pegawai dan Hibah Gedung Lab Bioantropologi dan Paleoantropologi di FK UGM. Sesudah hibah, Pusat Arkeologi Nasional tidak lagi membiayai perawatan gedung. Yayasan Bp. Hasim Djojohadikusumo membantu biaya bulanan perawatan gedung. Operasional bulanan kantor diambil dari swadaya dosen, misalnya hasil penjualan buku, tulisan dosen, honor praktikum dan kunjungan siswa ke Museum Paleoantropologi.
+                </p>
+                <p align="justify">Pada 1 Juli 2008, SK Dekan yang memisahkan Laboratorium Bio dan Paleoantropologi dari Bagian Anatomi, Embriologi dan Antropologi, dengan menimbang bahwa laboratorium telah dikenal sebagai unggulan dalam bidang antropologi ragawi dan memiliki fasilitas pendidikan dan penelitian yang unik di Indonesia. SK Nomor UGM/KU/76/KP/01/39 perihal perubahan status laboratorium Bio dan Paleoantropologi Fakultas Kedokteran Universitas Gadjah Mada secara structural menjadi langsung dibawah Dekan, dan menunjuk Prof. drg Etty Indriati, Ph.D sebagai Kepala Laboratorium. Laporan tahunan keuangan, kegiatan laboratorium dan museum serta kegiatan tridarma dosen di laboratorium kami buat sejak tahun 2008 sampai sekarang dan dilaporkan kepada Dekan Kedokteran, Rektor Universitas Gadjah Mada , serta Yayasan Arsari Djojohadikusumo yang membiayai kebersihan dan perawatan gedung. </p>
+            </div>
+        </div>
+    <!-- <div class="m-t-lg">
         <center><div class="icon"><i style="color:white; padding-top:18px; " class="fa fa-tags features-icon"></i></div></center>
         <h2>Diskon Penyewaan</h2>
         <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus.</p>
-        </div>
+        </div> -->
     </div>
 </div>
 </section>
@@ -387,19 +402,23 @@
         if (isset($_SESSION['member_name'])) {?>
         
  <?php }else{ ?>
-<section id="daftar" class="navy-section testimonials dim_about" style="background-color: #00afe9;">
+<section id="daftar" class="navy-section testimonials dim_about" style="background-color:#00CED1;">
 
     <div class="container">
 
         <div class="row">
             <div class="col-lg-12 text-center wow zoomIn">
-                <i class="fa fa-users big-icon"></i>
+                <i class=""></i>
                 <h1>
-                    Anggota LBP - UGM
+                    
                 </h1>
                 <div class="testimonials-text" style="font-size:20px; ">
-                    <i>"Kami Menyediakan Beragam kelengkapan peralatan <br> BIO-paleontropologi guna penelitian maupun pengembangan dengan prosedur penyewaan yang mudah."</i>
-
+                <br/>
+                <strong>
+                    SELAMAT DATANG DI WEBSITE LAB. BIO- & PALEOANTROPOLOGI <br/>
+                    FAKULTAS KEDOKTERAN<br/>
+                    UNIVERSITAS GADJAH MADA 
+                    </strong>
                 </div>
                 <small>
                     <strong style="font-size: 30px;">LBP - UGM</strong>

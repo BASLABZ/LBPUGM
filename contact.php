@@ -8,6 +8,7 @@
                 <p>Informasi Lab. & informasi kontak kami</p>
                <!--  <div class="well">
                     <ol>
+                    
                         <li>JUMLAH INSTRUMENT, NILAI TERSEDIA, LOOPING PEMINJAM</li>
                         <li>VALIDATE REGISTER</li>
                         <li>VAIDATE LOGIN</li> 
@@ -18,25 +19,28 @@
             </div>
         </div>
         <div class="row m-b-lg">
-            <div class="col-lg-3 col-lg-offset-3">
+            <div class="col-lg-12 text-center">
                 <address>
-                    <strong><span class="navy">Lab. Bioantropologi & Paleoantropologi.Fakultas Kedokteran Universitas Gadjah Mada</span></strong><br/>
-                    Jl. Medika,  Sekip, Sleman, Yogyakarta 55281, Indonesia
-                    lab-biopaleo.fk@ugm.ac.id
-                    Telp: +62-0274-552577
-                    Fax: +62-0274-552577    
+                    <strong><span class="navy">LAB. BIO- & PALEOANTROPOLOGI<br/>
+                    FAKULTAS KEDOKTERAN<br/>
+                    UNIVERSITAS GADJAH MADA</span></strong><br/>
+                    Jl. Medika,  Sekip, Sleman, Yogyakarta 55281, Indonesia</br>
+                    <h4>
+                    <i class="fa fa-envelope"> &nbsp lab-biopaleo.fk@ugm.ac.id</i></br>
+                    <i class="fa fa-phone">&nbsp +62-0274-552577</i></br>
+                    <i class="fa fa-print">&nbsp +62-0274-552577</i> 
+                    </h4>
                 </address>
-
             </div>
             <div class="col-lg-4">
                 <p class="text-color" style="background-color: green;">
-                    <img src="menejemen/admin/assets/img/logo-ugm.png" class="img-responsive">
+                   
                 </p>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center m-t-lg m-b-lg">
-                <p><strong>&copy; <?php echo date('Y'); ?> BIO-PALEONTROPOLOGI UGM</strong><br/> Sistem Informasi Penyewaan Alat-Alat BIO-PALEONTROPOLOGO UGM Berbasis Website.</p>
+                <p><strong>&copy; <?php echo date('Y'); ?> Universitas Gadjah Mada </strong><br/> Sistem Informasi Peminjaman Alat Penelitian Antropometri </br> Laboratorium Bioantropologi & Paleoantropologi</p>
             </div>
         </div>
     </div>

@@ -15,7 +15,8 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a class="page-scroll" href="index.php" style="color:black; ">Home</a></li>
-                        <li><a class="page-scroll" href="index.php#prosedur" style="color:black; ">Prosedur</a></li>
+                        <li><a class="page-scroll" href="index.php#alat" style="color:black; ">Alat Penelitian</a></li>
+                        <li><a class="page-scroll" href="index.php#prosedur" style="color:black; ">Prosedur Peminjaman</a></li>
                         <li><a class="page-scroll" href="index.php#layanan" style="color:black; ">Layanan</a></li>
                          <?php 
                             if (isset($_SESSION['member_name'])) {

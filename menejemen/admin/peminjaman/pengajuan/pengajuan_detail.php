@@ -42,7 +42,7 @@
                                 <div class="row" style="padding-top: 10px; padding-right: 10px; padding-left: 10px;">
                                 <div class="col-md-2"></div>
                                     <div class="col-md-8">
-                                        <div class="row well" style="border-color: #7FFFD4;">
+                                        <div class="row well">
                                             <?php 
                                                 $detail = mysql_query("SELECT * from trx_loan_application a join tbl_member b on a.member_id_fk=b.member_id");
                                                 $rundetail = mysql_fetch_array($detail);  
