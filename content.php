@@ -8,9 +8,9 @@
         <div class="item active">
             <div class="container">
                 <div class="carousel-caption">
-                    <h2 style="font-size: 28px;">Laboratorium Bioantropologi <br/>
-                        Paleantropologi LBP<br/>
-                        Universitas Gajah Mada [LBP-UGM]</h2>
+                    <h2 style="font-size: 28px;">Laboratorium Bioantropologi & <br/>
+                    Paleoantropologi <br/>
+                        Universitas Gadjah Mada [LBP-UGM]</h2>
                         <?php 
                             if (isset($_SESSION['member_name'])) {
                          ?>
@@ -28,9 +28,9 @@
         <div class="item">
             <div class="container">
                 <div class="carousel-caption blank">
-                    <h2 style="font-size: 28px;">Laboratorium Bioantropologi <br/>
-                        Paleantropologi LBP<br/>
-                        Universitas Gajah Mada [LBP-UGM]</h2>
+                    <h2 style="font-size: 28px;">Laboratorium Bioantropologi & <br/>
+                        Paleantropologi<br/>
+                        Universitas Gadjah Mada [LBP-UGM]</h2>
                          <?php 
                             if (isset($_SESSION['member_name'])) {
                          ?>
@@ -147,8 +147,8 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="navy-line"></div>
-                <h1>PROSEDUR PENYEWAAN ALAT PENELITIAN</h1>
-                <p>Berikut Prosedur Penyewaan Peralatan Lab. Bio-Paleoantropologi UGM </p>
+                <h1>PROSEDUR PEMINJAMAN</P></h1>
+                <p>Berikut Prosedur Peminjaman Alat Penelitian Antropometri Pada Lab. Bio-Paleoantropologi UGM </p>
             </div>
         </div>
         <div class="row features-block">
@@ -396,19 +396,23 @@
         if (isset($_SESSION['member_name'])) {?>
         
  <?php }else{ ?>
-<section id="daftar" class="navy-section testimonials dim_about" style="background-color: #00afe9;">
+<section id="daftar" class="navy-section testimonials dim_about" style="background-color:#00CED1;">
 
     <div class="container">
 
         <div class="row">
             <div class="col-lg-12 text-center wow zoomIn">
-                <i class="fa fa-users big-icon"></i>
+                <i class=""></i>
                 <h1>
-                    Anggota LBP - UGM
+                    
                 </h1>
                 <div class="testimonials-text" style="font-size:20px; ">
-                    <i>"Kami Menyediakan Beragam kelengkapan peralatan <br> BIO-paleontropologi guna penelitian maupun pengembangan dengan prosedur penyewaan yang mudah."</i>
-
+                <br/>
+                <strong>
+                    SELAMAT DATANG DI WEBSITE LAB. BIO- & PALEOANTROPOLOGI <br/>
+                    FAKULTAS KEDOKTERAN<br/>
+                    UNIVERSITAS GADJAH MADA 
+                    </strong>
                 </div>
                 <small>
                     <strong style="font-size: 30px;">LBP - UGM</strong>

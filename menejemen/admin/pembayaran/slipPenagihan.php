@@ -83,6 +83,7 @@
 			</tr>
 			<tr>
 				<td colspan="3"><label>Kelebihan Pembayaran</label></td>
+
 				<td><label>Rp. <?php echo rupiah ($rowPenagihan['payment_amount_saldo']); ?></label> * Sisa pembayaran akan dimasukkan ke dalam saldo member</td>
 			</tr>
 			<tr>

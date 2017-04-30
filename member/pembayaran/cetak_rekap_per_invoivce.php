@@ -1,7 +1,7 @@
 <?php 
         include '../../menejemen/inc/inc-db.php';
         $id  = $_POST['id'];
-         $querypreviewrekap = mysql_query("SELECT * FROM trx_loan_application p JOIN trx_payment_temp t ON t.loan_app_id_fk = p.loan_app_id where p.loan_invoice = '".$id."'");
+         $querypreviewrekap = mysql_query("SELECT * FROM trx_loan_application p JOIN trx_payment t ON t.loan_app_id_fk = p.loan_app_id where p.loan_invoice = '".$id."'");
         $row = mysql_fetch_array($querypreviewrekap);
         $idmember = $row['member_id_fk'];
  ?>
@@ -23,7 +23,9 @@
                 <div class="wrapper wrapper-content p-xl">
                     <div class="ibox-header">
                         <center>
-                            <h2>LBP - UGM </h2>
+                            <h4>Laboratorium Bioantropologi & Paleoantropologi</h4><br/>
+                            <h4>Fakultas Kedokteran</h4>
+                            <h4>Universitas Gadjah Mada</h4>
                             <h3>LAPORAN REKAP TRANSAKSI PER INVOICE : <?php echo $row['loan_invoice']; ?></h3>
                         </center>
                     </div>
@@ -33,29 +35,34 @@
                              ?>
                              <table>
                                    <tr>
-                                     <td>Invoice : </td>
-                                     <td></td>
-                                     <td><?php echo $row['loan_invoice']; ?></td>
+                                     <td>No Invoice</td>
+                                     <td>:</td>
+                                     <td>&nbsp &nbsp <?php echo $row['loan_invoice']; ?></td>
                                  </tr>
                                  <tr>
-                                     <td>Nama Peminjam :</td>
-                                     <td></td>
-                                     <td><?php echo $rowmember['member_name']; ?></td>
+                                     <td>Nama Peminjam</td>
+                                     <td>:</td>
+                                     <td>&nbsp &nbsp <?php echo $rowmember['member_name']; ?></td>
                                  </tr>
                                   <tr>
-                                     <td>Institusi :</td>
-                                     <td></td>
-                                     <td><?php echo $rowmember['member_institution']; ?></td>
-                                 </tr>
-                                  <tr>
-                                     <td>Tgl Pinjam :</td>
-                                     <td></td>
-                                     <td><?php echo $row['loan_date_start']; ?></td>
+                                     <td>Institusi</td>
+                                     <td>:</td>
+                                     <td>&nbsp &nbsp <?php echo $rowmember['member_institution']; ?></td>
                                  </tr>
                                  <tr>
-                                     <td>Tgl Kembali :</td>
-                                     <td></td>
-                                     <td><?php echo $row['loan_date_return']; ?></td>
+                                     <td>Tanggal Pengajuan &nbsp</td>
+                                     <td>:</td>
+                                     <td>&nbsp &nbsp <?php echo $row['loan_date_start']; ?></td>
+                                 </tr>
+                                  <tr>
+                                     <td>Tanggal Pinjam</td>
+                                     <td>:</td>
+                                     <td>&nbsp &nbsp <?php echo $row['loan_date_start']; ?></td>
+                                 </tr>
+                                 <tr>
+                                     <td>Tanggal Kembali</td>
+                                     <td>:</td>
+                                     <td>&nbsp &nbsp <?php echo $row['loan_date_return']; ?></td>
                                  </tr>
                              </table>
                              <div class="row">

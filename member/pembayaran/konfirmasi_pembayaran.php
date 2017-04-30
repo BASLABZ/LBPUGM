@@ -38,6 +38,7 @@
                                                         'TANPA SALDO',
                                                         '".$_POST['payment_category']."',
                                                         '','MENUNGGU KONFIRMASI')";
+                  
                                                         
                              $runQueryPayment = mysql_query($querySimpanPayment);
                              $saldobertambah = $penguranganSaldo+$saldoAwal;
@@ -278,8 +279,9 @@
                                               <option value="Pembayaran Peminjaman">Peminjaman Alat</option>
                                               <option value="Pembayaran Perpanjangan">Perpanjangan Alat</option>
                                               <option value="Pembayaran Denda">Denda Alat</option>
-                                            </select>
-                                          </div>
+                                        </div>
+                                        </select>
+                                        </div>
                                         </div>
                                         <div class="form-group row">
                                           <label class="col-md-4">Jumlah Tagihan</label>
@@ -352,6 +354,11 @@
                                           
                                         <div class="form-group row">
                                         <label class="control-label col-lg-4">Upload Bukti</label>
+                                          <div class="col-md-8">Inputlah sesuai dengan jumlah uang yang Anda transfer.</div>
+                                        </div> 
+                                         
+                                        <div class="form-group row">
+                                        <label class="control-label col-lg-4">UPLOAD BUKTI PEMBAYARAN</label>
                                             <div class="col-md-8">
                                                 <input type="file" name="frm_file" id="ifile" onchange="cekberkas()">
                                              </div>

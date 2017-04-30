@@ -68,15 +68,11 @@
 					$diskons3= $totals3*0.25;
 					$hasil_akhirs3 = $totals3-$diskons3;
 		 ?>
-	</table>
-		<tfoot>
-		<div class="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-6 pull-right">
-				 
+	
+		<tfoot>		 
 			<tr>
-				<td colspan="3" class="pull-right"><b>Jumlah Item</b></td>
-				<td><?php echo $roTotal['loan_total_item']; ?> /Buah</td>
+				<td colspan="3"><b>Jumlah Item</b></td>
+				<td><?php echo $roTotal['loan_total_item']; ?> Item</td>
 				<td></td>
 			</tr> </br>
 			<tr>
@@ -85,8 +81,7 @@
 				<td></td> <br/>
 			</tr>
 			<tr>
-				<td colspan="3"><b>Jumlah Subtotal : </b></td>
-				<td></td>
+				<td colspan="4"><b>Jumlah Subtotal</b></td>
 				<td>Rp.<?php echo rupiah($sub); ?></td>
 			</tr> <br/>
 			<?php 
@@ -94,15 +89,15 @@
 			 ?>
 			
 			<tr>
-				<td colspan="3"><b>Total</b> </td>
+				<td colspan="4"><b>Total</b></td>
 				<td>Rp.<?php echo rupiah($hasil_akhirs1); ?></td>
 			</tr> <br/>
 			<tr>
-				<td colspan="3"><b>Potongan (50%)</b></td>
+				<td colspan="4"><b>Potongan (50%)</b></td>
 				<td>Rp.<?php echo rupiah($potongan);  ?></td>
 			</tr> <br/>
 			<tr>
-				<td colspan="3"><b>Total Bayar = (Lama Pinjam x Jumlah Subtotal)x 50 %</b></td>
+				<td colspan="4"><b>Total Bayar = (Lama Pinjam x Jumlah Subtotal)x 50 %</b></td>
 				<td>Rp.<?php echo rupiah($roTotal['loan_total_fee']); ?></td>
 			</tr> <br/>
 			<?php } else if ($roTotal['category_id_fk']==5) {
@@ -110,15 +105,15 @@
 			?>
 			
 			<tr>
-				<td colspan="3">Total </td>
+				<td colspan="4"><b>Total</b></td>
 				<td>Rp.<?php echo rupiah($totals2);?></td>
 			</tr>
 			<tr>
-				<td colspan="3">Potongan (25%)</td>
+				<td colspan="4">Potongan (25%)</td>
 				<td>Rp.<?php echo rupiah($diskons2);  ?></td>
 			</tr>
 			<tr>
-				<td colspan="3">Total Bayar </td>
+				<td colspan="4">Total Bayar </td>
 				<td>Rp.<?php 
 				echo rupiah($roTotal['loan_total_fee']); ?></td>
 			</tr>
@@ -146,20 +141,23 @@
 			</tr>
 			 	<?php
 			 } ?>
-			</div>
-		</div>
 		</tfoot>
+	</table>
 		<?php } ?>
 	
 	<div class="row">
 		<div class="col-md-12">
 			<p align="right">
 				<?php  
-				$queryUbahstatus = "SELECT loan_invoice,loan_status,loan_date_return,member_id_fk,loan_total_fee FROM trx_loan_application where loan_invoice  = '".$invoice."' ";
+				$queryUbahstatus = "SELECT a.loan_invoice, a.loan_status, a.loan_date_return, a.member_id_fk, a.loan_total_fee, b.payment_valid
+					FROM trx_loan_application a
+					JOIN trx_payment b ON a.loan_app_id = b.loan_app_id_fk
+					WHERE a.loan_invoice = '".$invoice."' ";
 				$ubahstatus = mysql_fetch_array(mysql_query($queryUbahstatus));
+					$statusPembayaran = $ubahstatus['payment_valid'];
 					$statusKonfirmasi = $ubahstatus['loan_status'];
 					
-                                   if ($statusKonfirmasi == 'VALID') {
+                                   if ($statusPembayaran == 'VALID') {
                                      echo "<a class='btn btn-info dim_about' href='index.php?hal=pembayaran/preview_rekappembayaran_perinvoice&id=".$invoice."'> <span class='fa fa-print'></span> Cetak<a>";
                                   
                                    }else if ($statusKonfirmasi == 'ACC') {
